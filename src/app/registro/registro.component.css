@@ -1,0 +1,68 @@
+.registro-box {
+  width: 300px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registro-box h2 {
+  text-align: center;
+  color: #333;
+}
+
+.registro-box .user-box {
+  position: relative;
+}
+
+.registro-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 30px;
+  border-color: #ddd;
+  border-width: 0 0 2px 0;
+  outline: none;
+  background: transparent;
+}
+
+.registro-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #666;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.registro-box .user-box input:focus ~ label,
+.registro-box .user-box input:valid ~ label {
+  top: -20px;
+  font-size: 12px;
+  color: #2196F3;
+}
+
+.registro-box .button-form button {
+  width: 100%;
+  background: #2196F3;
+  border: none;
+  outline: none;
+  padding: 15px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.registro-box .button-form button:hover {
+  background: #0b7dda;
+}/*# sourceMappingURL=registro.component.css.map */

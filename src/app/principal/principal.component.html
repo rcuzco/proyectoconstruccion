@@ -1,0 +1,54 @@
+<!-- <h2>Bienvenido a la Página de Acciones</h2>
+
+<div>
+  <h3>Acciones Disponibles:</h3>
+  <ul>
+    <li><a routerLink="/proveedores">Añadir Proveedor</a></li>
+    <li><a routerLink="/productos">Mostrar Productos</a></li>
+
+  </ul>
+</div> -->
+
+<!-- <nav class="navbar">
+  <div class="logo">
+    <i class="fa-solid fa-font-awesome"></i>
+    <a href="/principal">Logo</a>
+  </div>
+  <div class="menu">
+    <div class="menu-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Blog</a>
+    </div>
+    <button class="log-in">Log in</button>
+  </div>
+  <button type="menu-btn" class="btn">
+    <div class>
+      <i class="material-icons">menu</i>
+    </div>
+  </button>
+</nav> -->
+
+<header>
+  <div class="logo">Logo</div>
+  <div class="bars" (click)="toggleNavbar()">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+  <nav class="nav-bar" [ngClass]="{ 'active': isNavbarActive }">
+    <ul>
+      <li><a href="#" class="active">Inicio</a></li>
+      <li><a href="#" class="active">Blog</a></li>
+      <li><a href="#" class="active">Perfolio</a></li>
+      <li><a href="#" class="active">Nosotros</a></li>
+      <li><a href="#" class="active">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+<hr />
+<app-materiales></app-materiales>
+
+

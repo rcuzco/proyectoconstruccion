@@ -18,4 +18,9 @@ export class ProveedoresService {
   getData(): Observable<Proveedor[]> {
     return this.http.get<Proveedor[]>(`${this.apiUrl}`);
   }
+
+  insertProveedor(proveedor:Proveedor):Observable<number>{
+    const dataToInsert = { "providerName": proveedor.ProviderName, "contactName": proveedor.ContactName, "contactEmail": proveedor.ContactEmail, "contactPhone": proveedor.ContactPhone };
+    return this.http.post<number>(this.apiUrl, dataToInsert);
+  }
 }

@@ -8,6 +8,7 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { MaterialComponent } from './materiales/material/material.component';
 import { NuevoMaterialComponent } from './materiales/nuevo-material/nuevo-material.component';
+import { NuevoProveedorComponent } from './proveedores/nuevo-proveedor/nuevo-proveedor.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
         { path: 'materiales', component: MaterialesComponent },
         { path: 'materiales/:id', component: MaterialComponent },
         { path: 'materiales/material/nuevo', component: NuevoMaterialComponent },
+        { path: 'proveedores/nuevoproveedor', component: NuevoProveedorComponent },
         { path: 'proveedores', component: ProveedoresComponent },
         { path: 'clientes', component: ClientesComponent },
     ]

@@ -1,0 +1,49 @@
+<div class="page-wrapper">
+  <div class="page-content">
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+      <div class="ps-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0 p-0">
+            <li class="breadcrumb-item"><a href="javascript:;" routerLink="/dashboard/materiales" routerLinkActive="active"><i class="bx bx-home-alt"></i></a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Detalle de material</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+     <form [formGroup]="insertForm"> 
+      <label class="form-label">Nombre Proveedor</label>
+      <input
+        type="text"
+        placeholder="Nombre del proveedor"
+        class="form-control"
+        formControlName="ProviderName"
+      />
+      <label class="form-label">Nombre de contacto</label>
+      <input
+        type="text"
+        placeholder="Nombre de contacto"
+        class="form-control"
+        formControlName="ContactName"
+      />
+      <label class="form-label">Email de contacto</label>
+
+      <input
+        type="text"
+        placeholder="Email de contacto"
+        class="form-control"
+        formControlName="ContactEmail"
+      />
+
+      <label class="form-label">Teléfono de contacto</label>
+
+      <input
+        type="text"
+        placeholder="Telefono de contacto"
+        class="form-control"
+        formControlName="ContactPhone"
+      />
+       <input type="submit" value="Guardar" (click)="insertarProveedor()" />
+     </form>
+  </div>
+</div>

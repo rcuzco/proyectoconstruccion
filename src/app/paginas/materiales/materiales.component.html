@@ -1,0 +1,64 @@
+<div class="page-wrapper">
+  <div class="page-content">
+    <div class="card radius-10">
+      <div class="card-header">
+        <div class="d-flex align-items-center">
+          <div>
+            <h6 class="mb-0">Listado de Materiales</h6>
+          </div>
+          <div class="dropdown ms-auto">
+            <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i
+                class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="javascript:;" routerLink="/dashboard/materiales/material/nuevo" routerLinkActive="active">Añadir producto</a>
+              </li>
+              <li><a class="dropdown-item" href="javascript:;">Another action</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Nombre</th>
+                <!-- <th>Descripción</th> -->
+                <th>Foto</th>
+                <th>Proveedor</th>
+                <th>Stock</th>
+                <th>Precio Unitario</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pointer" *ngFor="let material of materiales" (click)="goToDetails(material.MaterialId)">
+                <td>{{material.MaterialName}}</td>
+                <!-- <td>{{material.Description}}</td> -->
+                <td><img src="./assets/images/products/{{material.ImageUrl}}" class="product-img-2" alt="product img" (click)="showImagePopup('./assets/images/products/{{material.ImageUrl}}')"></td>
+                <td>{{material.ProviderName}}</td>
+                <td>{{material.Quantity}}</td>
+                <td>{{material.UnitPrice}}</td>
+                <td>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="popup" *ngIf="isPopupVisible" (click)="hideImagePopup()">
+            <div class="popup-content" (click)="$event.stopPropagation()">
+              <img [src]="imageUrl" alt="Pop-up Image">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

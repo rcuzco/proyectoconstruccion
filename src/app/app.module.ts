@@ -3,32 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
-import { RegistroComponent } from './registro/registro.component';
-import { PrincipalComponent } from './principal/principal.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CarouselComponent } from './carousel/carousel.component';
-import { MaterialesComponent } from './component/materiales/materiales.component';
-
+import { PaginasModule } from './paginas/paginas.module';
+import { HttpClientModule } from '@angular/common/http';
+import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegistroComponent,
-    PrincipalComponent,
-    CarouselComponent,
-    MaterialesComponent,
-    
+    NopagefoundComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    NgbModule
+    PaginasModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

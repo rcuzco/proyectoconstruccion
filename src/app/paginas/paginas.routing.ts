@@ -9,6 +9,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { MaterialComponent } from './materiales/material/material.component';
 import { NuevoMaterialComponent } from './materiales/nuevo-material/nuevo-material.component';
 import { NuevoProveedorComponent } from './proveedores/nuevo-proveedor/nuevo-proveedor.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
         { path: 'proveedores/nuevoproveedor', component: NuevoProveedorComponent },
         { path: 'proveedores', component: ProveedoresComponent },
         { path: 'clientes', component: ClientesComponent },
+        { path: 'usuarios', component: UsuariosComponent },
     ]
 },];
 

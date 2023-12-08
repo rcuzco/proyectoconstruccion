@@ -5,7 +5,7 @@ import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'registro', component: RegistroComponent },
+  { path: 'auth/registro', component: RegistroComponent },
 ];
 
 @NgModule({

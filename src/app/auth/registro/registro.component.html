@@ -34,7 +34,7 @@
 <section class="container">
   <div class="image-section">
     <div class="image-wrapper">
-      <img src="" alt="">
+      <img src="./assets/images/fondo.png" alt="" />
     </div>
 
     <div class="content-container">
@@ -47,21 +47,26 @@
   <div class="form-section">
     <div class="form-wrapper">
       <div class="logo-container">
-        <a href="#" class="logo-container">
-          <img src="https://picsum.photos/100/100" alt="Logo">
-        </a>
+        <img src="./assets/images/logo.png" alt="Logo" />
       </div>
       <!-- <form [formGroup]="loginForm"> -->
       <h2>Bienvenido!</h2>
       <p>Introduzca tus credenciales para registrarse.</p>
+      <form [formGroup]="insertForm">
       <div class="input-container">
+
         <div class="form-group">
-          <label for="username">Nombre de usuario</label>
-          <input formControlName="userName" id="username" autocomplete="off">
+          <label for="username" class="form-label">Nombre de usuario</label>
+          <input formControlName="userName" id="username" autocomplete="off" placeholder="Ingrese el nombre de usuario">
         </div>
         <div class="form-group">
           <label for="password">Contraseña</label>
-          <input  formControlName="password" type="password" id="password">
+          <input  formControlName="password" type="password" id="password" placeholder="Ingrese la contraseña">
+        </div>
+
+        <div class="form-group">
+          <label for="userType" >Tipo de usuario</label>
+          <input  formControlName="userType" id="userType" placeholder="Ingrese el tipo de usuario">
         </div>
       </div>
 
@@ -78,11 +83,8 @@
       <!-- </form> -->
         <div class="or-divider">or</div>
 
-        <a routerLink="/registro">
-          <button class="register">
-            <span>Registrarse</span>
-          </button>
-        </a>
+        <button type="submit" class="btn btn-primary" (click)="insertarUsuario()">Registrarse</button>
+      </form>
       </div>
     </div>
 </section>

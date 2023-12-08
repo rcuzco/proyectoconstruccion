@@ -4,11 +4,11 @@ import { User } from 'src/app/models/user';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.scss']
+  selector: 'app-usuarios',
+  templateUrl: './usuarios.component.html',
+  styleUrls: ['./usuarios.component.scss']
 })
-export class RegistroComponent {
+export class UsuariosComponent implements OnInit{
 
   public usuarios: User[] = [];
 
@@ -19,6 +19,13 @@ export class RegistroComponent {
   });
 
   constructor(private usuariosService: UsuariosService, private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+      console.log("Cargando usuarios");
+      this.usuariosService.getData().subscribe(data => {
+        this.usuarios = data;
+      })
+  }
 
   insertarUsuario() {
     if (this.insertForm.valid) {
@@ -37,5 +44,5 @@ export class RegistroComponent {
       );
       }
     }
+  }
 
-}

@@ -21,4 +21,14 @@ export class UsuariosService {
     console.log("url origen",this.apiUrl + "/authenticate");
     return this.http.post<User>(this.apiUrl + "/authenticate", body);
   }
+
+  getData(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}`);
+  }
+
+  insertUser(usuario:User):Observable<number>{
+    const dataToInsert = { "userName": usuario.UserName, "password": usuario.Password, "userType": usuario.UserType };
+    return this.http.post<number>(this.apiUrl, dataToInsert);
+  }
+
 }

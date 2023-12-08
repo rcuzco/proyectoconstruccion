@@ -11,6 +11,8 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { MaterialComponent } from './materiales/material/material.component';
 import { NuevoMaterialComponent } from './materiales/nuevo-material/nuevo-material.component';
 import { NuevoProveedorComponent } from './proveedores/nuevo-proveedor/nuevo-proveedor.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NuevoProveedorComponent } from './proveedores/nuevo-proveedor/nuevo-pro
     ClientesComponent,
     MaterialComponent,
     NuevoMaterialComponent,
-    NuevoProveedorComponent
+    NuevoProveedorComponent,
+    PedidosComponent,
+    UsuariosComponent
   ],
   exports: [
     MaterialesComponent,

@@ -62,6 +62,10 @@ export class LoginComponent {
     );
   }
 
+  irAlRegistro() {
+    this.router.navigate(['auth/registro']);
+  }
+
   // validarCredenciales(): boolean {
   //   // Implementa la lógica real de autenticación aquí
   //   // Esta es una implementación de ejemplo

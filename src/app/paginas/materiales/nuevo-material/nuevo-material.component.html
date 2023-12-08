@@ -7,36 +7,53 @@
           <ol class="breadcrumb mb-0 p-0">
             <li class="breadcrumb-item"><a href="javascript:;" routerLink="/dashboard/materiales" routerLinkActive="active"><i class="bx bx-home-alt"></i></a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Detalle de material</li>
+            <li class="breadcrumb-item active" aria-current="page">Añadir material</li>
           </ol>
         </nav>
       </div>
     </div>
-    <form [formGroup]="insertForm">
-      <label class="form-label">Nombre Material</label>
-      <input
-        type="text"
-        placeholder="Nombre de material"
-        class="form-control"
-        formControlName="materialName"
-      />
-      <label class="form-label">Descripción Material</label>
-      <input
-        type="text"
-        placeholder="Descripción del material"
-        class="form-control"
-        formControlName="materialDescription"
-      />
-      <label class="form-label">Imagen</label>
 
-      <input
-        id="image-uploadify"
-        type="file"
-        accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-        multiple
-        formControlName="imageUrl"
-      />
-      <input type="submit" value="Guardar" (click)="insertarMaterial()" />
-    </form>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <h4>Registro de Material</h4>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="insertForm">
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre del Material</label>
+                  <input type="text" id="nombre" class="form-control" placeholder="Ingrese el nombre del material" required formControlName="materialName">
+                  <div *ngIf="insertForm?.get('materialName')?.hasError('required')" class="text-danger">
+                    El nombre del material es obligatorio.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="descripcion" class="form-label">Descripción</label>
+                  <textarea id="descripcion" class="form-control" placeholder="Ingrese la descripción del material" required formControlName="materialDescription"></textarea>
+                  <div *ngIf="insertForm?.get('materialDescription')?.hasError('required')" class="text-danger">
+                    La descripción del material es obligatoria.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="imagen" class="form-label">Imagen (URL)</label>
+                  <input type="text" id="imagen" class="form-control" placeholder="Ingrese la URL de la imagen" formControlName="imageUrl">
+                  <div *ngIf="insertForm?.get('imageUrl')?.hasError('required')" class="text-danger">
+                    La imagen del material es obligatoria.
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" (click)="insertarMaterial()">Registrar Material</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -18,7 +19,7 @@ export class RegistroComponent {
     userType:["", [Validators.required]],
   });
 
-  constructor(private usuariosService: UsuariosService, private formBuilder: FormBuilder) { }
+  constructor(private usuariosService: UsuariosService, private formBuilder: FormBuilder, private router: Router) { }
 
   insertarUsuario() {
     if (this.insertForm.valid) {
@@ -36,6 +37,10 @@ export class RegistroComponent {
         }
       );
       }
+    }
+
+    irAlLogin() {
+      this.router.navigate(['/login']);
     }
 
 }

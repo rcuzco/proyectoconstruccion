@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Material } from '../models/material';
 
@@ -24,4 +24,19 @@ export class MaterialesService {
     const dataToInsert = { "materialName": material.MaterialName, "description": material.Description, "imageUrl": material.ImageUrl };
     return this.http.post<number>(this.apiUrl, dataToInsert);
   }
+
+  deleteMaterial(materialId: number): Observable<string> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        materialId: materialId
+      },
+    };
+
+    let data = this.http.delete<string>(this.apiUrl, options);
+    return data;
+  }
+
 }

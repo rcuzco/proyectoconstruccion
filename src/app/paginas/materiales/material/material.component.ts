@@ -61,6 +61,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MaterialesService } from 'src/app/services/materiales.service';
 import { Material } from 'src/app/models/material';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -70,7 +72,7 @@ import { Material } from 'src/app/models/material';
 })
 export class MaterialComponent implements OnInit
 {
-  constructor(private route: ActivatedRoute, private materialesService: MaterialesService) { }
+  constructor(private route: ActivatedRoute, private materialesService: MaterialesService, private router: Router) { }
 
   materialId: number = 0;
   material!: Material;
@@ -102,5 +104,17 @@ export class MaterialComponent implements OnInit
 
         });
     });
+  }
+
+  deleteMaterial() {
+    this.materialesService.deleteMaterial(this.materialId)
+      .subscribe(data => {
+        if (data) {
+          console.log("Material eliminado");
+          this.router.navigate(['/dashboard/materiales']);
+        } else {
+          console.log("No se pudo eliminar el material");
+        }
+      });
   }
 }

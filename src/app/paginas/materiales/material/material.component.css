@@ -1,1 +1,8 @@
-/*# sourceMappingURL=material.component.css.map */
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  border: 3px solid rgb(222, 226, 230);
+  border-radius: 10px;
+}/*# sourceMappingURL=material.component.css.map */

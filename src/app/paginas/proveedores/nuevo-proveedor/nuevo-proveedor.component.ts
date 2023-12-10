@@ -31,7 +31,7 @@ insertarProveedor() {
       ContactName : this.insertForm.value.ContactName!,
       ContactEmail : this.insertForm.value.ContactEmail!,
       ContactPhone: this.insertForm.value.ContactPhone!,
-      ProviderId : 0,
+      ProviderID : 0,
 
     };
 

@@ -5,6 +5,8 @@ export interface MaterialStock {
   Description: string;
   ImageUrl: string;
   ProviderName: string;
+  ProviderId: number;
   Quantity: number;
   UnitPrice: number;
+  StockId: number;
 }

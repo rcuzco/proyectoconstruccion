@@ -53,4 +53,8 @@ export class MaterialesComponent implements OnInit
         material.ShowGenericImage = true;
     }
 
+    manageStock(materialId: number, materialName: string)
+    {
+        this.router.navigate(["dashboard/materiales/stocks/gestionar", materialId, materialName]);
+    }
 }

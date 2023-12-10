@@ -1,64 +1,73 @@
 <!--start page wrapper -->
 <div class="page-wrapper">
     <div class="page-content">
-      <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="ps-3">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 p-0">
-              <li class="breadcrumb-item"><a href="javascript:;" routerLink="/dashboard/materiales" routerLinkActive="active"><i class="bx bx-home-alt"></i></a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">Añadir material</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-
-      <div class="container mt-5">
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-header">
-                <h4>Registro de Material</h4>
-              </div>
-              <div class="card-body">
-                <form [formGroup]="editForm" enctype="multipart/form-data" method="post">
-                  <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre del Material</label>
-                    <input type="text" id="nombre" class="form-control" placeholder="Ingrese el nombre del material" required formControlName="materialName">
-                    <div *ngIf="editForm?.get('materialName')?.hasError('required')" class="text-danger">
-                      El nombre del material es obligatorio.
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción</label>
-                    <textarea id="descripcion" class="form-control" placeholder="Ingrese la descripción del material" required formControlName="materialDescription"></textarea>
-                    <div *ngIf="editForm?.get('materialDescription')?.hasError('required')" class="text-danger">
-                      La descripción del material es obligatoria.
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="imagen" class="form-label">Imagen (URL)</label>
-                    <input type="text" id="imagen" class="form-control" placeholder="Ingrese la URL de la imagen" formControlName="imageUrl" readonly>
-                    <div *ngIf="editForm?.get('imageUrl')?.hasError('required')" class="text-danger">
-                      La imagen del material es obligatoria.
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <label for="materialImageFile" class="form-label">Imagen para el material</label>
-                    <p><input id="materialImageFile" class="form-control" type="file" (change)="handleFileInput($event)" accept=".jpg, .png, .jpeg" formControlName="materialImageFile"></p>
-
-                  </div>
-
-                  <button type="submit" class="btn btn-primary" (click)="updateMaterial()">Actualizar Material</button>
-                </form>
-              </div>
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a href="javascript:;" routerLink="/dashboard/materiales"
+                                routerLinkActive="active"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Añadir material</li>
+                    </ol>
+                </nav>
             </div>
-          </div>
         </div>
-      </div>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Registro de Material</h4>
+                        </div>
+                        <div class="card-body">
+                            <form [formGroup]="editForm" enctype="multipart/form-data" method="post">
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre del Material</label>
+                                    <input type="text" id="nombre" class="form-control"
+                                        placeholder="Ingrese el nombre del material" required
+                                        formControlName="materialName">
+                                    <div *ngIf="editForm?.get('materialName')?.hasError('required')"
+                                        class="text-danger">
+                                        El nombre del material es obligatorio.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">Descripción</label>
+                                    <textarea id="descripcion" class="form-control"
+                                        placeholder="Ingrese la descripción del material" required
+                                        formControlName="materialDescription"></textarea>
+                                    <div *ngIf="editForm?.get('materialDescription')?.hasError('required')"
+                                        class="text-danger">
+                                        La descripción del material es obligatoria.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="imagen" class="form-label">Imagen (URL)</label>
+                                    <input type="text" id="imagen" class="form-control"
+                                        placeholder="Ingrese la URL de la imagen" formControlName="imageUrl" readonly>
+                                    <div *ngIf="editForm?.get('imageUrl')?.hasError('required')" class="text-danger">
+                                        La imagen del material es obligatoria.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="materialImageFile" class="form-label">Imagen para el material</label>
+                                    <p><input id="materialImageFile" class="form-control" type="file"
+                                            (change)="handleFileInput($event)" accept=".jpg, .png, .jpeg"
+                                            formControlName="materialImageFile"></p>
+
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" (click)="updateMaterial()">Actualizar
+                                    Material</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-
+</div>

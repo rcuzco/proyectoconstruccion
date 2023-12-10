@@ -31,8 +31,10 @@ insertarMaterial() {
       ImageUrl : this.insertForm.value.imageUrl!,
       MaterialId : 0,
       ProviderName:'',
+      ProviderId:0,
       Quantity:0,
       UnitPrice:0,
+      StockId:0,
     ShowGenericImage:true
 
     };

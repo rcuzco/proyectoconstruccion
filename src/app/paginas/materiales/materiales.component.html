@@ -42,16 +42,22 @@
                                 <td>{{material.MaterialName}}</td>
                                 <td>{{material.Description}}</td>
                                 <td>
-                                    <img class="image-list-width" *ngIf="!material.ShowGenericImage" src="http://localhost/proyecto-construccion-back/uploads/{{material.ImageUrl}}"
+                                    <img class="image-list-width" *ngIf="!material.ShowGenericImage"
+                                        src="http://localhost/proyecto-construccion-back/uploads/{{material.ImageUrl}}"
                                         (error)="handleImageError(material)" alt="Image"
                                         (click)="showImagePopup('./assets/images/products/{{material.ImageUrl}}')">
 
-                                    <img class="image-list-width" *ngIf="material.ShowGenericImage" src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
+                                    <img class="image-list-width" *ngIf="material.ShowGenericImage"
+                                        src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
                                         alt="Generic Image">
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-outline-primary me-3" (click)="goToDetails(material.MaterialId)" >Detalles</button>
-                                    <button class="btn btn-sm btn-outline-primary" (click)="goToEdit(material.MaterialId)" >Editar</button>
+                                    <button class="btn btn-sm btn-outline-primary me-3"
+                                        (click)="goToDetails(material.MaterialId)">Detalles</button>
+                                    <button class="btn btn-sm btn-outline-primary me-3"
+                                        (click)="goToEdit(material.MaterialId)">Editar</button>
+                                    <button class="btn btn-sm btn-outline-primary"
+                                        (click)="manageStock(material.MaterialId, material.MaterialName)">Gestionar stock</button>
                                 </td>
                             </tr>
                         </tbody>

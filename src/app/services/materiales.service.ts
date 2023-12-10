@@ -1,42 +1,63 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MaterialStock } from '../models/materialstock';
 import { Material } from '../models/material';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
-export class MaterialesService {
+export class MaterialesService
+{
 
-  private apiUrl = 'http://localhost/proyecto-construccion-back/materials_api.php';
 
-  constructor(private http: HttpClient) {}
+    private apiUrl = 'http://localhost/proyecto-construccion-back/materials_api.php';
 
-  getData(): Observable<Material[]> {
-    return this.http.get<Material[]>(`${this.apiUrl}`);
-  }
+    constructor(private http: HttpClient) { }
 
-  getDataById(id:number): Observable<Material> {
-    return this.http.get<Material>(`${this.apiUrl}?id=${id}`);
-  }
+    getData(): Observable<MaterialStock[]>
+    {
+        return this.http.get<MaterialStock[]>(`${this.apiUrl}`);
+    }
 
-  insertMaterial(material:Material):Observable<number>{
-    const dataToInsert = { "materialName": material.MaterialName, "description": material.Description, "imageUrl": material.ImageUrl };
-    return this.http.post<number>(this.apiUrl, dataToInsert);
-  }
+    getDataById(id: number): Observable<Material>
+    {
+        return this.http.get<Material>(`${this.apiUrl}?id=${id}`);
+    }
 
-  deleteMaterial(materialId: number): Observable<string> {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: {
-        materialId: materialId
-      },
-    };
+    insertMaterial(material: MaterialStock): Observable<number>
+    {
+        const dataToInsert = { "materialName": material.MaterialName, "description": material.Description, "imageUrl": material.ImageUrl };
+        return this.http.post<number>(this.apiUrl, dataToInsert);
+    }
 
-    let data = this.http.delete<string>(this.apiUrl, options);
-    return data;
-  }
+    deleteMaterial(materialId: number): Observable<string>
+    {
+        const options = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+            }),
+            body: {
+                materialId: materialId
+            },
+        };
+
+        let data = this.http.delete<string>(this.apiUrl, options);
+        return data;
+    }
+
+    updateMaterial(material: Material): Observable<Material>
+    {
+        const dataToUpdate = {
+            materialId: material.MaterialId,
+            materialName: material.MaterialName,
+            description: material.Description,
+            imageUrl: material.ImageUrl,
+            imageFile: material.ImageFile
+        };
+
+        let data = this.http.put<Material>(this.apiUrl, dataToUpdate);
+        return data;
+    }
 
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MaterialesService } from 'src/app/services/materiales.service';
-import { Material } from 'src/app/models/material'
+import { MaterialStock } from 'src/app/models/materialstock'
 
 @Component({
   selector: 'app-nuevo-material',
@@ -25,14 +25,15 @@ constructor(private formBuilder: FormBuilder, private router: Router, private ma
 
 insertarMaterial() {
   if (this.insertForm.valid) {
-    let nuevoMaterial: Material = {
+    let nuevoMaterial: MaterialStock = {
       MaterialName : this.insertForm.value.materialName!,
       Description : this.insertForm.value.materialDescription!,
       ImageUrl : this.insertForm.value.imageUrl!,
       MaterialId : 0,
       ProviderName:'',
       Quantity:0,
-      UnitPrice:0
+      UnitPrice:0,
+    ShowGenericImage:true
 
     };
 
@@ -40,6 +41,7 @@ insertarMaterial() {
       (data:number)=>
       {
         console.log(data);
+        this.router.navigate(["dashboard/materiales"]);
       }
     );
 

@@ -13,6 +13,7 @@ import { NuevoMaterialComponent } from './materiales/nuevo-material/nuevo-materi
 import { NuevoProveedorComponent } from './proveedores/nuevo-proveedor/nuevo-proveedor.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { EditarMaterialComponent } from './materiales/editar-material/editar-material.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     NuevoMaterialComponent,
     NuevoProveedorComponent,
     PedidosComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    EditarMaterialComponent
   ],
   exports: [
     MaterialesComponent,

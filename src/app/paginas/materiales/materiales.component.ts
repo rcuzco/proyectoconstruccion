@@ -1,40 +1,68 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Material } from 'src/app/models/material';
+import { MaterialStock } from 'src/app/models/materialstock';
+import { User } from 'src/app/models/user';
+import { GlobalDataService } from 'src/app/services/global-data.service';
 import { MaterialesService } from 'src/app/services/materiales.service';
 
 @Component({
-  selector: 'app-materiales',
-  templateUrl: './materiales.component.html',
-  styleUrls: ['./materiales.component.css']
+    selector: 'app-materiales',
+    templateUrl: './materiales.component.html',
+    styleUrls: ['./materiales.component.css']
 })
-export class MaterialesComponent implements OnInit {
+export class MaterialesComponent implements OnInit
+{
+    public materiales: MaterialStock[] = [];
+    public usuarioLogado!: User|undefined|null;
 
-  public materiales: Material[] = [];
+    constructor(private materialesService: MaterialesService, private router: Router, private globalDataService: GlobalDataService) { }
 
-  constructor(private materialesService: MaterialesService, private router: Router) { }
+    ngOnInit(): void
+    {
+      this.usuarioLogado = this.globalDataService.getUsuarioLogado();
+console.log(this.usuarioLogado);
+        console.log("Cargando materiales");
+        this.materialesService.getData().subscribe(data =>
+        {
+          console.log("materiales", data);
+            this.materiales = data;
+        })
+    }
 
-  ngOnInit(): void {
-    console.log("Cargando materiales");
-    this.materialesService.getData().subscribe(data => {
-      this.materiales = data;
-    })
-  }
+    isPopupVisible = false;
+    imageUrl: string = '';
 
-  isPopupVisible = false;
-  imageUrl: string = '';
+    showImagePopup(imageUrl: string)
+    {
+        this.isPopupVisible = true;
+        this.imageUrl = imageUrl;
+    }
 
-  showImagePopup(imageUrl: string) {
-    this.isPopupVisible = true;
-    this.imageUrl = imageUrl;
-  }
+    hideImagePopup()
+    {
+        this.isPopupVisible = false;
+    }
 
-  hideImagePopup() {
-    this.isPopupVisible = false;
-  }
+    goToDetails(materialId: number)
+    {
+        this.router.navigate(["dashboard/materiales", materialId]);
+    }
 
-  goToDetails(materialId: number) {
-    this.router.navigate(["dashboard/materiales",materialId]);
-  }
+    goToEdit(materialId: number)
+    {
+        this.router.navigate(["dashboard/materiales/material/editar", materialId]);
+    }
 
+    handleImageError(material: MaterialStock)
+    {
+        console.log("Error al cargar la imagen");
+        material.ShowGenericImage = true;
+    }
+
+    manageStock(materialId: number, materialName: string)
+    {
+      console.log("materialId",materialId);
+      console.log("materialName",materialName);
+        this.router.navigate(["dashboard/materiales/stocks/gestionar", materialId, materialName]);
+    }
 }

@@ -18,8 +18,8 @@
           role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="./assets/images/logo.png" class="user-img" alt="user avatar">
           <div class="user-info">
-            <p class="user-name mb-0">Admin</p>
-            <p class="designattion mb-0">Administrator</p>
+            <p class="user-name mb-0">{{ globalDataService.getUsuarioLogado()?.UserName }}</p>
+            <p class="designattion mb-0">{{ globalDataService.getUsuarioLogado()?.UserType }}</p>
           </div>
         </a>
         <ul class="dropdown-menu dropdown-menu-end">

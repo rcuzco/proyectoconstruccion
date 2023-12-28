@@ -1,4 +1,4 @@
-.popup {
+/* .popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@
 .popup img {
   width: 100%;
   height: auto;
-}
+} */
 
 .pointer
 {
@@ -33,3 +33,11 @@
   border:3px solid rgb(222,226,230);
   border-radius: 10px;
 }
+
+.image-list-width
+{
+    max-width: 131.35px;
+    max-height: 131.35px;
+}
+
+

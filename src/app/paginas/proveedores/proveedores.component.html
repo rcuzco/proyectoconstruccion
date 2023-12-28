@@ -33,6 +33,7 @@
                 <th>Contacto</th>
                 <th>Email</th>
                 <th>Teléfono</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -41,6 +42,11 @@
                 <td>{{proveedor.ContactName}}</td>
                 <td>{{proveedor.ContactEmail}}</td>
                 <td>{{proveedor.ContactPhone}}</td>
+                <td>
+
+                  <button class="btn btn-sm btn-outline-primary me-3"
+                      (click)="goToEdit(proveedor.ProviderID)">Editar</button>
+              </td>
               </tr>
             </tbody>
           </table>

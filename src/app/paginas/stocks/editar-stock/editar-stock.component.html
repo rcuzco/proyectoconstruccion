@@ -1,0 +1,50 @@
+<div class="page-wrapper">
+  <div class="page-content">
+
+      <div class="container mt-5">
+          <div class="row justify-content-center">
+              <div class="col-md-8">
+                  <div class="card">
+                      <div class="card-header">
+                          <h4>Editar stock existente para material {{ materialName }}</h4>
+                      </div>
+                      <div class="card-body" >
+                          <form [formGroup]="updateStockForm" >
+                              <input type="hidden" formControlName="stockId"  >
+                              <div class="mb-3">
+                                  <label for="proveedor" class="form-label">Proveedor</label>
+                                  <input type="text" id="proveedor" class="form-control-plaintext" readonly
+                                      formControlName="providerName" >
+                              </div>
+
+                              <div class="mb-3">
+                                  <label for="descripcion" class="form-label">Cantidad de stock a almacenar</label>
+                                  <input type="number" id="descripcion" class="form-control" required
+                                      formControlName="quantity" >
+                                  <div *ngIf="updateStockForm?.get('quantity')?.hasError('required')"
+                                      class="text-danger">
+                                      La cantidad de stock es obligatoria.
+                                  </div>
+                              </div>
+
+                              <div class="mb-3">
+                                  <label for="imagen" class="form-label">Precio Unitario</label>
+                                  <input type="number" id="imagen" class="form-control"
+                                       formControlName="unitPrice">
+                                  <div *ngIf="updateStockForm?.get('unitPrice')?.hasError('required')" class="text-danger">
+                                      El precio unitario es obligatorio.
+                                  </div>
+                              </div>
+
+                              <button type="button" class="btn btn-sm btn-outline-primary me-3" (click)="updateStock()" >Actualizar stock</button>
+                              <button type="button" class="btn btn-sm btn-outline-danger" (click)="goBackToStocks()" >Volver</button>
+
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>

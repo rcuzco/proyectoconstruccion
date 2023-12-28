@@ -13,6 +13,11 @@ import { NuevoMaterialComponent } from './materiales/nuevo-material/nuevo-materi
 import { NuevoProveedorComponent } from './proveedores/nuevo-proveedor/nuevo-proveedor.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { EditarMaterialComponent } from './materiales/editar-material/editar-material.component';
+import { GestionarStockMaterialComponent } from './stocks/gestionar-stock-material/gestionar-stock-material.component';
+import { NuevoStockComponent } from './stocks/nuevo-stock/nuevo-stock.component';
+import { EditarStockComponent } from './stocks/editar-stock/editar-stock.component';
+import { EditarProveedorComponent } from './proveedores/editar-proveedor/editar-proveedor.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,12 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     NuevoMaterialComponent,
     NuevoProveedorComponent,
     PedidosComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    EditarMaterialComponent,
+    GestionarStockMaterialComponent,
+    NuevoStockComponent,
+    EditarStockComponent,
+    EditarProveedorComponent
   ],
   exports: [
     MaterialesComponent,

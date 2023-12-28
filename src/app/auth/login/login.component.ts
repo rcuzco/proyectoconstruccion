@@ -2,6 +2,7 @@ import { Component, ErrorHandler } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder,Validators } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios.service';
+import { GlobalDataService } from 'src/app/services/global-data.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private formBuilder:FormBuilder,
-    private usuariosService: UsuariosService) {}
+    private usuariosService: UsuariosService,
+    private globalDataService:GlobalDataService) {}
 
   submitForm() {
     // Verificar credenciales y realizar autenticación
@@ -40,6 +42,7 @@ export class LoginComponent {
         {
           if (usuario) {
             console.log("usuario",usuario);
+            this.globalDataService.setUsuarioLogado(usuario);
             this.router.navigate(['/dashboard']);
           }
           else

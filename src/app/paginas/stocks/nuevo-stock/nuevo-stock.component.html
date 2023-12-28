@@ -1,0 +1,58 @@
+<div class="page-wrapper">
+  <div class="page-content">
+
+      <div class="container mt-5">
+          <div class="row justify-content-center">
+              <div class="col-md-8">
+                  <div class="card">
+                      <div class="card-header">
+                          <h4>Crear nuevo stock para el material: {{ materialName }}</h4>
+                      </div>
+                      <div class="card-body" *ngIf="providers && providers.length > 0">
+                          <form [formGroup]="newStockForm" enctype="multipart/form-data" method="post">
+                              <div class="mb-3">
+                                  <label for="proveedor" class="form-label">Seleccione el proveedor</label>
+                                  <select id="proveedor" class="form-select" aria-label="Default select" formControlName="providerId">
+                                      <option *ngFor="let provider of providers" [value]="provider.ProviderID">{{ provider.ProviderName }}</option>
+                                    </select>
+                              </div>
+
+                              <div class="mb-3">
+                                  <label for="descripcion" class="form-label">Cantidad de stock a almacenar</label>
+                                  <input type="number" id="descripcion" class="form-control" required
+                                      formControlName="quantity" >
+                                  <div *ngIf="newStockForm?.get('quantity')?.hasError('required')"
+                                      class="text-danger">
+                                      La cantidad de stock es obligatoria.
+                                  </div>
+                              </div>
+
+                              <div class="mb-3">
+                                  <label for="imagen" class="form-label">Precio Unitario</label>
+                                  <input type="number" id="imagen" class="form-control"
+                                       formControlName="unitPrice">
+                                  <div *ngIf="newStockForm?.get('unitPrice')?.hasError('required')" class="text-danger">
+                                      El precio unitario es obligatorio.
+                                  </div>
+                              </div>
+
+                              <button type="submit" class="btn btn-sm btn-outline-primary me-3" (click)="addNewStock()">Actualizar Material</button>
+                              <button type="button" class="btn btn-sm btn-outline-danger" (click)="goBackToStocks()">Volver</button>
+                          </form>
+                      </div>
+                      <div class="card-body" *ngIf="!(providers && providers.length > 0)">
+                          <div class="alert alert-warning" role="alert">
+                              No hay proveedores diponibles para el material seleccionado. Todos ya se han registrado.<br>
+                              Puede editar los stocks con los proveedores ya existentes.
+                          </div>
+                          <div class="text-center">
+                              <button type="button" class="btn btn-sm btn-outline-primary" (click)="goBackToStocks()">Volver</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>

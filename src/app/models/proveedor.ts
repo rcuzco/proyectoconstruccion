@@ -1,5 +1,5 @@
 export interface Proveedor {
-  ProviderId: number;
+  ProviderID: number;
   ProviderName: string;
   ContactName: string;
   ContactEmail: string;

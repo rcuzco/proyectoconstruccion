@@ -40,11 +40,19 @@
 
                 <div class="mb-3">
                   <label for="imagen" class="form-label">Imagen (URL)</label>
-                  <input type="text" id="imagen" class="form-control" placeholder="Ingrese la URL de la imagen" formControlName="imageUrl">
+                  <input type="text" id="imagen" class="form-control"
+                      placeholder="Ingrese la URL de la imagen" formControlName="imageUrl" readonly>
                   <div *ngIf="insertForm?.get('imageUrl')?.hasError('required')" class="text-danger">
-                    La imagen del material es obligatoria.
+                      La imagen del material es obligatoria.
                   </div>
-                </div>
+              </div>
+                <div class="mb-3">
+                  <label for="materialImageFile" class="form-label">Imagen para el material</label>
+                  <p><input id="materialImageFile" class="form-control" type="file"
+                          (change)="handleFileInput($event)" accept=".jpg, .png, .jpeg"
+                          formControlName="materialImageFile"></p>
+
+              </div>
 
                 <button type="submit" class="btn btn-primary" (click)="insertarMaterial()">Registrar Material</button>
               </form>

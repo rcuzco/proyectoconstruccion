@@ -1,0 +1,62 @@
+<div class="page-wrapper">
+  <div class="page-content">
+
+      <div class="container mt-5">
+          <div class="row justify-content-center">
+              <div class="col-md-8">
+                  <div class="card">
+                      <div class="card-header">
+                          <h4>Editar el proveedor {{ proveedor.ProviderName }}</h4>
+                      </div>
+                      <div class="card-body" >
+                          <form [formGroup]="updateProviderForm" >
+                            <div class="mb-3">
+                              <label for="descripcion" class="form-label">Nombre del proveedor</label>
+                              <input type="text" id="descripcion" class="form-control" required
+                                  formControlName="providerName" >
+                              <div *ngIf="updateProviderForm?.get('providerName')?.hasError('required')"
+                                  class="text-danger">
+                                 El nombre del proveedor es obligatorio.
+                              </div>
+                          </div>
+
+                              <div class="mb-3">
+                                  <label for="descripcion" class="form-label">Nombre del contacto</label>
+                                  <input type="text" id="descripcion" class="form-control" required
+                                      formControlName="contactName" >
+                                  <div *ngIf="updateProviderForm?.get('contactName')?.hasError('required')"
+                                      class="text-danger">
+                                      El nombre de contacto del proveedor es obligatorio.
+                                  </div>
+                              </div>
+
+                              <div class="mb-3">
+                                  <label for="imagen" class="form-label">Email de contacto</label>
+                                  <input type="text" id="imagen" class="form-control"
+                                       formControlName="contactEmail">
+                                  <div *ngIf="updateProviderForm?.get('contactEmail')?.hasError('required')" class="text-danger">
+                                      El email de contacto es obligatorio.
+                                  </div>
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="imagen" class="form-label">Teléfono de contacto</label>
+                                <input type="number" id="imagen" class="form-control"
+                                     formControlName="contactPhone">
+                                <div *ngIf="updateProviderForm?.get('contactName')?.hasError('required')" class="text-danger">
+                                    El teléfono de contacto es obligatorio.
+                                </div>
+                            </div>
+
+                              <button type="button" class="btn btn-sm btn-outline-primary me-3" (click)="updateProvider()" >Actualizar proveedor</button>
+                              <button type="button" class="btn btn-sm btn-outline-danger" (click)="goBackToProviders()" >Volver</button>
+
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>

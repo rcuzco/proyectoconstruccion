@@ -1,0 +1,55 @@
+<div class="sidebar-wrapper" data-simplebar="true">
+  <div class="sidebar-header">
+    <div>
+      <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+    </div>
+    <div>
+      <h4 class="logo-text">Materiales Construcción</h4>
+    </div>
+    <div class="toggle-icon ms-auto"><i class='bx bx-arrow-back'></i>
+    </div>
+  </div>
+  <!--navigation-->
+  <app-sidebar></app-sidebar>
+  <!--end navigation-->
+</div>
+<!--end sidebar wrapper -->
+<!--start header -->
+<app-header></app-header>
+<div class="page-wrapper">
+  <div class="page-content">
+    <!--breadcrumb-->
+
+    <div class="contenedor">
+      <div class="card-container">
+        <div class="card" *ngFor="let material of materiales">
+          <img
+            *ngIf="!material.ShowGenericImage"
+            src="http://localhost/proyecto-construccion-back/uploads/{{
+              material.ImageUrl
+            }}"
+            (error)="handleImageError(material)"
+            alt="Image"
+            alt="Descripción de la imagen"
+          />
+          <img
+            class="image-list-width"
+            *ngIf="material.ShowGenericImage"
+            src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
+            alt="Generic Image"
+          />
+          <div class="card-body">
+            <h3>{{ material.MaterialName }} - {{ material.ProviderName }}</h3>
+            <p>{{ material.UnitPrice }}</p>
+
+              <a (click)="goToDetails(material.MaterialID)" class="btn btn-sm btn-outline-primary me-3">Más info.</a>
+
+              <a (click)="addToWhishlist(material.MaterialID, material.ProviderId)" class="btn btn-sm btn-outline-primary me-3">Añadir a presupuesto.</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

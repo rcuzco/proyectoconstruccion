@@ -14,8 +14,11 @@ import { GestionarStockMaterialComponent } from './stocks/gestionar-stock-materi
 import { NuevoStockComponent } from './stocks/nuevo-stock/nuevo-stock.component';
 import { EditarStockComponent } from './stocks/editar-stock/editar-stock.component';
 import { EditarProveedorComponent } from './proveedores/editar-proveedor/editar-proveedor.component';
+import { MaterialesClienteComponent } from './materiales-cliente/materiales-cliente.component';
 
 const routes: Routes = [
+
+  { path: 'materialescliente', component: MaterialesClienteComponent },
   {
     path: 'dashboard',
     component: PaginasComponent,
@@ -33,11 +36,15 @@ const routes: Routes = [
         { path: 'clientes', component: ClientesComponent },
         { path: 'usuarios', component: UsuariosComponent },
         { path:'proveedores/editarproveedor/:id', component: EditarProveedorComponent },
+
     ]
+
+
 },];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class PaginasRoutingModule { }

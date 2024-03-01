@@ -11,7 +11,9 @@ export class MaterialesService
 {
 
 
-    private apiUrl = 'http://localhost/proyecto-construccion-back/materials_api.php';
+    //private apiUrl = 'http://localhost/proyecto-construccion-back/materials_api.php';
+    private apiUrl = 'http://127.0.0.1:8000/materials';
+
 
     constructor(private http: HttpClient) { }
 
@@ -22,12 +24,12 @@ export class MaterialesService
 
     getDataById(id: number): Observable<Material>
     {
-        return this.http.get<Material>(`${this.apiUrl}?id=${id}`);
+        return this.http.get<Material>(`${this.apiUrl}/${id}`);
     }
 
     insertMaterial(material: MaterialStock): Observable<number>
     {
-        const dataToInsert = { "materialName": material.MaterialName, "description": material.Description, "imageUrl": material.ImageUrl };
+        const dataToInsert = { "MaterialName": material.MaterialName, "Description": material.Description, "ImageUrl": material.ImageUrl };
         return this.http.post<number>(this.apiUrl, dataToInsert);
     }
 

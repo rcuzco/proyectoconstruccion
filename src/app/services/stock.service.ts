@@ -9,18 +9,20 @@ import { Stock } from '../models/stock';
 })
 export class StockService
 {
-    private apiUrl = 'http://localhost/proyecto-construccion-back/stock_api.php';
+    //private apiUrl = 'http://localhost/proyecto-construccion-back/stock_api.php';
+    private apiUrl = 'http://127.0.0.1:8000/stocks';
+
 
     constructor(private http: HttpClient) { }
 
     getStockByMaterial(materialId: number): Observable<MaterialStock[]>
     {
-        return this.http.get<MaterialStock[]>(`${this.apiUrl}?method=getStockByMaterialId&materialId=${materialId}`);
+        return this.http.get<MaterialStock[]>(`${this.apiUrl}/material/${materialId}`);
     }
 
     getStockById(stockId: number): Observable<MaterialStock>
     {
-        return this.http.get<MaterialStock>(`${this.apiUrl}?method=getStockByStockId&stockId=${stockId}`);
+        return this.http.get<MaterialStock>(`${this.apiUrl}/details/${stockId}`);
     }
 
     //insert new stock
@@ -28,10 +30,10 @@ export class StockService
     {
         const dataToInsert =
         {
-            "materialId": stock.MaterialId,
-            "providerId": stock.ProviderId,
-            "quantity": stock.Quantity,
-            "unitPrice": stock.UnitPrice
+            "materials_MaterialId": stock.MaterialId,
+            "providers_ProviderId": stock.ProviderId,
+            "Quantity": stock.Quantity,
+            "UnitPrice": stock.UnitPrice
         };
         return this.http.post<number>(this.apiUrl, dataToInsert);
     }
@@ -40,9 +42,9 @@ export class StockService
     {
         const dataToUpdate =
         {
-            "stockId": stock.StockId,
-            "quantity": stock.Quantity,
-            "unitPrice": stock.UnitPrice
+            "StockId": stock.StockId,
+            "Quantity": stock.Quantity,
+            "UnitPrice": stock.UnitPrice
         };
         return this.http.put<Stock>(this.apiUrl, dataToUpdate);
     }

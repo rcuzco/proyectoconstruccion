@@ -19,6 +19,7 @@ export class GlobalDataService {
   getUsuarioLogado():User|undefined|null{
     //read from local storage, if empty then return null
     const storedUser = localStorage.getItem('usuarioLogado');
+    //console.log("storedUser",storedUser);
     if (storedUser) {
         return JSON.parse(storedUser);
     } else {

@@ -9,7 +9,9 @@ import { Cliente } from '../models/cliente';
 })
 export class ClientesService {
 
-  private apiUrl = 'http://localhost/proyecto-construccion-back/customers_api.php';
+  //private apiUrl = 'http://localhost/proyecto-construccion-back/customers_api.php';
+  private apiUrl = 'http://127.0.0.1:8000/customers';
+
 
   constructor(private http: HttpClient) {}
 

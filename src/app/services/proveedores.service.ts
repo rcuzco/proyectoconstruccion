@@ -8,7 +8,9 @@ import { Proveedor } from '../models/proveedor';
 })
 export class ProveedoresService {
 
-  private apiUrl = 'http://localhost/proyecto-construccion-back/providers_api.php';
+  //private apiUrl = 'http://localhost/proyecto-construccion-back/providers_api.php';
+  private apiUrl = 'http://127.0.0.1:8000/providers';
+
 
   constructor(private http: HttpClient)
   {
@@ -21,11 +23,12 @@ export class ProveedoresService {
 
   getDataById(id: number): Observable<Proveedor>
   {
-      return this.http.get<Proveedor>(`${this.apiUrl}?id=${id}`);
+      return this.http.get<Proveedor>(`${this.apiUrl}/${id}`);
   }
 
   insertProveedor(proveedor:Proveedor):Observable<number>{
-    const dataToInsert = { "providerName": proveedor.ProviderName, "contactName": proveedor.ContactName, "contactEmail": proveedor.ContactEmail, "contactPhone": proveedor.ContactPhone };
+    const dataToInsert = { "ProviderName": proveedor.ProviderName, "ContactName": proveedor.ContactName,
+    "ContactEmail": proveedor.ContactEmail, "ContactPhone": proveedor.ContactPhone };
     return this.http.post<number>(this.apiUrl, dataToInsert);
   }
 
@@ -33,13 +36,13 @@ export class ProveedoresService {
   {
     const dataToUpdate = {
       providerId: proveedor.ProviderID,
-      providerName: proveedor.ProviderName,
-      contactName: proveedor.ContactName,
-      contactEmail: proveedor.ContactEmail,
-      contactPhone: proveedor.ContactPhone
+      ProviderName: proveedor.ProviderName,
+      ContactName: proveedor.ContactName,
+      ContactEmail: proveedor.ContactEmail,
+      ContactPhone: proveedor.ContactPhone
     };
 
-    let data = this.http.put<Proveedor>(this.apiUrl, dataToUpdate);
+    let data = this.http.put<Proveedor>(this.apiUrl + '/' + proveedor.ProviderID, dataToUpdate);
     return data;
     }
   }

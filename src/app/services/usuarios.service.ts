@@ -8,7 +8,9 @@ import { User } from '../models/user';
 })
 export class UsuariosService {
 
-  private apiUrl = 'http://localhost/proyecto-construccion-back/users_api.php';
+  //private apiUrl = 'http://localhost/proyecto-construccion-back/users_api.php';
+  private apiUrl = 'http://127.0.0.1:8000/users';
+
 
   constructor(private http: HttpClient)
   {
@@ -27,7 +29,7 @@ export class UsuariosService {
   }
 
   insertUser(usuario:User):Observable<number>{
-    const dataToInsert = { "userName": usuario.UserName, "password": usuario.Password, "userType": usuario.UserType };
+    const dataToInsert = { "UserName": usuario.UserName, "password": usuario.Password, "UserType": usuario.UserType };
     return this.http.post<number>(this.apiUrl, dataToInsert);
   }
 

@@ -33,7 +33,7 @@ export class UsuariosComponent implements OnInit{
         UserName : this.insertForm.value.userName!,
         Password : this.insertForm.value.password!,
         UserType : this.insertForm.value.userType!,
-        UserId : 0
+        UserID : 0
       };
 
       this.usuariosService.insertUser(nuevoUsuario).subscribe(

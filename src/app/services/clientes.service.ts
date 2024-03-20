@@ -18,4 +18,10 @@ export class ClientesService {
   getData(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(`${this.apiUrl}`);
   }
+
+  getCustomerIDByUserID(userID: number):Observable<Cliente>{
+    //http://127.0.0.1:8000/customers/byuserid/8
+    return this.http.get<Cliente>(`${this.apiUrl}/byuserid/${userID}`);
+  }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BudgetDetailDataToInsert } from 'src/app/models/budget-detail-data-to-insert';
 import { MaterialStock } from 'src/app/models/materialstock';
+import { ClientesService } from 'src/app/services/clientes.service';
 import { GlobalDataService } from 'src/app/services/global-data.service';
 import { MaterialesClienteService } from 'src/app/services/materiales-cliente.service';
 import { PresupuestosService } from 'src/app/services/presupuestos.service';
@@ -19,7 +20,7 @@ export class MaterialesClienteComponent implements OnInit
   public materiales: MaterialStock[] = [];
 
 
-  constructor(private materialesService: MaterialesClienteService, private router: Router, private presupuestoService: PresupuestosService, private globalDataService: GlobalDataService) { }
+  constructor(private materialesService: MaterialesClienteService, private router: Router, private presupuestoService: PresupuestosService, private globalDataService: GlobalDataService, private clienteService: ClientesService) { }
 
   ngOnInit(): void
   {
@@ -37,7 +38,9 @@ export class MaterialesClienteComponent implements OnInit
 
   addToWhishlist(materialId: number, providerId: number)
   {
+    
     const customerId = this.globalDataService.getUsuarioLogado()?.UserID;
+    console.log("customerId", customerId);
     let material: MaterialStock | undefined = this.materiales.find(m => m.MaterialID === materialId && m.ProviderId === providerId);
     //material?.Quantity = 1;
     this.presupuestoService.add(material, customerId).subscribe(data =>
@@ -47,11 +50,12 @@ export class MaterialesClienteComponent implements OnInit
   }
 
 
-  addProductToBudget(materialId: number, providerId: number)
+  async addProductToBudget(materialId: number, providerId: number)
   {
 
-    const customerId = this.globalDataService.getUsuarioLogado()?.UserID as number;
-
+    const userID = this.globalDataService.getUsuarioLogado()?.UserID as number;
+    const customer = await this.clienteService.getCustomerIDByUserID(userID).toPromise();
+    const customerId = customer?.CustomerID as number;
 
     //check if there is a budget id in the local storage
     const budgetId = localStorage.getItem('budgetId') as number | null;

@@ -5,3 +5,4 @@ export interface Proveedor {
   ContactEmail: string;
   ContactPhone: string;
 }
+

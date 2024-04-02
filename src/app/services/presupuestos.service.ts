@@ -6,6 +6,7 @@ import { MaterialStock } from '../models/materialstock';
 import { BudgetData } from '../models/budget-data';
 import { BudgetDetailsData } from '../models/budget-details-data';
 import { BudgetDetailDataToInsert } from '../models/budget-detail-data-to-insert';
+import { BudgetDataModel } from '../models/budget-data-model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class PresupuestosService
   //private apiUrl = 'http://localhost/proyecto-construccion-back/budgets_api.php';
   private apiUrl = 'http://127.0.0.1:8000/budgets';
   private apiUrlBudgetDetails = 'http://127.0.0.1:8000/budget_details';
+  private apiUrlCompleteBudgetDetails = 'http://127.0.0.1:8000/budgetscomplete';
 
 
   constructor(private http: HttpClient)
@@ -53,7 +55,12 @@ console.log("dataToInsert",dataToInsert);
 
     return this.http.post<any>(`${this.apiUrlBudgetDetails}`, productData).pipe(
       map(response => response.budgetDetails) // Extract the 'budget' object from the response
-    );;
+    );
+  }
+
+  getBudgetData(id: number): Observable<BudgetDataModel>
+  {
+    return this.http.get<BudgetDataModel>(`${this.apiUrlCompleteBudgetDetails}/${id}`);
   }
 
 }

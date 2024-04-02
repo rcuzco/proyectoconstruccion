@@ -8,3 +8,11 @@ export interface Material
     ImageFile: string | ArrayBuffer | null;
 
 }
+
+
+export interface MaterialData {
+    MaterialID:   number;
+    MaterialName: string;
+    Description:  string;
+    ImageUrl:     string;
+}

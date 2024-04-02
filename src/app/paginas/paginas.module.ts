@@ -19,6 +19,7 @@ import { NuevoStockComponent } from './stocks/nuevo-stock/nuevo-stock.component'
 import { EditarStockComponent } from './stocks/editar-stock/editar-stock.component';
 import { EditarProveedorComponent } from './proveedores/editar-proveedor/editar-proveedor.component';
 import { MaterialesClienteComponent } from './materiales-cliente/materiales-cliente.component';
+import { ListadoComponent } from './presupuestos/listado/listado.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MaterialesClienteComponent } from './materiales-cliente/materiales-clie
     NuevoStockComponent,
     EditarStockComponent,
     EditarProveedorComponent,
-    MaterialesClienteComponent
+    MaterialesClienteComponent,
+    ListadoComponent
   ],
   exports: [
     MaterialesComponent,

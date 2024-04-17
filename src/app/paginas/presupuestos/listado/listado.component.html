@@ -1,1 +1,15 @@
-<p>listado works!</p>
+<table *ngIf="datosPresupuesto">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Create a table row for each product -->
+    <tr *ngFor="let item of datosPresupuesto.details">
+      <td>{{ item.material.MaterialName }}</td>
+
+    </tr>
+  </tbody>
+</table>

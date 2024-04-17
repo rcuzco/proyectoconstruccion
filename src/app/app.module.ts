@@ -10,8 +10,8 @@ import { AuthModule } from './auth/auth.module';
 
 @NgModule({
 
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  
+  //schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   declarations: [
     AppComponent,
     NopagefoundComponent,

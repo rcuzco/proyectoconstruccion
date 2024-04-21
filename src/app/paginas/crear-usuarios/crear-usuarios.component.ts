@@ -29,6 +29,9 @@ export class CrearUsuariosComponent {
 
   insertarUsuario() {
     if (this.insertForm.valid) {
+
+      
+
       let nuevoUsuario: Cliente = {
         UserName : this.insertForm.value.username!,
         ContactEmail : this.insertForm.value.contactEmail!,
@@ -47,6 +50,8 @@ export class CrearUsuariosComponent {
       }
 
     );
+
+
 
 
 }

@@ -17,11 +17,13 @@ import { EditarProveedorComponent } from './proveedores/editar-proveedor/editar-
 import { MaterialesClienteComponent } from './materiales-cliente/materiales-cliente.component';
 import { ListadoComponent } from './presupuestos/listado/listado.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
+import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
 
 const routes: Routes = [
 
   { path: 'materialescliente', component: MaterialesClienteComponent },
   { path: 'presupuestos/:id', component: ListadoComponent },
+  { path: 'perfil', component: PerfilClienteComponent },
   {
     path: 'dashboard',
     component: PaginasComponent,
@@ -38,8 +40,9 @@ const routes: Routes = [
         { path: 'proveedores', component: ProveedoresComponent },
         { path: 'clientes', component: ClientesComponent },
         { path: 'usuarios', component: UsuariosComponent },
-        { path:'proveedores/editarproveedor/:id', component: EditarProveedorComponent },
+        { path: 'proveedores/editarproveedor/:id', component: EditarProveedorComponent },
         { path: 'clientes/crearUsuario', component: CrearUsuariosComponent },
+
 
     ]
 

@@ -1,4 +1,21 @@
-
+<div class="sidebar-wrapper" data-simplebar="true">
+  <div class="sidebar-header">
+    <div>
+      <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+    </div>
+    <div>
+      <h4 class="logo-text">Materiales Construcción</h4>
+    </div>
+    <div class="toggle-icon ms-auto"><i class='bx bx-arrow-back'></i>
+    </div>
+  </div>
+  <!--navigation-->
+  <app-sidebar></app-sidebar>
+  <!--end navigation-->
+</div>
+<!--end sidebar wrapper -->
+<!--start header -->
+<app-header></app-header>
     <div class="page-wrapper">
 			<div class="page-content">
 				<!--breadcrumb-->
@@ -7,9 +24,9 @@
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								<li class="breadcrumb-item"><a href="javascript:;" routerLink="/materialescliente"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">User Profilep</li>
+								<li class="breadcrumb-item active" aria-current="page">Perfil de usuario</li>
 							</ol>
 						</nav>
 					</div>
@@ -36,8 +53,8 @@
 										<div class="d-flex flex-column align-items-center text-center">
 											<img src="assets/images/avatars/avatar-2.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
 											<div class="mt-3">
-												<h4>John Doe</h4>
-												<p class="text-secondary mb-1">Full Stack Developer</p>
+												<h4>{{globalDataService.getUsuarioLogado()?.UserName}}</h4>
+												<p class="text-secondary mb-1">{{globalDataService.getUsuarioLogado()?.UserType}}</p>
 												<p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
 												<button class="btn btn-primary">Follow</button>
 												<button class="btn btn-outline-primary">Message</button>
@@ -77,7 +94,7 @@
 												<h6 class="mb-0">Full Name</h6>
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<input type="text" class="form-control" value="John Doe" />
+												<input type="text" class="form-control" value="{{globalDataService.getUsuarioLogado()?.CustomerName}}" />
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -85,7 +102,7 @@
 												<h6 class="mb-0">Email</h6>
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<input type="text" class="form-control" value="john@example.com" />
+												<input type="text" class="form-control" value="{{globalDataService.getUsuarioLogado()?.ContactEmail}}" />
 											</div>
 										</div>
 										<div class="row mb-3">
@@ -93,7 +110,7 @@
 												<h6 class="mb-0">Phone</h6>
 											</div>
 											<div class="col-sm-9 text-secondary">
-												<input type="text" class="form-control" value="(239) 816-9029" />
+												<input type="text" class="form-control" value="{{globalDataService.getUsuarioLogado()?.ContactPhone}}" />
 											</div>
 										</div>
 										<div class="row mb-3">

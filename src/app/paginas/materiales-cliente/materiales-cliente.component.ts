@@ -38,8 +38,8 @@ export class MaterialesClienteComponent implements OnInit
 
   addToWhishlist(materialId: number, providerId: number)
   {
-    
-    const customerId = this.globalDataService.getUsuarioLogado()?.UserID;
+
+    const customerId = this.globalDataService.getUsuarioLogado()?.CustomerID;
     console.log("customerId", customerId);
     let material: MaterialStock | undefined = this.materiales.find(m => m.MaterialID === materialId && m.ProviderId === providerId);
     //material?.Quantity = 1;
@@ -53,7 +53,7 @@ export class MaterialesClienteComponent implements OnInit
   async addProductToBudget(materialId: number, providerId: number)
   {
 
-    const userID = this.globalDataService.getUsuarioLogado()?.UserID as number;
+    const userID = this.globalDataService.getUsuarioLogado()?.CustomerID as number;
     const customer = await this.clienteService.getCustomerIDByUserID(userID).toPromise();
     const customerId = customer?.CustomerID as number;
 

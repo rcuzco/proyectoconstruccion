@@ -9,6 +9,9 @@ $.validator.setDefaults( {
 			$( "#jQueryValidationForm" ).validate( {
 				rules: {
 					yourname: "required",
+          customerName: "required",
+          contactPhone: "required",
+          contactName: "required",
 					phone: "required",
 					username: {
 						required: true,
@@ -21,40 +24,52 @@ $.validator.setDefaults( {
 					confirm_password: {
 						required: true,
 						minlength: 5,
-						equalTo: "#input38"
+						equalTo: "#password"
 					},
 					email: {
 						required: true,
 						email: true
 					},
-                    country: "required",
-                    address: "required",
+          contactEmail: {
+						required: true,
+						email: true
+					},
+
+          country: "required",
+          address: "required",
+          userType: "required",
 					agree: "required"
 				},
 				messages: {
-					yourname: "Please enter your your name",
-					phone: "Please enter your phone number",
+					yourname: "Por favor, ingresa un nombre",
+          customerName: "Por favor, ingresa un nombre de cliente",
+          contactPhone: "Por favor, ingresa un número de contacto",
+          contactName: "Por favor, ingresa un nombre de contacto",
+
+					phone: "Por favor, ingresa un número de teléfono",
 					username: {
-						required: "Please enter a username",
-						minlength: "Your username must consist of at least 2 characters"
+						required: "Por favor, introduzca un nombre de usuario",
+						minlength: "El nombre de usuario debe tener al menos 2 caracteres"
 					},
 					password: {
-						required: "Please provide a password",
-						minlength: "Your password must be at least 5 characters long"
+						required: "Por favor, introduzca una contraseña",
+						minlength: "La contrasena debe tener al menos 5 caracteres"
 					},
 					confirm_password: {
-						required: "Please provide a password",
-						minlength: "Your password must be at least 5 characters long",
-						equalTo: "Please enter the same password as above"
+						required: "Por favor, introduzca una contraseña",
+						minlength: "La contrasena debe tener al menos 5 caracteres",
+						equalTo: "Las constrasenas no coinciden"
 					},
-                    email: "Please enter a valid email address",
+                    email: "Por favor, introduzca una dirección de correo electrónico valida",
+                    contactEmail: "Por favor, introduzca una dirección de correo electrónico valida",
                     country: "Please select country",
+                    userType: "Por favor, seleccione un tipo de usuario",
                     address: "Please type your message",
 					agree: "Please accept our policy"
 				},
-			
+
 			} );
 
-			
+
 
 		} );

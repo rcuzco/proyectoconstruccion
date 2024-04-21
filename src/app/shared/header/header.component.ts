@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalDataService } from 'src/app/services/global-data.service';
-import { User } from 'src/app/models/user';
+import { Cliente } from 'src/app/models/cliente';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user';
 })
 export class HeaderComponent implements OnInit {
 
-  public usuarioLogado!: User|undefined|null;
+  public usuarioLogado!: Cliente|undefined|null;
 
   constructor(public globalDataService: GlobalDataService) { }
 

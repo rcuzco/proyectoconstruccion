@@ -4,6 +4,8 @@ export interface Cliente {
   ContactName: string;
   ContactEmail: string;
   ContactPhone: string;
-  users_UserID: number;
+  UserName: string;
+  Password: string;
+  UserType: string;
 }
 

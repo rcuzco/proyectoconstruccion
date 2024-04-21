@@ -32,9 +32,23 @@
         </div>
 
         <div class="form-group">
-          <label for="userType" >Tipo de usuario</label>
-          <input  formControlName="userType" id="userType" placeholder="Ingrese el tipo de usuario">
+          <label for="customerName" >Nombre del cliente</label>
+          <input  formControlName="customerName" id="CustomerName" placeholder="Ingrese el nombre del cliente">
         </div>
+
+        <div class="form-group">
+          <label for="contactName" >Nombre de contacto</label>
+          <input  formControlName="contactName" id="contactName" placeholder="Ingrese el nombre de contacto">
+        </div>
+
+      <div class="form-group">
+        <label for="contactEmail" >Email</label>
+        <input  formControlName="contactEmail" id="contactEmail" placeholder="Ingrese el email de contacto">
+      </div>
+
+      <div class="form-group">
+        <label for="contactPhone" >Teléfono</label>
+        <input  formControlName="contactPhone" id="contactPhone" placeholder="Ingrese el teléfono de contacto">
       </div>
 
 
@@ -42,9 +56,11 @@
 
       <button class="login-btn" (click)="irAlLogin()">Ya tengo cuenta</button>
         <div class="or-divider">or</div>
+      <button type="submit" class="register" (click)="insertarUsuario()">Registrarse</button>
 
-        <button type="submit" class="register" (click)="insertarUsuario()">Registrarse</button>
+      </div>
       </form>
+
       </div>
     </div>
 </section>

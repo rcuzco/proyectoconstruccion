@@ -1,4 +1,4 @@
-@charset "UTF-8";
+/* @charset "UTF-8";
 .contenedor {
   margin: 0;
   padding: 0;
@@ -90,9 +90,9 @@ button {
 @media (min-width: 768px) {
   .card {
     max-width: 350px; /* volver al ancho máximo de 650px para pantallas más grandes */
-  }
+  /* }
 }
 .titulo {
   display: flex;
-  justify-content: center;
-}/*# sourceMappingURL=materiales-cliente.component.css.map */
+  justify-content: center; */
+/* }# sourceMappingURL=materiales-cliente.component.css.map */ 

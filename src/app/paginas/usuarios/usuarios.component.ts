@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { User } from 'src/app/models/user';
-import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Cliente } from 'src/app/models/cliente';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -10,33 +10,42 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class UsuariosComponent implements OnInit{
 
-  public usuarios: User[] = [];
+  public clientes: Cliente[] = [];
 
   insertForm = this.formBuilder.group({
     userName:["", [Validators.required]],
     password:["", [Validators.required]],
     userType:["", [Validators.required]],
+    customerName:["", [Validators.required]],
+    contactName:["", [Validators.required]],
+    contactEmail:["", [Validators.required]],
+    contactPhone:["", [Validators.required]],
   });
 
-  constructor(private usuariosService: UsuariosService, private formBuilder: FormBuilder) { }
+  constructor(private clientesService: ClientesService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-      console.log("Cargando usuarios");
-      this.usuariosService.getData().subscribe(data => {
-        this.usuarios = data;
+      console.log("Cargando clientes");
+      this.clientesService.getData().subscribe(data => {
+        this.clientes = data;
       })
   }
 
   insertarUsuario() {
     if (this.insertForm.valid) {
-      let nuevoUsuario: User = {
+      let nuevoCliente: Cliente = {
         UserName : this.insertForm.value.userName!,
         Password : this.insertForm.value.password!,
         UserType : this.insertForm.value.userType!,
-        UserID : 0
+        CustomerID: 0,
+        CustomerName: this.insertForm.value.customerName!,
+        ContactName: this.insertForm.value.contactName!,
+        ContactEmail: this.insertForm.value.contactEmail!,
+        ContactPhone: this.insertForm.value.contactPhone!,
+
       };
 
-      this.usuariosService.insertUser(nuevoUsuario).subscribe(
+      this.clientesService.insertUser(nuevoCliente).subscribe(
         (data:number)=>
         {
           console.log(data);

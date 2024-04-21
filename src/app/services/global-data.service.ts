@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user';
+import { Cliente } from '../models/cliente';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalDataService {
 
-  private usuarioLogado!:User | undefined|null ;
+  private usuarioLogado!:Cliente | undefined|null ;
 
   constructor() { }
 
-  setUsuarioLogado(user:User){
-    this.usuarioLogado = user;
+  setUsuarioLogado(cliente:Cliente){
+    this.usuarioLogado = cliente;
   //save to local storage
-    localStorage.setItem('usuarioLogado', JSON.stringify(user));
+    localStorage.setItem('usuarioLogado', JSON.stringify(cliente));
 
   }
-  getUsuarioLogado():User|undefined|null{
+  getUsuarioLogado():Cliente|undefined|null{
     //read from local storage, if empty then return null
     const storedUser = localStorage.getItem('usuarioLogado');
     //console.log("storedUser",storedUser);

@@ -1,7 +1,7 @@
 import { Component, ErrorHandler } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder,Validators } from '@angular/forms';
-import { UsuariosService } from '../../services/usuarios.service';
+import { ClientesService } from '../../services/clientes.service';
 import { GlobalDataService } from 'src/app/services/global-data.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private formBuilder:FormBuilder,
-    private usuariosService: UsuariosService,
+    private clientesService: ClientesService,
     private globalDataService:GlobalDataService) {}
 
   submitForm() {
@@ -36,17 +36,17 @@ export class LoginComponent {
     // }
     let userName: string = this.loginForm.value.userName!;
     let password: string = this.loginForm.value.password!;
-    this.usuariosService.login(userName,password).subscribe(
+    this.clientesService.login(userName,password).subscribe(
       {
-        next:(usuario)=>
+        next:(cliente)=>
         {
-          if (usuario) {
-            console.log("usuario",usuario);
-            this.globalDataService.setUsuarioLogado(usuario);
-            if (usuario.UserType === 'Administrator')
+          if (cliente) {
+            console.log("usuario",cliente);
+            this.globalDataService.setUsuarioLogado(cliente);
+            if (cliente.UserType === 'Administrator')
             {
               this.router.navigate(['/dashboard']);
-            } else if (usuario.UserType === 'Cliente')
+            } else if (cliente.UserType === 'Cliente')
             {
               this.router.navigate(['/materialescliente']);
             } else {

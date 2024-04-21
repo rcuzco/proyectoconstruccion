@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { User } from 'src/app/models/user';
-import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Cliente } from 'src/app/models/cliente';
 import { Router } from '@angular/router';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-registro',
@@ -11,26 +11,34 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent {
 
-  public usuarios: User[] = [];
+  public clientes: Cliente[] = [];
 
   insertForm = this.formBuilder.group({
     userName:["", [Validators.required]],
     password:["", [Validators.required]],
     userType:["", [Validators.required]],
+    customerName:["", [Validators.required]],
+    contactName:["", [Validators.required]],
+    contactEmail:["", [Validators.required]],
+    contactPhone:["", [Validators.required]],
   });
 
-  constructor(private usuariosService: UsuariosService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private clientesService: ClientesService, private formBuilder: FormBuilder, private router: Router) { }
 
   insertarUsuario() {
     if (this.insertForm.valid) {
-      let nuevoUsuario: User = {
+      let nuevoCliente: Cliente = {
         UserName : this.insertForm.value.userName!,
         Password : this.insertForm.value.password!,
-        UserType : this.insertForm.value.userType!,
-        UserID : 0
+        UserType : "Cliente",
+        CustomerID: 0,
+        CustomerName: this.insertForm.value.customerName!,
+        ContactName: this.insertForm.value.contactName!,
+        ContactEmail: this.insertForm.value.contactEmail!,
+        ContactPhone: this.insertForm.value.contactPhone!,
       };
 
-      this.usuariosService.insertUser(nuevoUsuario).subscribe(
+      this.clientesService.insertUser(nuevoCliente).subscribe(
         (data:number)=>
         {
           console.log(data);

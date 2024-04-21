@@ -16,6 +16,7 @@ import { EditarStockComponent } from './stocks/editar-stock/editar-stock.compone
 import { EditarProveedorComponent } from './proveedores/editar-proveedor/editar-proveedor.component';
 import { MaterialesClienteComponent } from './materiales-cliente/materiales-cliente.component';
 import { ListadoComponent } from './presupuestos/listado/listado.component';
+import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 
 const routes: Routes = [
 
@@ -38,6 +39,7 @@ const routes: Routes = [
         { path: 'clientes', component: ClientesComponent },
         { path: 'usuarios', component: UsuariosComponent },
         { path:'proveedores/editarproveedor/:id', component: EditarProveedorComponent },
+        { path: 'clientes/crearUsuario', component: CrearUsuariosComponent },
 
     ]
 

@@ -24,4 +24,20 @@ export class ClientesService {
     return this.http.get<Cliente>(`${this.apiUrl}/byuserid/${userID}`);
   }
 
+  insertUser(cliente:Cliente):Observable<number>{
+
+    const dataToInsert = { "UserName": cliente.UserName,"Password": cliente.Password, "UserType": cliente.UserType,
+    "CustomerName":cliente.CustomerName, "ContactName": cliente.ContactName,
+    "ContactEmail": cliente.ContactEmail, "ContactPhone": cliente.ContactPhone };
+    return this.http.post<number>(this.apiUrl, dataToInsert);
+  }
+
+  login(userName:string, password: string): Observable<Cliente>
+  {
+    const body = {'userName':userName, 'password':password};
+    console.log("url origen",this.apiUrl + "/authenticate");
+    return this.http.post<Cliente>(this.apiUrl + "/authenticate", body);
+  }
+
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MaterialStock } from 'src/app/models/materialstock';
-import { User } from 'src/app/models/user';
+import { Cliente } from 'src/app/models/cliente';
 import { GlobalDataService } from 'src/app/services/global-data.service';
 import { MaterialesService } from 'src/app/services/materiales.service';
 
@@ -13,7 +13,7 @@ import { MaterialesService } from 'src/app/services/materiales.service';
 export class MaterialesComponent implements OnInit
 {
     public materiales: MaterialStock[] = [];
-    public usuarioLogado!: User|undefined|null;
+    public usuarioLogado!: Cliente|undefined|null;
 
     constructor(private materialesService: MaterialesService, private router: Router, private globalDataService: GlobalDataService) { }
 

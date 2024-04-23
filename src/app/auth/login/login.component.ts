@@ -43,7 +43,7 @@ export class LoginComponent {
           if (cliente) {
             console.log("usuario",cliente);
             this.globalDataService.setUsuarioLogado(cliente);
-            if (cliente.UserType === 'Administrator')
+            if (cliente.UserType === 'Administrator' || 'Administrador')
             {
               this.router.navigate(['/dashboard']);
             } else if (cliente.UserType === 'Cliente')

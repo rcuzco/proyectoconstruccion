@@ -30,7 +30,7 @@ export class CrearUsuariosComponent {
   insertarUsuario() {
     if (this.insertForm.valid) {
 
-      
+
 
       let nuevoUsuario: Cliente = {
         UserName : this.insertForm.value.username!,
@@ -42,6 +42,8 @@ export class CrearUsuariosComponent {
         UserType: this.insertForm.value.userType!,
         CustomerID : 0,
       };
+
+      
 
     this.clientesService.insertUser(nuevoUsuario).subscribe(
       (data:number)=>

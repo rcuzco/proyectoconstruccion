@@ -43,7 +43,7 @@ export class CrearUsuariosComponent {
         CustomerID : 0,
       };
 
-      
+
 
     this.clientesService.insertUser(nuevoUsuario).subscribe(
       (data:number)=>
@@ -54,9 +54,17 @@ export class CrearUsuariosComponent {
     );
 
 
+    this.goBackToUsers();
+
 
 
 }
 }
+
+goBackToUsers(){
+
+      this.router.navigate(['/dashboard/usuarios']);
+
+    }
 
 }

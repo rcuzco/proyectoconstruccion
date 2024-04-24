@@ -43,12 +43,12 @@ export class LoginComponent {
           if (cliente) {
             console.log("usuario",cliente);
             this.globalDataService.setUsuarioLogado(cliente);
-            if (cliente.UserType === 'Administrator' || 'Administrador')
+            if (cliente.UserType === 'Administrador')
             {
               this.router.navigate(['/dashboard']);
             } else if (cliente.UserType === 'Cliente')
             {
-              this.router.navigate(['/materialescliente']);
+              this.router.navigate(['/dashboard/materialescliente']);
             } else {
               console.log("Tipo de usuario inválido");
             }

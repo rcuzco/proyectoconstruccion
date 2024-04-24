@@ -54,10 +54,10 @@
                                   <button class="btn btn-sm btn-outline-primary me-3"
                                       (click)="goToDetails(material.MaterialID)">Detalles</button>
                                   <button class="btn btn-sm btn-outline-primary me-3"
-                                    *ngIf="this.usuarioLogado?.UserType == 'Administrator'"
+                                    *ngIf="this.usuarioLogado?.UserType == 'Administrator' || 'Administrador'"
                                       (click)="goToEdit(material.MaterialID)">Editar</button>
 
-                                  <button class="btn btn-sm btn-outline-primary" *ngIf="this.usuarioLogado?.UserType == 'Administrator'"
+                                  <button class="btn btn-sm btn-outline-primary" *ngIf="this.usuarioLogado?.UserType == 'Administrator' || 'Administrador' "
                                       (click)="manageStock(material.MaterialID, material.MaterialName)">Gestionar stock</button>
 
                                   <button class="btn btn-sm btn-outline-primary" *ngIf="this.usuarioLogado?.UserType == 'Cliente'"

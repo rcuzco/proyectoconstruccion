@@ -5,6 +5,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderClienteComponent } from './header-cliente/header-cliente.component';
+import { SidebarClienteComponent } from './sidebar-cliente/sidebar-cliente.component';
 
 
 @NgModule({
@@ -12,11 +13,13 @@ import { HeaderClienteComponent } from './header-cliente/header-cliente.componen
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    HeaderClienteComponent
+    HeaderClienteComponent,
+    SidebarClienteComponent
   ],
   exports: [
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    SidebarClienteComponent
   ],
   imports: [
     CommonModule,

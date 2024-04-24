@@ -19,11 +19,10 @@ import { ListadoComponent } from './presupuestos/listado/listado.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
 
+
 const routes: Routes = [
 
-  { path: 'materialescliente', component: MaterialesClienteComponent },
-  { path: 'presupuestos/:id', component: ListadoComponent },
-  { path: 'perfil', component: PerfilClienteComponent },
+
   {
     path: 'dashboard',
     component: PaginasComponent,
@@ -42,6 +41,9 @@ const routes: Routes = [
         { path: 'usuarios', component: UsuariosComponent },
         { path: 'proveedores/editarproveedor/:id', component: EditarProveedorComponent },
         { path: 'clientes/crearUsuario', component: CrearUsuariosComponent },
+        { path: 'materialescliente', component: MaterialesClienteComponent },
+        { path: 'presupuestos/:id', component: ListadoComponent },
+        { path: 'perfil', component: PerfilClienteComponent },
 
 
     ]

@@ -1,7 +1,10 @@
   <!--wrapper-->
   <div class="wrapper">
     <!--sidebar wrapper -->
-    <app-sidebar></app-sidebar>
+    <app-sidebar *ngIf="this.usuarioLogado?.UserType == 'Administrador' "></app-sidebar>
+
+    <app-sidebar-cliente *ngIf="this.usuarioLogado?.UserType == 'Cliente' "></app-sidebar-cliente>
+
     <!--end sidebar wrapper -->
     <!--start header -->
     <app-header></app-header>

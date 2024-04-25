@@ -16,7 +16,7 @@ export class RegistroComponent {
   insertForm = this.formBuilder.group({
     userName:["", [Validators.required]],
     password:["", [Validators.required]],
-    userType:["", [Validators.required]],
+    userType:["Cliente", [Validators.required]],
     customerName:["", [Validators.required]],
     contactName:["", [Validators.required]],
     contactEmail:["", [Validators.required]],
@@ -27,25 +27,37 @@ export class RegistroComponent {
 
   insertarUsuario() {
     if (this.insertForm.valid) {
-      let nuevoCliente: Cliente = {
+
+
+
+      let nuevoUsuario: Cliente = {
         UserName : this.insertForm.value.userName!,
+        ContactEmail : this.insertForm.value.contactEmail!,
         Password : this.insertForm.value.password!,
-        UserType : "Cliente",
-        CustomerID: 0,
-        CustomerName: this.insertForm.value.customerName!,
-        ContactName: this.insertForm.value.contactName!,
-        ContactEmail: this.insertForm.value.contactEmail!,
+        ContactName : this.insertForm.value.contactName!,
         ContactPhone: this.insertForm.value.contactPhone!,
+        CustomerName: this.insertForm.value.customerName!,
+        UserType: this.insertForm.value.userType!,
+        CustomerID : 0,
       };
 
-      this.clientesService.insertUser(nuevoCliente).subscribe(
-        (data:number)=>
-        {
-          console.log(data);
-        }
-      );
+
+
+    this.clientesService.insertUser(nuevoUsuario).subscribe(
+      (data:number)=>
+      {
+        console.log(data);
       }
-    }
+
+    );
+
+
+
+
+
+
+}
+}
 
     irAlLogin() {
       this.router.navigate(['/login']);

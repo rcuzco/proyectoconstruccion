@@ -4,6 +4,7 @@ import { FormBuilder,Validators } from '@angular/forms';
 import { ClientesService } from '../../services/clientes.service';
 import { GlobalDataService } from 'src/app/services/global-data.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +25,9 @@ export class LoginComponent {
     private router: Router,
     private formBuilder:FormBuilder,
     private clientesService: ClientesService,
-    private globalDataService:GlobalDataService) {}
+    private globalDataService:GlobalDataService,
+
+  ) {}
 
   submitForm() {
     // Verificar credenciales y realizar autenticación
@@ -59,13 +62,15 @@ export class LoginComponent {
           {
             console.log("credenciales inválidas");
             alert("credenciales incorrectas");
-            this.loginError = "credenciales incorrectas";
+
+            this.loginError = "Credenciales incorrectas. . El usuario o contrasena son incorrectos";
           }
         },
         error:(errorData)=>
         {
           console.error("error en llamada", errorData);
-          this.loginError = "error en llamada al back: " + errorData;
+
+          this.loginError = "Credenciales incorrectas. El usuario o contrasena son incorrectos";
         },
         complete:()=>
         {
@@ -78,6 +83,7 @@ export class LoginComponent {
   irAlRegistro() {
     this.router.navigate(['auth/registro']);
   }
+
 
   // validarCredenciales(): boolean {
   //   // Implementa la lógica real de autenticación aquí

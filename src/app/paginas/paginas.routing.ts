@@ -18,10 +18,12 @@ import { MaterialesClienteComponent } from './materiales-cliente/materiales-clie
 import { ListadoComponent } from './presupuestos/listado/listado.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
+import { PortadaComponent } from './portada/portada.component';
 
 
 const routes: Routes = [
 
+  { path: 'portada', component: PortadaComponent },
 
   {
     path: 'dashboard',
@@ -44,6 +46,7 @@ const routes: Routes = [
         { path: 'materialescliente', component: MaterialesClienteComponent },
         { path: 'presupuestos/:id', component: ListadoComponent },
         { path: 'perfil', component: PerfilClienteComponent },
+
 
 
     ]

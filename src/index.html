@@ -8,6 +8,7 @@
   <!-- Required meta tags -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <!--favicon-->
   <link rel="icon" href="assets/images/logo.png" type="image/png" />
   <!--plugins-->
@@ -29,6 +30,12 @@
   <link rel="stylesheet" href="assets/css/dark-theme.css" />
   <link rel="stylesheet" href="assets/css/semi-dark.css" />
   <link rel="stylesheet" href="assets/css/header-colors.css" />
+  <link href="assets/css/pace.min.css" rel="stylesheet" />
+	<script src="assets/js/pace.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="src/assets/parallax/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="src/assets/parallax/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 </head>
 
@@ -36,6 +43,10 @@
   <app-root></app-root>
 
   <!--end switcher-->
+   <!--  Scripts-->
+   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <script src="./assets/parallax/js/materialize.js"></script>
+   <script src="./assets/parallax/js/init.js"></script>
   <!-- Bootstrap JS -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <!--plugins-->
@@ -50,6 +61,11 @@
 	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
   <script src="assets/js/app.js"></script>
 	<script src="assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
+  <script src="assets/plugins/notifications/js/lobibox.min.js"></script>
+  <script src="assets/plugins/notifications/js/notifications.min.js"></script>
+  <script src="assets/plugins/notifications/js/notification-custom-script.js"></script>
+  <script src="assets/plugins/validation/jquery.validate.min.js"></script>
+  <script src="assets/plugins/validation/validation-script.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('#image-uploadify').imageuploadify();
@@ -61,8 +77,7 @@
 		  } );
 	</script>
 
-<script src="assets/plugins/validation/jquery.validate.min.js"></script>
-<script src="assets/plugins/validation/validation-script.js"></script>
+
 <script>
   // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
@@ -86,9 +101,26 @@
     })()
 </script>
 
-<script src="assets/plugins/notifications/js/lobibox.min.js"></script>
-<script src="assets/plugins/notifications/js/notifications.min.js"></script>
-<script src="assets/plugins/notifications/js/notification-custom-script.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#show_hide_password a").on('click', function (event) {
+      event.preventDefault();
+      if ($('#show_hide_password input').attr("type") == "text") {
+        $('#show_hide_password input').attr('type', 'password');
+        $('#show_hide_password i').addClass("bx-hide");
+        $('#show_hide_password i').removeClass("bx-show");
+      } else if ($('#show_hide_password input').attr("type") == "password") {
+        $('#show_hide_password input').attr('type', 'text');
+        $('#show_hide_password i').removeClass("bx-hide");
+        $('#show_hide_password i').addClass("bx-show");
+      }
+    });
+  });
+</script>
+
+
+
+
 
 </body>
 

@@ -22,6 +22,7 @@ import { MaterialesClienteComponent } from './materiales-cliente/materiales-clie
 import { ListadoComponent } from './presupuestos/listado/listado.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
+import { PortadaComponent } from './portada/portada.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.componen
     MaterialesClienteComponent,
     ListadoComponent,
     CrearUsuariosComponent,
-    PerfilClienteComponent
+    PerfilClienteComponent,
+    PortadaComponent
   ],
   exports: [
     MaterialesComponent,

@@ -4,12 +4,15 @@ import { Router } from '@angular/router';
 import { ProveedoresService } from 'src/app/services/proveedores.service';
 import { Proveedor } from 'src/app/models/proveedor'
 
+
 @Component({
   selector: 'app-nuevo-proveedor',
   templateUrl: './nuevo-proveedor.component.html',
   styleUrls: ['./nuevo-proveedor.component.scss']
 })
 export class NuevoProveedorComponent {
+  showToast: boolean = false;
+  toastMessage: string = '';
 
   insertForm = this.formBuilder.group({
     ProviderName:["", [Validators.required]],
@@ -39,8 +42,17 @@ insertarProveedor() {
       (data:number)=>
       {
         console.log(data);
+        if ((window as {[key: string]: any})['successproveedor_noti']) {
+          (window as {[key: string]: any})['successproveedor_noti']();
+        } else {
+          console.error('La función successproveedor_noti no está definida en el ámbito global.');
+        }
+        this.router.navigate(["dashboard/proveedores"]);
+
       }
     );
+
+
 
   }
   }

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderClienteComponent } from './header-cliente/header-cliente.component';
 import { SidebarClienteComponent } from './sidebar-cliente/sidebar-cliente.component';
+import { NotificacionProveedorComponent } from './notificacion-proveedor/notificacion-proveedor.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SidebarClienteComponent } from './sidebar-cliente/sidebar-cliente.compo
     SidebarComponent,
     FooterComponent,
     HeaderClienteComponent,
-    SidebarClienteComponent
+    SidebarClienteComponent,
+    NotificacionProveedorComponent
   ],
   exports: [
     HeaderComponent,

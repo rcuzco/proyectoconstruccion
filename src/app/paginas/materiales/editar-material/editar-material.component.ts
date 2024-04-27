@@ -72,7 +72,7 @@ export class EditarMaterialComponent implements OnInit
       ImageFile: this.imageSrc,
       ShowGenericImage: true,
     }
-    debugger;
+
     console.log("material a actualizar", material);
 
     this.materialesService.updateMaterial(material).subscribe(

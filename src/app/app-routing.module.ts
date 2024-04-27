@@ -6,7 +6,7 @@ import { AuthRoutingModule } from './auth/auth-routing.module';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/portada', pathMatch: 'full' },
   { path: '**', component: NopagefoundComponent },
 
 ];

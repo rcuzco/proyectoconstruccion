@@ -46,6 +46,6 @@ export class StockService
             "Quantity": stock.Quantity,
             "UnitPrice": stock.UnitPrice
         };
-        return this.http.put<Stock>(this.apiUrl, dataToUpdate);
+        return this.http.put<Stock>(this.apiUrl + '/' + stock.StockId, dataToUpdate);
     }
 }

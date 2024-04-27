@@ -49,7 +49,14 @@ export class CrearUsuariosComponent {
       (data:number)=>
       {
         console.log(data);
+
+        if ((window as {[key: string]: any})['successuser_noti']) {
+          (window as {[key: string]: any})['successuser_noti']();
+        } else {
+          console.error('La función success_noti no está definida en el ámbito global.');
+        }
       }
+
 
     );
 

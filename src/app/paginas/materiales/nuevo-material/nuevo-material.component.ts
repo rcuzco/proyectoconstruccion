@@ -46,6 +46,11 @@ insertarMaterial() {
       (data:number)=>
       {
         console.log(data);
+        if ((window as {[key: string]: any})['successmaterial_noti']) {
+          (window as {[key: string]: any})['successmaterial_noti']();
+        } else {
+          console.error('La función success_noti no está definida en el ámbito global.');
+        }
         this.router.navigate(["dashboard/materiales"]);
       }
     );

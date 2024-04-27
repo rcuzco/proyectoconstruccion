@@ -34,19 +34,12 @@
 	<script src="assets/js/pace.min.js"></script>
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="src/assets/parallax/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="src/assets/parallax/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+ 
 
 </head>
 
 <body>
-  <app-root></app-root>
 
-  <!--end switcher-->
-   <!--  Scripts-->
-   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-   <script src="./assets/parallax/js/materialize.js"></script>
-   <script src="./assets/parallax/js/init.js"></script>
   <!-- Bootstrap JS -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <!--plugins-->
@@ -66,6 +59,28 @@
   <script src="assets/plugins/notifications/js/notification-custom-script.js"></script>
   <script src="assets/plugins/validation/jquery.validate.min.js"></script>
   <script src="assets/plugins/validation/validation-script.js"></script>
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+  </script>
 	<script>
 		$(document).ready(function () {
 			$('#image-uploadify').imageuploadify();
@@ -78,28 +93,7 @@
 	</script>
 
 
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-      'use strict'
 
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.querySelectorAll('.needs-validation')
-
-      // Loop over them and prevent submission
-      Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-        }, false)
-      })
-    })()
-</script>
 
 <script>
   $(document).ready(function () {
@@ -117,6 +111,10 @@
     });
   });
 </script>
+
+
+<app-root></app-root>
+
 
 
 

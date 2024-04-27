@@ -5,112 +5,108 @@ import { Material } from 'src/app/models/material';
 import { MaterialesService } from 'src/app/services/materiales.service';
 
 @Component({
-    selector: 'app-editar-material',
-    templateUrl: './editar-material.component.html',
-    styleUrls: ['./editar-material.component.scss']
+  selector: 'app-editar-material',
+  templateUrl: './editar-material.component.html',
+  styleUrls: ['./editar-material.component.scss']
 })
 export class EditarMaterialComponent implements OnInit
 {
 
-    materialId!: number;
-    material!: Material;
+  materialId!: number;
+  material!: Material;
 
-    editForm = this.formBuilder.group({
-        materialName: ["", [Validators.required]],
-        materialDescription: ["", [Validators.required]],
-        imageUrl: ["", [Validators.required]],
-        materialImageFile: [null, [Validators.required]],
-    });
-    selectedFile!: File;
-    status!: boolean;
-    imageSrc!: string | ArrayBuffer | null;
-
-
+  editForm = this.formBuilder.group({
+    materialName: ["", [Validators.required]],
+    materialDescription: ["", [Validators.required]],
+    imageUrl: ["", [Validators.required]],
+    imageFile: [null, [Validators.required]],
+  });
+  selectedFile!: File;
+  status!: boolean;
+  imageSrc!: any;
 
 
-    constructor(private formBuilder: FormBuilder, private router: Router, private materialesService: MaterialesService, private route: ActivatedRoute)
+
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private materialesService: MaterialesService, private route: ActivatedRoute)
+  {
+
+  }
+  ngOnInit(): void
+  {
+    this.route.params.subscribe(params =>
     {
+      this.materialId = params['id'];
 
-    }
-    ngOnInit(): void
-    {
-        this.route.params.subscribe(params =>
+      console.log('Received id:', this.materialId);
+
+      this.materialesService
+        .getDataById(this.materialId)
+        .subscribe(data =>
         {
-            this.materialId = params['id'];
+          if (data)
+          {
+            this.material = data;
+            console.log(this.material);
 
-            console.log('Received id:', this.materialId);
+            this.editForm.controls['materialName'].setValue(this.material.MaterialName);
+            this.editForm.controls['materialDescription'].setValue(this.material.Description);
+            this.editForm.controls['imageUrl'].setValue(this.material.ImageUrl);
 
-            this.materialesService
-                .getDataById(this.materialId)
-                .subscribe(data =>
-                {
-                    if (data)
-                    {
-                        this.material = data;
-                        console.log(this.material);
+          } else
+          {
+            console.log("No se encontró el material");
+          }
 
-                        this.editForm.controls['materialName'].setValue(this.material.MaterialName);
-                        this.editForm.controls['materialDescription'].setValue(this.material.Description);
-                        this.editForm.controls['imageUrl'].setValue(this.material.ImageUrl);
-
-                    } else
-                    {
-                        console.log("No se encontró el material");
-                    }
-
-                });
         });
+    });
+  }
+
+  updateMaterial(): void
+  {
+    let material: Material = {
+      MaterialId: this.materialId,
+      MaterialName: this.editForm.value.materialName!,
+      Description: this.editForm.value.materialDescription!,
+      ImageUrl: this.editForm.value.imageUrl!,
+      ImageFile: this.imageSrc,
+      ShowGenericImage: true,
     }
+    debugger;
+    console.log("material a actualizar", material);
 
-    updateMaterial(): void
-    {
-        let material: Material = {
-            MaterialId: this.materialId,
-            MaterialName: this.editForm.value.materialName!,
-            Description: this.editForm.value.materialDescription!,
-            ImageUrl: this.editForm.value.imageUrl!,
-            ImageFile: this.imageSrc,
-            ShowGenericImage: true,
-        }
-
-        console.log("material a actualizar", material);
-
-        this.materialesService.updateMaterial(material).subscribe(
-            {
-                next: (data) =>
-                {
-                    console.log(data);
-                },
-                error: (error) =>
-                {
-                    console.log(error);
-                },
-                complete: () =>
-                {
-                    console.log("Material actualizado");
-                    this.router.navigate(['/dashboard/materiales']);
-                }
-            }
-        );
-    }
-
-    handleFileInput(event: any)
-    {
-        const file = event.target.files[0];
-        this.status = event.target.files.length > 0 ? true : false
-        if (this.status == true)
+    this.materialesService.updateMaterial(material).subscribe(
+      {
+        next: (data) =>
         {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () =>
-            {
-                this.imageSrc = reader.result;
-            }
-            this.editForm.controls['imageUrl'].setValue(file.name);
+          console.log(data);
+        },
+        error: (error) =>
+        {
+          console.log(error);
+        },
+        complete: () =>
+        {
+          console.log("Material actualizado");
+          this.router.navigate(['/dashboard/materiales']);
         }
-    }
+      }
+    );
+  }
 
-    goBackToMaterials() {
-        this.router.navigate(['/dashboard/materiales']);
+  handleFileInput(event: any)
+  {
+    const file = event.target.files[0];
+    this.status = event.target.files.length > 0 ? true : false
+    if (this.status == true)
+    {
+      this.imageSrc = file;
+      this.editForm.controls['imageUrl'].setValue(file.name);
     }
+  }
+
+  goBackToMaterials()
+  {
+    this.router.navigate(['/dashboard/materiales']);
+  }
 }

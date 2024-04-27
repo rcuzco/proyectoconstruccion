@@ -13,18 +13,16 @@ import { MaterialesService } from 'src/app/services/materiales.service';
 export class MaterialesComponent implements OnInit
 {
     public materiales: MaterialStock[] = [];
-    public usuarioLogado!: Cliente|undefined|null;
+    public usuarioLogado!: Cliente | undefined | null;
 
     constructor(private materialesService: MaterialesService, private router: Router, private globalDataService: GlobalDataService) { }
 
     ngOnInit(): void
     {
-      this.usuarioLogado = this.globalDataService.getUsuarioLogado();
-console.log(this.usuarioLogado);
-        console.log("Cargando materiales");
+        this.usuarioLogado = this.globalDataService.getUsuarioLogado();
         this.materialesService.getData().subscribe(data =>
         {
-          console.log("materiales", data);
+            console.log("materiales", data);
             this.materiales = data;
         })
     }
@@ -55,14 +53,12 @@ console.log(this.usuarioLogado);
 
     handleImageError(material: MaterialStock)
     {
-        console.log("Error al cargar la imagen");
+        console.log("Error al cargar la imagen", material);
         material.ShowGenericImage = true;
     }
 
     manageStock(materialId: number, materialName: string)
     {
-      console.log("materialId",materialId);
-      console.log("materialName",materialName);
         this.router.navigate(["dashboard/materiales/stocks/gestionar", materialId, materialName]);
     }
 }

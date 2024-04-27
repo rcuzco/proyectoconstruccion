@@ -54,10 +54,11 @@ a<!--start page wrapper -->
                                   </div>
                               </div>
                               <div class="mb-3">
-                                  <label for="materialImageFile" class="form-label">Imagen para el material</label>
-                                  <p><input id="materialImageFile" class="form-control" type="file"
+                                  <label for="imageFile" class="form-label">Imagen para el material</label>
+                                  <p><input id="imageFile" class="form-control" type="file"
                                           (change)="handleFileInput($event)" accept=".jpg, .png, .jpeg"
-                                          formControlName="materialImageFile"></p>
+                                          formControlName="imageFile"
+                                          name="imageFile"></p>
 
                               </div>
 

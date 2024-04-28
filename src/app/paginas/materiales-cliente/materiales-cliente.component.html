@@ -94,9 +94,7 @@
 
             <img
             *ngIf="!material.ShowGenericImage"
-            src="http://localhost/proyecto-construccion-back/uploads/{{
-              material.ImageUrl
-            }}"
+            src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}"
             (error)="handleImageError(material)"
             alt="Image"
             alt="Descripción de la imagen"

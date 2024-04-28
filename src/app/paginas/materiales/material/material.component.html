@@ -45,7 +45,7 @@
           <div class="row g-0">
               <div class="col-md-4 border-end">
                   <img class="image-width" *ngIf="!material.ShowGenericImage"
-                      src="http://localhost/proyecto-construccion-back/uploads/{{material.ImageUrl}}" (error)="handleImageError(material)"
+                      src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}" (error)="handleImageError(material)"
                       alt="Image">
                   <img class="image-width" *ngIf="material.ShowGenericImage" src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
                       alt="Generic Image">

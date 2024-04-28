@@ -5,7 +5,7 @@ export interface Material
     ImageUrl: string;
     Description: string;
     MaterialName: string;
-    ImageFile: string | ArrayBuffer | null;
+    ImageFile: any;
 
 }
 

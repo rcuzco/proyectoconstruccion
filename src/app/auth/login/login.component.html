@@ -154,7 +154,7 @@
                   <p class="mb-0">Por favor, inicie sesión con tu cuenta</p>
                 </div>
                 <div class="form-body">
-                  <form [formGroup]="loginForm" class="row g-3">
+                  <form [formGroup]="loginForm" class="row g-3" id="jQueryValidationForm">
                     <div class="col-12">
 
                       <label for="username" class="form-label">Nombre de usuario</label>
@@ -186,7 +186,7 @@
                     </div>
                     <div class="col-12">
                       <div class="text-center ">
-                        <p class="mb-0">¿Todavía no tienes una cuenta? <a href="authentication-signup.html">Regístrate aquí</a>
+                        <p class="mb-0">¿Todavía no tienes una cuenta? <a routerLink="/auth/registro" routerLinkActive="active">Regístrate aquí</a>
                         </p>
                       </div>
                     </div>

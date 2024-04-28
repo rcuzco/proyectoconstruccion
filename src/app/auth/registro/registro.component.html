@@ -1,4 +1,4 @@
-<section class="container">
+<!-- <section class="container">
   <div class="image-section">
     <div class="image-wrapper">
       <img src="./assets/images/fondo.png" alt="" />
@@ -51,14 +51,7 @@
         <input  formControlName="contactPhone" id="contactPhone" placeholder="Ingrese el teléfono de contacto">
       </div>
 
-
-
-
-
-
-
-
-      <button type="submit" class="register" (click)="insertarUsuario()">Registrarse</button>
+    <button type="submit" class="register" (click)="insertarUsuario()">Registrarse</button>
       <div class="or-divider">or</div>
       <button class="login-btn" (click)="irAlLogin()">Ya tengo cuenta</button>
 
@@ -68,4 +61,395 @@
       </div>
     </div>
 </section>
+ -->
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+            ><img
+                src="./assets/images/logo.png"
+                height="30px"
+                width="30px"
+                alt="Logo"
+        /></a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent3"
+            aria-controls="navbarSupportedContent3"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent3">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"
+                        ><i class="bx bx-home-alt me-1"></i>Home</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"
+                        ><i class="bx bx-user me-1"></i>About</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"
+                        ><i class="bx bx-category-alt me-1"></i>Features</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"
+                        ><i class="bx bx-microphone me-1"></i>Contact</a
+                    >
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another action</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"
+                                >Something else here</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- To the right -->
+
+            <form class="d-flex">
+                <button
+                    class="btn btn-dark me-3 radius-30 px-4"
+                    routerLink="/login"
+                    routerLinkActive="active"
+                >
+                    <i class="bx bx-lock"></i> Login
+                </button>
+                <button
+                    class="btn btn-light radius-30 px-4"
+                    routerLink="/auth/registro"
+                    routerLinkActive="active"
+                >
+                    <i class="bx bx-user"></i> Register
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="wrapper">
+    <div class="section-authentication-cover">
+        <div class="">
+            <div class="row g-0">
+                <div
+                    class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex"
+                >
+                    <div
+                        class="card shadow-none bg-transparent shadow-none rounded-0 mb-0"
+                    >
+                        <div class="card-body">
+                            <img
+                                src="assets/images/login-images/register-cover.svg"
+                                class="img-fluid auth-img-cover-login"
+                                width="650"
+                                alt=""
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center"
+                >
+                    <div
+                        class="card rounded-0 m-3 shadow-none bg-transparent mb-0"
+                    >
+                        <div class="card-body p-sm-5">
+                            <div class="">
+                                <div class="mb-3 text-center">
+                                    <img
+                                        src="assets/images/logo.png"
+                                        width="60"
+                                        alt=""
+                                    />
+                                </div>
+                                <div class="text-center mb-4">
+                                    <h5 class="">Tienda de construcción</h5>
+                                    <p class="mb-0">
+                                        Por favor, introduzca sus credenciales
+                                        para poder crear una cuenta.
+                                    </p>
+                                </div>
+                                <div class="form-body">
+                                    <form
+                                        [formGroup]="insertForm"
+                                        class="row g-3"
+                                        id="jQueryValidationForm"
+                                    >
+                                        <div class="col-12">
+                                            <label
+                                                for="nombre"
+                                                class="form-label"
+                                                >Nombre</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="nombre"
+                                                class="form-control"
+                                                placeholder="Ingrese el nombre del usuario"
+                                                required
+                                                formControlName="customerName"
+                                                name="customerName"
+                                            />
+                                        </div>
+                                        <div class="col-12">
+                                            <label
+                                                for="email"
+                                                class="form-label"
+                                                >Email</label
+                                            >
+                                            <input
+                                                id="email"
+                                                class="form-control"
+                                                placeholder="ejemplo@mail.com"
+                                                required
+                                                formControlName="contactEmail"
+                                                name="contactEmail"
+                                            />
+                                        </div>
+                                        <div class="col-12">
+                                            <label
+                                                for="password"
+                                                class="form-label"
+                                                >Contraseña</label
+                                            >
+                                            <div
+                                                class="input-group"
+                                                id="show_hide_password"
+                                            >
+                                                <input
+                                                    id="password"
+                                                    class="form-control"
+                                                    placeholder="Ingrese la contraseña"
+                                                    required
+                                                    formControlName="password"
+                                                    name="password"
+                                                    type="password"
+                                                /><a
+                                                    href="javascript:;"
+                                                    class="input-group-text bg-transparent"
+                                                >
+                                                    <i class="bx bx-hide"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label
+                                                for="password"
+                                                class="form-label"
+                                                >Confirmar contraseña</label
+                                            >
+                                            <div
+                                                class="input-group"
+                                                id="show_hide_password"
+                                            >
+                                                <input
+                                                    id="confirm_password"
+                                                    class="form-control"
+                                                    placeholder="Ingrese la contraseña"
+                                                    required
+                                                    formControlName="password"
+                                                    name="confirm_password"
+                                                    type="password"
+                                                /><a
+                                                    href="javascript:;"
+                                                    class="input-group-text bg-transparent"
+                                                >
+                                                    <i class="bx bx-hide"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label
+                                                for="username"
+                                                class="form-label"
+                                                >Nombre de usuario</label
+                                            >
+                                            <input
+                                                id="username"
+                                                class="form-control"
+                                                placeholder="Ingrese el nombre de usuario"
+                                                required
+                                                formControlName="userName"
+                                                name="username"
+                                            />
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label
+                                                for="contactName"
+                                                class="form-label"
+                                                >Nombre de contacto</label
+                                            >
+                                            <input
+                                                id="contactName"
+                                                class="form-control"
+                                                placeholder="Ingrese el nombre de contacto"
+                                                required
+                                                formControlName="contactName"
+                                                name="contactName"
+                                            />
+                                        </div>
+                                        <div class="col-12">
+                                            <label
+                                                for="telefono"
+                                                class="form-label"
+                                                >Teléfono móvil</label
+                                            >
+                                            <input
+                                                id="telefono"
+                                                class="form-control"
+                                                placeholder="Ingrese el teléfono móvil"
+                                                required
+                                                formControlName="contactPhone"
+                                                name="contactPhone"
+                                            />
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check form-switch">
+                                                <input
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    id="flexSwitchCheckChecked"
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="flexSwitchCheckChecked"
+                                                    >I read and agree to Terms &
+                                                    Conditions</label
+                                                >
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-grid">
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-primary"
+                                                    name="submit2"
+                                                    (click)="insertarUsuario()"
+                                                >
+                                                    Registrar usuario
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="text-center">
+                                                <p class="mb-0">
+                                                    ¿Ya dispones de una cuenta?
+                                                    <a
+                                                        routerLink="/login"
+                                                        routerLinkActive="active"
+                                                        >Iniciar sesión aquí</a
+                                                    >
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <hr>
+                                <div
+                                    class="list-inline contacts-social text-center"
+                                >
+                                    <a
+                                        href="javascript:;"
+                                        class="list-inline-item bg-facebook text-white border-0 rounded-3"
+                                        ><i class="bx bxl-facebook"></i
+                                    ></a>
+                                    <a
+                                        href="javascript:;"
+                                        class="list-inline-item bg-twitter text-white border-0 rounded-3"
+                                        ><i class="bx bxl-twitter"></i
+                                    ></a>
+                                    <a
+                                        href="javascript:;"
+                                        class="list-inline-item bg-google text-white border-0 rounded-3"
+                                        ><i class="bx bxl-google"></i
+                                    ></a>
+                                    <a
+                                        href="javascript:;"
+                                        class="list-inline-item bg-linkedin text-white border-0 rounded-3"
+                                        ><i class="bx bxl-linkedin"></i
+                                    ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end row-->
+        </div>
+    </div>
+</div>
+
+<footer class="bg-primary text-light">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Contacto</h4>
+                <p>Dirección: 123 Calle Principal, Ciudad</p>
+                <p>Email: info@tutienda.com</p>
+                <p>Teléfono: +123 456 7890</p>
+            </div>
+            <div class="col-md-6">
+                <h4>Síguenos</h4>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="bg-light" />
+        <div class="row">
+            <div class="col-md-6">
+                <p>&copy; 2024 Tu Tienda Online</p>
+            </div>
+            <div class="col-md-6 text-end">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="#">Política de privacidad</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">Términos y condiciones</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">Acerca de nosotros</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

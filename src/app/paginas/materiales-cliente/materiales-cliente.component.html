@@ -92,6 +92,7 @@
         <div class="col" *ngFor="let material of materiales">
           <div class="card border-primary border-bottom border-3 border-0">
 
+<<<<<<< HEAD
             <img class="image-list-width" *ngIf="!material.ShowGenericImage"
                                         src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}"
                                         (error)="handleImageError(material)" alt="Image">
@@ -99,6 +100,23 @@
                                     <img class="image-list-width" *ngIf="material.ShowGenericImage"
                                         src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
                                         alt="Generic Image">
+=======
+            <img
+            *ngIf="!material.ShowGenericImage"
+            src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}"
+            (error)="handleImageError(material)"
+            alt="Image"
+            alt="Descripción de la imagen"
+            class="card-img-top"
+          />
+          <img
+            class="image-list-width"
+            *ngIf="material.ShowGenericImage"
+            src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
+            alt="Generic Image"
+            class="card-img-top"
+          />
+>>>>>>> 15785b5a5f677103502ab8771e3f354a19f10eba
             <div class="card-body">
               <h5 class="card-title text-primary">{{material.MaterialName}} - {{material.ProviderName}}</h5>
               <p class="card-text">{{material.UnitPrice}} €/ud</p>

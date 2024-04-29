@@ -44,7 +44,7 @@ const routes: Routes = [
         { path: 'proveedores/editarproveedor/:id', component: EditarProveedorComponent },
         { path: 'clientes/crearUsuario', component: CrearUsuariosComponent },
         { path: 'materialescliente', component: MaterialesClienteComponent },
-        { path: 'presupuestos/:id', component: ListadoComponent },
+        { path: 'presupuestos', component: ListadoComponent },
         { path: 'perfil', component: PerfilClienteComponent },
 
 

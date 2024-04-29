@@ -58,7 +58,22 @@ export class MaterialesService
             imageFile: material.ImageFile
         };
 
-        let data = this.http.put<Material>(this.apiUrl, dataToUpdate);
+        const imageFile:any = material.ImageFile;
+
+        const myFormData = new FormData();
+        myFormData.append('materialId', dataToUpdate.materialId.toString());
+        myFormData.append('materialName', dataToUpdate.materialName.toString());
+        myFormData.append('description', dataToUpdate.description.toString());
+        myFormData.append('imageUrl', dataToUpdate.imageUrl.toString());
+        myFormData.append('image', imageFile);
+
+        const headers = new HttpHeaders();
+        headers.append('Content-Type', 'multipart/form-data');
+        headers.append('Accept', 'application/json');
+
+        console.log("myFormData",myFormData);
+
+        let data = this.http.post<Material>(this.apiUrl + '/' + material.MaterialId, myFormData, { headers: headers });
         return data;
     }
 

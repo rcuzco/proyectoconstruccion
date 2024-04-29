@@ -44,6 +44,7 @@
       <div class="card" *ngIf="load">
           <div class="row g-0">
               <div class="col-md-4 border-end">
+<<<<<<< HEAD
                 <img class="image-list-width" *ngIf="!material.ShowGenericImage"
                 src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}"
                 (error)="handleImageError(material)" alt="Image">
@@ -51,6 +52,13 @@
             <img class="image-list-width" *ngIf="material.ShowGenericImage"
                 src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
                 alt="Generic Image">
+=======
+                  <img class="image-width" *ngIf="!material.ShowGenericImage"
+                      src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}" (error)="handleImageError(material)"
+                      alt="Image">
+                  <img class="image-width" *ngIf="material.ShowGenericImage" src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
+                      alt="Generic Image">
+>>>>>>> 15785b5a5f677103502ab8771e3f354a19f10eba
 
               </div>
               <div class="col-md-8">

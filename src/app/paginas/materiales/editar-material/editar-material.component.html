@@ -44,6 +44,7 @@
                                     </div>
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="mb-3">
                                     <label for="imagen" class="form-label">Imagen (URL)</label>
                                     <input type="text" id="imagen" class="form-control"
@@ -58,6 +59,22 @@
                                             (change)="handleFileInput($event)" accept=".jpg, .png, .jpeg"
                                             formControlName="imageFile"
                                             name="imageFile"></p>
+=======
+                              <div class="mb-3">
+                                  <label for="imagen" class="form-label">Imagen (URL)</label>
+                                  <input type="text" id="imagen" class="form-control"
+                                      placeholder="Ingrese la URL de la imagen" formControlName="imageUrl" readonly>
+                                  <div *ngIf="editForm?.get('imageUrl')?.hasError('required')" class="text-danger">
+                                      La imagen del material es obligatoria.
+                                  </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="imageFile" class="form-label">Imagen para el material</label>
+                                  <p><input id="imageFile" class="form-control" type="file"
+                                          (change)="handleFileInput($event)" accept=".jpg, .png, .jpeg"
+                                          formControlName="imageFile"
+                                          name="imageFile"></p>
+>>>>>>> 15785b5a5f677103502ab8771e3f354a19f10eba
 
                                 </div>
 

@@ -52,7 +52,8 @@ import { PortadaComponent } from './portada/portada.component';
     ProveedoresComponent,
     ClientesComponent,
     PaginasComponent,
-    DashboardComponent
+    DashboardComponent,
+    RouterModule,
   ],
   imports: [
     CommonModule,

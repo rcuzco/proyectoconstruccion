@@ -16,8 +16,16 @@ export class GlobalDataService
         this.usuarioLogado = cliente;
         //save to local storage
         localStorage.setItem('usuarioLogado', JSON.stringify(cliente));
-
     }
+
+    clearUsuarioLogado()
+    {
+        this.usuarioLogado = undefined;
+        //save to local storage
+        localStorage.removeItem('usuarioLogado');
+    }
+
+
     getUsuarioLogado(): Cliente | undefined | null
     {
         //read from local storage, if empty then return null
@@ -44,5 +52,10 @@ export class GlobalDataService
         {
             return null;
         }
+    }
+
+    clearPresupuestoActual()
+    {
+        localStorage.removeItem('budgetId');
     }
 }

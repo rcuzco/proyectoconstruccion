@@ -21,7 +21,8 @@ import { NotificacionProveedorComponent } from './notificacion-proveedor/notific
   exports: [
     HeaderComponent,
     SidebarComponent,
-    SidebarClienteComponent
+    SidebarClienteComponent,
+    RouterModule
   ],
   imports: [
     CommonModule,

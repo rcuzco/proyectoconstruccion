@@ -4,6 +4,7 @@ import { MaterialStock } from 'src/app/models/materialstock';
 import { Cliente } from 'src/app/models/cliente';
 import { GlobalDataService } from 'src/app/services/global-data.service';
 import { MaterialesService } from 'src/app/services/materiales.service';
+import { ExportService } from 'src/app/services/export.service';
 
 @Component({
     selector: 'app-materiales',
@@ -15,7 +16,7 @@ export class MaterialesComponent implements OnInit
     public materiales: MaterialStock[] = [];
     public usuarioLogado!: Cliente | undefined | null;
 
-    constructor(private materialesService: MaterialesService, private router: Router, private globalDataService: GlobalDataService) { }
+    constructor(private materialesService: MaterialesService, private router: Router, private globalDataService: GlobalDataService, private exportService: ExportService) { }
 
     ngOnInit(): void
     {
@@ -60,5 +61,15 @@ export class MaterialesComponent implements OnInit
     manageStock(materialId: number, materialName: string)
     {
         this.router.navigate(["dashboard/materiales/stocks/gestionar", materialId, materialName]);
+    }
+
+    exportToExcelMateriales(): void
+    {
+        this.exportService.exportToExcelMateriales(this.materiales, 'materiales');
+    }
+
+    exportToPDFMateriales(): void
+    {
+        this.exportService.exportToPDFMateriales(this.materiales, 'materiales');
     }
 }

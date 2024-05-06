@@ -1,131 +1,44 @@
-<!-- <div class="sidebar-wrapper" data-simplebar="true">
-  <div class="sidebar-header">
-    <div>
-      <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-    </div>
-    <div>
-      <h4 class="logo-text">Materiales Construcción</h4>
-    </div>
-    <div class="toggle-icon ms-auto"><i class='bx bx-arrow-back'></i>
-    </div>
-  </div>
-
-  <app-sidebar></app-sidebar>
-
-</div>
-
-<app-header></app-header> -->
-
 <div class="page-wrapper">
-  <div class="page-content">
-    <!--breadcrumb-->
-    <!-- <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 product-grid">
-      <div class="col">
-        <div class="card" *ngFor="let material of materiales">
-          <img
-            *ngIf="!material.ShowGenericImage"
-            src="http://localhost/proyecto-construccion-back/uploads/{{
-              material.ImageUrl
-            }}"
-            (error)="handleImageError(material)"
-            alt="Image"
-            alt="Descripción de la imagen"
-            class="card-img-top"
-          />
-          <img
-            class="image-list-width"
-            *ngIf="material.ShowGenericImage"
-            src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
-            alt="Generic Image"
-            class="card-img-top"
-          />
-          <div class="">
-            <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span></div>
-          </div>
-          <div class="card-body">
-            <h6 class="card-title cursor-pointer">{{ material.MaterialName }} - {{ material.ProviderName }}</h6>
-            <div class="clearfix">
-              <p class="mb-0 float-start"><strong>{{material.Quantity}}</strong> Sales</p>
-              <p class="mb-0 float-end fw-bold"><span class="me-2 text-decoration-line-through text-secondary">{{material.UnitPrice}}</span><span>$240</span></p>
+    <div class="page-content">
+
+        
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" *ngFor="let material of materiales">
+                <div class="card h-100">
+                    <img
+                        *ngIf="!material.ShowGenericImage"
+                        src="http://127.0.0.1:8000/uploads/{{ material.ImageUrl }}"
+                        (error)="handleImageError(material)"
+                        alt="{{ material.MaterialName }}"
+                        class="card-img-top img-fluid"
+                        style="height: 200px; object-fit: cover;"
+                    />
+                    <img
+                        class="card-img-top img-fluid"
+                        *ngIf="material.ShowGenericImage"
+                        src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
+                        alt="Imagen genérica"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ material.MaterialName }}</h5>
+                        <p class="card-text">Precio: {{ material.UnitPrice }}€</p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary btn-detalles" (click)="goToDetails(material.MaterialID)">
+                                Detalles
+                            </button>
+                            <button class="btn btn-primary btn-presupuesto" (click)="confirmAddToBudget(material.MaterialID, material.ProviderId)">
+                                <i class="fas fa-file-invoice"></i>
+                            </button>
+                            <button class="btn btn-primary btn-factura">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex align-items-center mt-3 fs-6">
-              <div class="cursor-pointer">
-              <i class='bx bxs-star text-warning'></i>
-              <i class='bx bxs-star text-warning'></i>
-              <i class='bx bxs-star text-warning'></i>
-              <i class='bx bxs-star text-warning'></i>
-              <i class='bx bxs-star text-secondary'></i>
-              </div>
-              <p class="mb-0 ms-auto">4.2(182)</p>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Components</div>
-        <div class="ps-3">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 p-0">
-              <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">Cards</li>
-            </ol>
-          </nav>
-        </div>
-        <div class="ms-auto">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary">Settings</button>
-            <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
-              <a class="dropdown-item" href="javascript:;">Another action</a>
-              <a class="dropdown-item" href="javascript:;">Something else here</a>
-              <div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      end breadcrumb -->
-      <h6 class="mb-0 text-uppercase">Productos</h6>
-      <hr/>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-4" >
-        <div class="col" *ngFor="let material of materiales">
-          <div class="card border-primary border-bottom border-3 border-0">
+    </div>
 
-            <img
-            *ngIf="!material.ShowGenericImage"
-            src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}"
-            (error)="handleImageError(material)"
-            alt="Image"
-            alt="Descripción de la imagen"
-            class="card-img-top"
-          />
-          <img
-            class="image-list-width"
-            *ngIf="material.ShowGenericImage"
-            src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
-            alt="Generic Image"
-            class="card-img-top"
-          />
-            <div class="card-body">
-              <h5 class="card-title text-primary">{{material.MaterialName}} - {{material.ProviderName}}</h5>
-              <p class="card-text">{{material.UnitPrice}} €/ud</p>
-              <p class="card-text">{{material.Quantity}} unidades</p>
-              <hr>
-              <div class="d-flex align-items-center gap-2">
-
-                <a (click)="goToDetails(material.MaterialID)" class="btn btn-sm btn-outline-primary me-3">Más info.</a>
-
-                <a (click)="confirmAddToBudget(material.MaterialID, material.ProviderId)" class="btn btn-sm btn-outline-primary me-3">Añadir a presupuesto.</a>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-  </div>
+    </div>
 </div>
-
-
-

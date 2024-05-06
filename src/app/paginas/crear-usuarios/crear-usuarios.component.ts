@@ -63,6 +63,8 @@ export class CrearUsuariosComponent {
 
     this.goBackToUsers();
 
+    
+
 
 
 }
@@ -71,6 +73,7 @@ export class CrearUsuariosComponent {
 goBackToUsers(){
 
       this.router.navigate(['/dashboard/usuarios']);
+
 
     }
 

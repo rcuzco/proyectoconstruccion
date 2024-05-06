@@ -18,6 +18,7 @@ export class EditarMaterialComponent implements OnInit
   editForm = this.formBuilder.group({
     materialName: ["", [Validators.required]],
     materialDescription: ["", [Validators.required]],
+    category: ["", [Validators.required]],
     imageUrl: ["", [Validators.required]],
     imageFile: [null, [Validators.required]],
   });
@@ -52,6 +53,7 @@ export class EditarMaterialComponent implements OnInit
             this.editForm.controls['materialName'].setValue(this.material.MaterialName);
             this.editForm.controls['materialDescription'].setValue(this.material.Description);
             this.editForm.controls['imageUrl'].setValue(this.material.ImageUrl);
+            this.editForm.controls['category'].setValue(this.material.Category);
 
           } else
           {
@@ -64,6 +66,7 @@ export class EditarMaterialComponent implements OnInit
 
   updateMaterial(): void
   {
+
     let material: Material = {
       MaterialId: this.materialId,
       MaterialName: this.editForm.value.materialName!,
@@ -71,6 +74,7 @@ export class EditarMaterialComponent implements OnInit
       ImageUrl: this.editForm.value.imageUrl!,
       ImageFile: this.imageSrc,
       ShowGenericImage: true,
+      Category: this.editForm.value.category!,
     }
 
     console.log("material a actualizar", material);
@@ -89,6 +93,11 @@ export class EditarMaterialComponent implements OnInit
         {
           console.log("Material actualizado");
           this.router.navigate(['/dashboard/materiales']);
+          if ((window as {[key: string]: any})['successmaterialedit_noti']) {
+            (window as {[key: string]: any})['successmaterialedit_noti']();
+          } else {
+            console.error('La función success_noti no está definida en el ámbito global.');
+          }
         }
       }
     );

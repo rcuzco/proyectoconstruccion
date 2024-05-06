@@ -850,7 +850,7 @@ var Lobibox = Lobibox || {};
             title: 'Information'
         },
         success: {
-            title: 'Success'
+            title: 'Operetion exitosa'
         },
         error: {
             title: 'Error'
@@ -1164,7 +1164,7 @@ var Lobibox = Lobibox || {};
         this.$el = null;
 //------------------------------------------------------------------------------
 //-----------------PRIVATE VARIABLES--------------------------------------------
-//------------------------------------------------------------------------------        
+//------------------------------------------------------------------------------
         var me = this;
 //------------------------------------------------------------------------------
 //-----------------PRIVATE FUNCTIONS--------------------------------------------
@@ -1488,7 +1488,7 @@ var Lobibox = Lobibox || {};
     };
     //User can set default options to this variable
     Lobibox.notify.DEFAULTS = {
-        title: true,                // Title of notification. If you do not include the title in options it will automatically takes its value 
+        title: true,                // Title of notification. If you do not include the title in options it will automatically takes its value
         //from Lobibox.notify.OPTIONS object depending of the type of the notifications or set custom string. Set this false to disable title
         size: 'normal',             // normal, mini, large
         soundPath: 'sounds/',   // The folder path where sounds are located
@@ -1537,7 +1537,7 @@ var Lobibox = Lobibox || {};
         },
         success: {
             'class': 'lobibox-notify-success',
-            'title': 'Success',
+            'title': 'Operación exitosa',
             sound: 'sound2'
         },
         error: {

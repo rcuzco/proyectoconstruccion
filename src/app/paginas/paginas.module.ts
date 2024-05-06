@@ -23,6 +23,21 @@ import { ListadoComponent } from './presupuestos/listado/listado.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
 import { PortadaComponent } from './portada/portada.component';
+import { MaterialesConstruccionComponent } from './materiales-construccion/materiales-construccion.component';
+import { MaderaComponent } from './madera/madera.component';
+import { PuertasVentanasComponent } from './puertas-ventanas/puertas-ventanas.component';
+import { SuelosRevestimientosComponent } from './suelos-revestimientos/suelos-revestimientos.component';
+import { CocinasComponent } from './cocinas/cocinas.component';
+import { BanosComponent } from './banos/banos.component';
+import { CeramicaComponent } from './ceramica/ceramica.component';
+import { FontaneriaComponent } from './fontaneria/fontaneria.component';
+import { ClimatizacionCalefaccionComponent } from './climatizacion-calefaccion/climatizacion-calefaccion.component';
+import { ElectricidadComponent } from './electricidad/electricidad.component';
+import { EnergiaRenovableComponent } from './energia-renovable/energia-renovable.component';
+import { IluminacionComponent } from './iluminacion/iluminacion.component';
+import { HerramientasComponent } from './herramientas/herramientas.component';
+import { FerreteriaComponent } from './ferreteria/ferreteria.component';
+import { PinturaComponent } from './pintura/pintura.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +60,22 @@ import { PortadaComponent } from './portada/portada.component';
     ListadoComponent,
     CrearUsuariosComponent,
     PerfilClienteComponent,
-    PortadaComponent
+    PortadaComponent,
+    MaterialesConstruccionComponent,
+    MaderaComponent,
+    PuertasVentanasComponent,
+    SuelosRevestimientosComponent,
+    CocinasComponent,
+    BanosComponent,
+    CeramicaComponent,
+    FontaneriaComponent,
+    ClimatizacionCalefaccionComponent,
+    ElectricidadComponent,
+    EnergiaRenovableComponent,
+    IluminacionComponent,
+    HerramientasComponent,
+    FerreteriaComponent,
+    PinturaComponent
   ],
   exports: [
     MaterialesComponent,

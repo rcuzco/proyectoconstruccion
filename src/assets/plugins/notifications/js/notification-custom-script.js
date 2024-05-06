@@ -54,9 +54,11 @@ function successuser_noti() {
 		continueDelayOnInactiveTab: false,
 		position: 'top right',
 		icon: 'bx bx-check-circle',
-		msg: 'Usuario registrado.'
+		msg: 'Usuario registrado correctamente.'
 	});
 }
+
+
 
 function successproveedor_noti() {
 	Lobibox.notify('success', {
@@ -64,7 +66,17 @@ function successproveedor_noti() {
 		continueDelayOnInactiveTab: false,
 		position: 'top right',
 		icon: 'bx bx-check-circle',
-		msg: 'Proveedor registrado.'
+		msg: 'Proveedor registrado correctamente.'
+	});
+}
+
+function successproveedoredit_noti() {
+	Lobibox.notify('success', {
+		pauseDelayOnHover: true,
+		continueDelayOnInactiveTab: false,
+		position: 'top right',
+		icon: 'bx bx-check-circle',
+		msg: 'Proveedor editado correctamente.'
 	});
 }
 
@@ -74,10 +86,39 @@ function successmaterial_noti() {
 		continueDelayOnInactiveTab: false,
 		position: 'top right',
 		icon: 'bx bx-check-circle',
-		msg: 'Material registrado.'
+		msg: 'Material registrado correctamente.'
 	});
 }
 
+function successmaterialedit_noti() {
+	Lobibox.notify('success', {
+		pauseDelayOnHover: true,
+		continueDelayOnInactiveTab: false,
+		position: 'top right',
+		icon: 'bx bx-check-circle',
+		msg: 'Material editado correctamente.'
+	});
+}
+
+function successstock_noti() {
+	Lobibox.notify('success', {
+		pauseDelayOnHover: true,
+		continueDelayOnInactiveTab: false,
+		position: 'top right',
+		icon: 'bx bx-check-circle',
+		msg: 'Stock registrado correctamente.'
+	});
+}
+
+function successstockedit_noti() {
+	Lobibox.notify('success', {
+		pauseDelayOnHover: true,
+		continueDelayOnInactiveTab: false,
+		position: 'top right',
+		icon: 'bx bx-check-circle',
+		msg: 'Stock editado correctamente.'
+	});
+}
 
 
 /* Rounded corners Notifications */

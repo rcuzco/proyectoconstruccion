@@ -44,6 +44,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="mb-3">
                                     <label for="imagen" class="form-label">Imagen (URL)</label>
                                     <input type="text" id="imagen" class="form-control"
@@ -60,6 +61,32 @@
                                             name="imageFile"></p>
 
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="category" class="form-label"
+                                      >Categoría</label
+                                    >
+
+                                    <select class="form-select" id="category" formControlName="category" name="category">
+                                        <option selected disabled value>Seleccione...</option>
+                                        <option value="Materiales Construccion">Materiales construcción</option>
+                                        <option value="Madera">Madera</option>
+                                        <option value="Puertas y Ventanas">Puertas y ventanas</option>
+                                        <option value="Suelos y revestimientos de madera">Suelos y revestimientos de madera</option>
+                                        <option value="Cocinas">Cocinas</option>
+                                        <option value="Baños">Baños</option>
+                                        <option value="Ceramica">Cerámica</option>
+                                        <option value="Fontaneria">Fontanería</option>
+                                        <option value="Climatizacion y calefaccion">Climatizacion y calefaccion</option>
+                                        <option value="Electricidad">Electricidad</option>
+                                        <option value="Energia renovable">Energia renovable</option>
+                                        <option value="Iluminacion">Iluminación</option>
+                                        <option value="Herramientas">Herramientas</option>
+                                        <option value="Ferreteria">Ferreteria</option>
+                                        <option value="Pintura">Pintura</option>
+                                    </select>
+                                  </div>
+
 
                                 <button type="submit" class="btn btn-sm btn-outline-primary me-3" (click)="updateMaterial()">Actualizar
                                     Material</button>

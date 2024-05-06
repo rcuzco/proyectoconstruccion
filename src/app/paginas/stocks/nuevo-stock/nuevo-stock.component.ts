@@ -66,6 +66,11 @@ export class NuevoStockComponent implements OnInit
             complete: () =>
             {
                 console.log("complete");
+                if ((window as {[key: string]: any})['successstock_noti']) {
+                    (window as {[key: string]: any})['successstock_noti']();
+                  } else {
+                    console.error('La función success_noti no está definida en el ámbito global.');
+                  }
             }
         });
     }

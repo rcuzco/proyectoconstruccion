@@ -14,6 +14,7 @@ export class NuevoMaterialComponent {
 insertForm = this.formBuilder.group({
   materialName:["", [Validators.required]],
   materialDescription:["", [Validators.required]],
+  category:["", [Validators.required]],
   imageUrl:["", [Validators.required]],
   materialImageFile: [null, [Validators.required]],
 });
@@ -27,10 +28,12 @@ constructor(private formBuilder: FormBuilder, private router: Router, private ma
 }
 
 insertarMaterial() {
+    console.log("Valor de category:", this.insertForm.value.category);
   if (this.insertForm.valid) {
     let nuevoMaterial: MaterialStock = {
       MaterialName : this.insertForm.value.materialName!,
       Description : this.insertForm.value.materialDescription!,
+      Category: this.insertForm.value.category!,
       ImageUrl : this.insertForm.value.imageUrl!,
       MaterialID : 0,
       ProviderName:'',

@@ -29,7 +29,7 @@ export class MaterialesService
 
     insertMaterial(material: MaterialStock): Observable<number>
     {
-        const dataToInsert = { "MaterialName": material.MaterialName, "Description": material.Description, "ImageUrl": material.ImageUrl };
+        const dataToInsert = { "MaterialName": material.MaterialName, "Description": material.Description, "ImageUrl": material.ImageUrl, "Category": material.Category };
         return this.http.post<number>(this.apiUrl, dataToInsert);
     }
 
@@ -54,6 +54,7 @@ export class MaterialesService
             materialId: material.MaterialId,
             materialName: material.MaterialName,
             description: material.Description,
+            category: material.Category,
             imageUrl: material.ImageUrl,
             imageFile: material.ImageFile
         };
@@ -64,6 +65,7 @@ export class MaterialesService
         myFormData.append('materialId', dataToUpdate.materialId.toString());
         myFormData.append('materialName', dataToUpdate.materialName.toString());
         myFormData.append('description', dataToUpdate.description.toString());
+        myFormData.append('category', dataToUpdate.category.toString());
         myFormData.append('imageUrl', dataToUpdate.imageUrl.toString());
         myFormData.append('image', imageFile);
 

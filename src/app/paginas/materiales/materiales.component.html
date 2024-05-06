@@ -1,5 +1,12 @@
 <div class="page-wrapper">
     <div class="page-content">
+        <div class="d-flex justify-content-end mb-3">
+            <button type="button" class="btn btn-primary px-5">
+              <a class="dropdown-item" href="javascript:;" routerLink="/dashboard/materiales/material/nuevo" routerLinkActive="active">Nuevo material</a>
+            </button>
+            <button type="button" class="btn btn-success ms-2" (click)="exportToExcelMateriales()">Exportar a Excel</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="exportToPDFMateriales()">Exportar a PDF</button>
+          </div>
         <div class="card radius-10">
             <div class="card-header">
                 <div class="d-flex align-items-center">
@@ -32,7 +39,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th>Nombre</th>
-                                <!-- <th>Descripción</th> -->
+                                <th>Categoría</th>
                                 <th>Foto</th>
                                 <th>Acciones</th>
                             </tr>
@@ -40,6 +47,8 @@
                         <tbody>
                             <tr class="pointer" *ngFor="let material of materiales">
                                 <td>{{material.MaterialName}}</td>
+
+                                <td>{{material.Category}}</td>
                                 <!-- <td>{{material.Description}}</td> -->
                                 <td>
                                     <img class="image-list-width" *ngIf="!material.ShowGenericImage"

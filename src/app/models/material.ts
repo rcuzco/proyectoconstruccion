@@ -6,6 +6,7 @@ export interface Material
     Description: string;
     MaterialName: string;
     ImageFile: any;
+    Category: string;
 
 }
 
@@ -15,4 +16,5 @@ export interface MaterialData {
     MaterialName: string;
     Description:  string;
     ImageUrl:     string;
+    Category:     string;
 }

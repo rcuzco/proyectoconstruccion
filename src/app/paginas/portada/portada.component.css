@@ -180,7 +180,7 @@ a {
   flex-wrap: wrap;
 } 
 .jumbotron {
-  background-image: url("C:/xampp/htdocs/Proyecto-construccion/src/assets/images/foto6.png");
+  background-image: url("assets/images/foto6.png");
   background-size: cover;
   color: white;
   text-align: center;

@@ -850,7 +850,7 @@ var Lobibox = Lobibox || {};
             title: 'Information'
         },
         success: {
-            title: 'Success'
+            title: 'Operetion exitosa'
         },
         error: {
             title: 'Error'

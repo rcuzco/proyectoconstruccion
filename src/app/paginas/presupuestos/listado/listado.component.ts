@@ -51,4 +51,22 @@ export class ListadoComponent
         });
 
     }
+
+    // incrementarCantidad(material: BudgetDataModel): void {
+    //     material.cantidad++;
+    //   }
+
+    //   decrementarCantidad(material: BudgetDataModel): void {
+    //     if (material.cantidad > 1) {
+    //       material.cantidad--;
+    //     }
+    //   }
+
+    //   calcularTotal(): number {
+    //     let total = 0;
+    //     for (const material of this.materiales) {
+    //       total += material.precio * material.cantidad;
+    //     }
+    //     return total;
+    //   }
 }

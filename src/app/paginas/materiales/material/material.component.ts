@@ -69,4 +69,6 @@ export class MaterialComponent implements OnInit
         console.log("Error al cargar la imagen");
         material.ShowGenericImage = true;
     }
+
+    
 }

@@ -1,1 +1,307 @@
-/*# sourceMappingURL=materiales-cliente.component.css.map */
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Amiri&family=Metal+Mania&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Amiri&family=Metal+Mania&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+.header {
+  /* Color de fondo */
+  padding: 80px 20px; /* Espaciado interno */
+  text-align: center;
+}
+
+.titulo {
+  font-size: 36px; /* Tamaño de la fuente del título */
+  color: #333; /* Color del texto */
+  margin-bottom: 20px; /* Espacio inferior */
+}
+
+.subtitulo {
+  font-size: 18px; /* Tamaño de la fuente del subtítulo */
+  color: #666; /* Color del texto */
+}
+
+.container {
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.container_titulo {
+  font-size: 25px;
+  margin-bottom: 15px;
+  position: relative;
+  text-align: center;
+}
+
+p {
+  margin: 0;
+}
+
+.container_titulo span {
+  background-color: #fff;
+  padding: 0 10px;
+}
+
+*, :after, :before {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: inherit;
+}
+
+.catergorias-lista {
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.column, .flex, .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.q-ma-sm {
+  margin: 8px;
+  margin-bottom: 20px;
+}
+
+.container img {
+  border-style: none;
+}
+
+.container img {
+  height: 100px;
+  aspect-ratio: auto 100/100;
+  width: 100px;
+}
+
+.container img {
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+.categoria {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 5px 5px 25px;
+  text-align: center;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+a:-webkit-any-link {
+  color: webkit-link;
+  cursor: pointer;
+}
+
+.categoria_texto {
+  line-height: 1.2;
+  margin-top: -15px;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+.jumbotron {
+  background-image: url("C:/xampp/htdocs/Proyecto-construccion/src/assets/images/foto1.png");
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+  margin: 0;
+}
+
+.card {
+  border: 1px solid #ddd; /* Borde ligero */
+  border-radius: 10px; /* Bordes redondeados */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+  /* Efecto de elevación */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+
+.card-img-top {
+  border-top-left-radius: 10px; /* Bordes redondeados en la esquina superior izquierda de la imagen */
+  border-top-right-radius: 10px; /* Bordes redondeados en la esquina superior derecha de la imagen */
+}
+
+.card-body {
+  padding: 1.5rem; /* Espaciado interno */
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between; /* Espacio uniforme entre los botones */
+}
+
+.buttons button {
+  flex: 1; /* Los botones ocupan todo el espacio disponible */
+  margin-right: 10px; /* Espacio entre los botones */
+}
+
+.buttons button:last-child {
+  margin-right: 0; /* Eliminar margen del último botón */
+}
+
+.btn-detalles {
+  background-color: #3498db;
+  border-color: #3498db;
+  color: #ffffff;
+}
+
+.btn-detalles:hover {
+  background-color: #2980b9;
+  border-color: #2980b9;
+}
+
+/* Botón "Añadir al presupuesto" */
+.btn-presupuesto {
+  background-color: #2ecc71;
+  border-color: #2ecc71;
+  color: #ffffff;
+}
+
+.btn-presupuesto:hover {
+  background-color: #27ae60;
+  border-color: #27ae60;
+}
+
+/* Botón "Añadir a la factura" */
+.btn-factura {
+  background-color: #e67e22;
+  border-color: #e67e22;
+  color: #ffffff;
+}
+
+.btn-factura:hover {
+  background-color: #d35400;
+  border-color: #d35400;
+}
+
+.custom-title {
+  font-family: "Arial Black", sans-serif;
+  color: #333;
+  font-size: 36px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px; /* Espacio inferior para separar del contenido */
+}
+
+.simple-title {
+  font-family: Arial, sans-serif;
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+footer a:visited {
+  color: #ffffff; /* Cambiar por el color deseado */
+}
+
+footer a {
+  color: #ffffff;
+}
+
+.brand-logo img {
+  margin-top: 6px;
+  max-width: 50px;
+  height: auto;
+}
+
+.icon-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+}
+
+.icon-button i {
+  font-size: 10px;
+  color: #ffffff; /* color del icono */
+}
+
+/* Estilos responsives con media queries */
+@media (max-width: 767px) {
+  .tarjeta {
+    width: 100%;
+    height: auto;
+  }
+  .tarjeta button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+footer {
+  background-color: #212121;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  font-size: 15px;
+  font-family: "Amiri", serif;
+}
+
+.contenido-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenido-footer p {
+  flex: 1;
+  margin: 0;
+}
+
+.contenido-footer ul {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.contenido-footer li {
+  margin: 0 10px;
+}
+
+.contenido-footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  footer {
+    font-size: 15px;
+    font-family: "Amiri", serif;
+  }
+  .contenido-footer {
+    flex-direction: column;
+  }
+  .contenido-footer p {
+    margin-bottom: 10px;
+  }
+  .contenido-footer ul {
+    margin-top: 10px;
+  }
+  .contenido-footer li {
+    margin: 0;
+  }
+}/*# sourceMappingURL=materiales-cliente.component.css.map */

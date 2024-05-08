@@ -32,7 +32,7 @@ export class PresupuestosService
   add(material: MaterialStock | undefined, customerId: number | undefined): Observable<boolean>
   {
     //necesitamos customerID, materialId, providerId
-    const dataToInsert = { "materialId": material?.MaterialID, "providerId": material?.ProviderId, "customerId": customerId, "quantity": material?.Quantity };
+    const dataToInsert = { "materialId": material?.MaterialID, "providerId": material?.ProviderId, "customerId": customerId, "quantity": material?.Quantity};
     return this.http.post<boolean>(this.apiUrl, dataToInsert);
   }
 

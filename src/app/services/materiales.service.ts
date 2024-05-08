@@ -13,6 +13,7 @@ export class MaterialesService
 
     //private apiUrl = 'http://localhost/proyecto-construccion-back/materials_api.php';
     private apiUrl = 'http://127.0.0.1:8000/materials';
+    private apiUrlMaterialStock = 'http://127.0.0.1:8000/materialstock';
 
 
     constructor(private http: HttpClient) { }
@@ -77,6 +78,11 @@ export class MaterialesService
 
         let data = this.http.post<Material>(this.apiUrl + '/' + material.MaterialId, myFormData, { headers: headers });
         return data;
+    }
+
+    getMaterialStockData(): Observable<MaterialStock[]>
+    {
+      return this.http.get<MaterialStock[]>(`${this.apiUrlMaterialStock}`);
     }
 
 }

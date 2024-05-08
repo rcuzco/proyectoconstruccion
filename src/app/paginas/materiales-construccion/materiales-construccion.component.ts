@@ -6,7 +6,7 @@ import { ClientesService } from 'src/app/services/clientes.service';
 import { GlobalDataService } from 'src/app/services/global-data.service';
 import { MaterialesClienteService } from 'src/app/services/materiales-cliente.service';
 import { PresupuestosService } from 'src/app/services/presupuestos.service';
-
+import * as bootstrap from 'bootstrap';
 @Component({
   selector: 'app-materiales-construccion',
   templateUrl: './materiales-construccion.component.html',
@@ -46,85 +46,95 @@ export class MaterialesConstruccionComponent implements OnInit {
   }
 
 
-  async addProductToBudget(materialId: number, providerId: number)
-  {
-
+  async addProductToBudget(materialId: number, providerId: number): Promise<void> {
     const userID = this.globalDataService.getUsuarioLogado()?.CustomerID as number;
     const customer = await this.clienteService.getCustomerIDByUserID(userID).toPromise();
     const customerId = customer?.CustomerID as number;
 
-    //check if there is a budget id in the local storage
+    // Check if there is a budget id in the local storage
     const budgetId = localStorage.getItem('budgetId') as number | null;
-    if (budgetId)
-    {
-      // Step 2: Add the product to budgetDetails
-      const productData:BudgetDetailDataToInsert =
-      {
-        budgets_BudgetID: budgetId,
-        materials_MaterialID: materialId,
-        providers_ProviderID: providerId,
-        Quantity: 1
-      };
-      this.presupuestoService.addProductToBudgetDetails(productData).subscribe(
-        (response) =>
-        {
-          // Handle success
-          alert('material agregado con éxito');
-          console.log("material agregado al presupuesto", productData);
-        },
-        (error) =>
-        {
-          // Handle error
-          console.error('Error adding product to budgetDetails:', error);
-        }
-      );
-    }
-    else
-    {
-      //no budget, so we create a new one and add the product
-      this.presupuestoService.createBugdet(customerId).subscribe(
-        (budgetResponse) =>
-        {
-          const budgetId = budgetResponse.BudgetID; // Assuming your backend returns the created budget ID
-          localStorage.setItem('budgetId', budgetId.toString());
-
-          // Step 2: Add the product to budgetDetails
-          const productData:BudgetDetailDataToInsert =
-          {
+    if (budgetId) {
+        // Step 2: Add the product to budgetDetails
+        const productData: BudgetDetailDataToInsert = {
             budgets_BudgetID: budgetId,
             materials_MaterialID: materialId,
             providers_ProviderID: providerId,
             Quantity: 1
-          };
-          this.presupuestoService.addProductToBudgetDetails(productData).subscribe(
-            (response) =>
-            {
-              // Handle success
-              alert('material agregado con éxito');
-              console.log("material agregado al presupuesto", productData);
+        };
+        this.presupuestoService.addProductToBudgetDetails(productData).subscribe(
+            (response) => {
+                // Handle success with modal
+                const modalElement = document.getElementById('successModal');
+                const modal = new bootstrap.Modal(modalElement!);
+                modal.show();
+                console.log("material agregado al presupuesto", productData);
             },
-            (error) =>
-            {
-              // Handle error
-              console.error('Error adding product to budgetDetails:', error);
+            (error) => {
+                // Handle error with modal
+                const modalElement = document.getElementById('errorModal');
+                const modal = new bootstrap.Modal(modalElement!);
+                modal.show();
+                console.error('Error adding product to budgetDetails:', error);
             }
-          );
-        },
-        (error) =>
-        {
-          // Handle error
-          console.error('Error creating budget:', error);
-        }
-      );
-    }
-  }
+        );
+    } else {
+        // No budget, so we create a new one and add the product
+        this.presupuestoService.createBugdet(customerId).subscribe(
+            (budgetResponse) => {
+                const budgetId = budgetResponse.BudgetID;
+                localStorage.setItem('budgetId', budgetId.toString());
 
-  confirmAddToBudget(materialId: number, providerId: number): void {
-    const confirmed = window.confirm('¿Seguro de agregar el producto seleccionado?');
-    if (confirmed) {
-      this.addProductToBudget(materialId, providerId);
+                // Step 2: Add the product to budgetDetails
+                const productData: BudgetDetailDataToInsert = {
+                    budgets_BudgetID: budgetId,
+                    materials_MaterialID: materialId,
+                    providers_ProviderID: providerId,
+                    Quantity: 1
+                };
+                this.presupuestoService.addProductToBudgetDetails(productData).subscribe(
+                    (response) => {
+                        // Handle success with modal
+                        const modalElement = document.getElementById('successModal');
+                        const modal = new bootstrap.Modal(modalElement!);
+                        modal.show();
+                        console.log("material agregado al presupuesto", productData);
+                    },
+                    (error) => {
+                        // Handle error with modal
+                        const modalElement = document.getElementById('errorModal');
+                        const modal = new bootstrap.Modal(modalElement!);
+                        modal.show();
+                        console.error('Error adding product to budgetDetails:', error);
+                    }
+                );
+            },
+            (error) => {
+                // Handle error with modal
+                const modalElement = document.getElementById('errorModal');
+                const modal = new bootstrap.Modal(modalElement!);
+                modal.show();
+                console.error('Error creating budget:', error);
+            }
+        );
     }
-  }
+}
+
+confirmAddToBudget(materialId: number, providerId: number): void {
+    const modalElement = document.getElementById('confirmModal');
+    const modal = new bootstrap.Modal(modalElement!); // El operador '!' indica que modalElement no será null
+    modal.show();
+
+    const confirmButton = modalElement?.querySelector('#confirmButton');
+    confirmButton?.addEventListener('click', () => {
+        modal.hide();
+        this.addProductToBudget(materialId, providerId);
+    });
+
+    const cancelButton = modalElement?.querySelector('#cancelButton');
+    cancelButton?.addEventListener('click', () => {
+        modal.hide();
+    });
+}
 
   handleImageError(material: MaterialStock)
   {

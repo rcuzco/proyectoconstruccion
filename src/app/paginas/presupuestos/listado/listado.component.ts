@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BudgetDataModel } from 'src/app/models/budget-data-model';
 import { GlobalDataService } from 'src/app/services/global-data.service';
 import { PresupuestosService } from 'src/app/services/presupuestos.service';
+import { ExportService } from 'src/app/services/export.service';
 
 @Component({
     selector: 'app-listado',
@@ -13,7 +14,7 @@ export class ListadoComponent
 {
     budgetId: number | null = 0;
     datosPresupuesto: BudgetDataModel | null = null;
-    constructor(private router: Router, private presupuestosService: PresupuestosService, private route: ActivatedRoute, private globalDataService: GlobalDataService)
+    constructor(private router: Router, private presupuestosService: PresupuestosService, private route: ActivatedRoute, private globalDataService: GlobalDataService, private exportService: ExportService)
     {
 
     }
@@ -51,6 +52,10 @@ export class ListadoComponent
         });
 
     }
+
+
+
+
 
     // incrementarCantidad(material: BudgetDataModel): void {
     //     material.cantidad++;

@@ -1,172 +1,314 @@
-// .contenedor {
-//   margin: 0;
-//   padding: 0;
-//   font-family: Arial, sans-serif;
-//   font-size: 16px;
-//   line-height: 1.5;
-//   color: #212121;
-// }
-
-// .card-container {
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-//   margin: 20px;
-// }
-
-// .card {
-//   width: calc(50% - 10px);
-//   margin-bottom: 20px;
-//   border: 1px solid #bcbcbc;
-//   border-radius: 10px;
-//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-//   overflow: hidden;
-// }
-
-// img {
-//   display: block;
-//   width: 100%;
-//   height: auto;
-// }
-
-// .card-body {
-//   padding: 20px;
-//   text-align: center;
-//   background-color: #bcbcbc;
-//   font-family: "Amiri", serif;
-//   font-size: 15px;
-// }
-// .card-body h3 {
-//   font-family: "Amiri", serif;
-//   font-size: 20px;
-// }
-
-// p {
-//   margin-bottom: 20px;
-// }
-
-// button {
-//   background-color: #484848;
-//   border: none;
-//   color: #ffffff;
-//   padding: 10px;
-//   text-align: center;
-//   text-decoration: none;
-//   display: inline-block;
-//   font-size: 16px;
-//   border-radius: 5px;
-//   cursor: pointer;
-// }
-
-// @media only screen and (max-width: 768px) {
-//   .card-container {
-//     flex-direction: column;
-//   }
-//   .card {
-//     width: 100%;
-//   }
-// }
-// .card img {
-//   max-width: 100%;
-//   height: auto;
-// }
-
-// @media (min-width: 768px) {
-//   .card img {
-//     width: 350px;
-//     height: 400px;
-//   }
-// }
-// .card {
-//   width: 100%;
-//   max-width: 350px;
-//   margin: 0 auto;
-//   margin-bottom: 15px;
-//   background-color: #bcbcbc;
-// }
-
-// @media (min-width: 768px) {
-//   .card {
-//     max-width: 350px; /* volver al ancho máximo de 650px para pantallas más grandes */
-//   }
-// }
-// .titulo {
-//   display: flex;
-//   justify-content: center;
-// }
-
 @import url("https://fonts.googleapis.com/css2?family=Amiri&family=Metal+Mania&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
 
-.card {
-    border: 1px solid #ddd; /* Borde ligero */
-    border-radius: 10px; /* Bordes redondeados */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+.header {
+     /* Color de fondo */
+    padding: 80px 20px; /* Espaciado interno */
+    text-align: center;
+}
 
-    /* Efecto de elevación */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+.titulo {
+    font-size: 36px; /* Tamaño de la fuente del título */
+    color: #333; /* Color del texto */
+    margin-bottom: 20px; /* Espacio inferior */
+}
 
-  .card:hover {
-    transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
-  }
+.subtitulo {
+    font-size: 18px; /* Tamaño de la fuente del subtítulo */
+    color: #666; /* Color del texto */
+}
 
-  .card-img-top {
-    border-top-left-radius: 10px; /* Bordes redondeados en la esquina superior izquierda de la imagen */
-    border-top-right-radius: 10px; /* Bordes redondeados en la esquina superior derecha de la imagen */
-  }
 
-  .card-body {
-    padding: 1.5rem; /* Espaciado interno */
-  }
+.container {
+    margin: 0 auto;
+    padding: 15px;
+}
 
-  .buttons {
+.container_titulo {
+    font-size: 25px;
+    margin-bottom: 15px;
+    position: relative;
+    text-align: center;
+}
+
+p {
+    margin: 0;
+}
+
+.container_titulo span{
+    background-color: #fff;
+    padding: 0 10px;
+}
+
+*, :after, :before {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: inherit;
+}
+
+.catergorias-lista {
+    align-items: stretch;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.column, .flex, .row {
     display: flex;
-    justify-content: space-between; /* Espacio uniforme entre los botones */
-  }
-
-  .buttons button {
-    flex: 1; /* Los botones ocupan todo el espacio disponible */
-    margin-right: 10px; /* Espacio entre los botones */
-  }
-
-  .buttons button:last-child {
-    margin-right: 0; /* Eliminar margen del último botón */
-  }
-
-
-  .btn-detalles {
-    background-color: #3498db;
-    border-color: #3498db;
-    color: #ffffff;
+    flex-wrap: wrap;
 }
 
-.btn-detalles:hover {
-    background-color: #2980b9;
-    border-color: #2980b9;
+.q-ma-sm {
+    margin: 8px;
+    margin-bottom: 20px;
 }
 
-/* Botón "Añadir al presupuesto" */
-.btn-presupuesto {
-    background-color: #2ecc71;
-    border-color: #2ecc71;
-    color: #ffffff;
+.container img {
+    border-style: none;
 }
 
-.btn-presupuesto:hover {
-    background-color: #27ae60;
-    border-color: #27ae60;
+.container img {
+    height: 100px;
+    aspect-ratio: auto 100 / 100;
+    width: 100px;
 }
 
-/* Botón "Añadir a la factura" */
-.btn-factura {
-    background-color: #e67e22;
-    border-color: #e67e22;
-    color: #ffffff;
+.container img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
 }
 
-.btn-factura:hover {
-    background-color: #d35400;
-    border-color: #d35400;
+.categoria {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 5px 5px 25px;
+    text-align: center;
 }
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+a:-webkit-any-link {
+    color: webkit-link;
+    cursor:  pointer;
+}
+
+.categoria_texto {
+    line-height: 1.2;
+    margin-top: -15px;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.jumbotron {
+    background-image: url('C:/xampp/htdocs/Proyecto-construccion/src/assets/images/foto1.png');
+   background-size: cover;
+   color: white;
+   text-align: center;
+   padding: 100px 20px;
+   margin: 0;
+ }
+
+
+ @import url("https://fonts.googleapis.com/css2?family=Amiri&family=Metal+Mania&display=swap");
+ @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
+ .card {
+     border: 1px solid #ddd; /* Borde ligero */
+     border-radius: 10px; /* Bordes redondeados */
+     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+
+     /* Efecto de elevación */
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   }
+
+   .card:hover {
+     transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+   }
+
+   .card-img-top {
+     border-top-left-radius: 10px; /* Bordes redondeados en la esquina superior izquierda de la imagen */
+     border-top-right-radius: 10px; /* Bordes redondeados en la esquina superior derecha de la imagen */
+   }
+
+   .card-body {
+     padding: 1.5rem; /* Espaciado interno */
+   }
+
+   .buttons {
+     display: flex;
+     justify-content: space-between; /* Espacio uniforme entre los botones */
+   }
+
+   .buttons button {
+     flex: 1; /* Los botones ocupan todo el espacio disponible */
+     margin-right: 10px; /* Espacio entre los botones */
+   }
+
+   .buttons button:last-child {
+     margin-right: 0; /* Eliminar margen del último botón */
+   }
+
+
+   .btn-detalles {
+     background-color: #3498db;
+     border-color: #3498db;
+     color: #ffffff;
+ }
+
+ .btn-detalles:hover {
+     background-color: #2980b9;
+     border-color: #2980b9;
+ }
+
+ /* Botón "Añadir al presupuesto" */
+ .btn-presupuesto {
+     background-color: #2ecc71;
+     border-color: #2ecc71;
+     color: #ffffff;
+ }
+
+ .btn-presupuesto:hover {
+     background-color: #27ae60;
+     border-color: #27ae60;
+ }
+
+ /* Botón "Añadir a la factura" */
+ .btn-factura {
+     background-color: #e67e22;
+     border-color: #e67e22;
+     color: #ffffff;
+ }
+
+ .btn-factura:hover {
+     background-color: #d35400;
+     border-color: #d35400;
+ }
+
+ .custom-title {
+     font-family: 'Arial Black', sans-serif;
+     color: #333;
+     font-size: 36px;
+     text-transform: uppercase;
+     letter-spacing: 2px;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+     margin-bottom: 30px; /* Espacio inferior para separar del contenido */
+   }
+
+   .simple-title {
+     font-family: Arial, sans-serif;
+     color: #333;
+     font-size: 28px;
+     font-weight: bold;
+     text-align: center;
+     margin-bottom: 20px;
+   }
+
+   footer a:visited {
+     color: #ffffff; /* Cambiar por el color deseado */
+   }
+
+   footer a {
+     color: #ffffff;
+   }
+
+   .brand-logo img {
+     margin-top: 6px;
+     max-width: 50px;
+     height: auto;
+   }
+
+   .icon-button {
+     border: none;
+     background-color: transparent;
+     padding: 0;
+     cursor: pointer;
+     width: auto;
+     height: auto;
+   }
+
+   .icon-button i {
+     font-size: 10px;
+     color: #ffffff; /* color del icono */
+   }
+
+   /* Estilos responsives con media queries */
+   @media (max-width: 767px) {
+     .tarjeta {
+       width: 100%;
+       height: auto;
+     }
+     .tarjeta button {
+       font-size: 14px;
+       padding: 8px 16px;
+     }
+   }
+   footer {
+     background-color: #212121;
+     color: #ffffff;
+     padding: 20px;
+     text-align: center;
+     font-size: 15px;
+     font-family: "Amiri", serif;
+   }
+
+   .contenido-footer {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items: center;
+   }
+
+   .contenido-footer p {
+     flex: 1;
+     margin: 0;
+   }
+
+   .contenido-footer ul {
+     flex: 1;
+     list-style: none;
+     padding: 0;
+     margin: 0;
+     display: flex;
+     justify-content: center;
+   }
+
+   .contenido-footer li {
+     margin: 0 10px;
+   }
+
+   .contenido-footer a {
+     color: #ffffff;
+     text-decoration: none;
+   }
+
+   @media (max-width: 767px) {
+     footer {
+       font-size: 15px;
+       font-family: "Amiri", serif;
+     }
+     .contenido-footer {
+       flex-direction: column;
+     }
+     .contenido-footer p {
+       margin-bottom: 10px;
+     }
+     .contenido-footer ul {
+       margin-top: 10px;
+     }
+     .contenido-footer li {
+       margin: 0;
+     }
+   }
+
+

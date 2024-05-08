@@ -1,44 +1,181 @@
 <div class="page-wrapper">
-    <div class="page-content">
+        <div class="page-content">
 
-        
-      <div class="container">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col" *ngFor="let material of materiales">
-                <div class="card h-100">
-                    <img
-                        *ngIf="!material.ShowGenericImage"
-                        src="http://127.0.0.1:8000/uploads/{{ material.ImageUrl }}"
-                        (error)="handleImageError(material)"
-                        alt="{{ material.MaterialName }}"
-                        class="card-img-top img-fluid"
-                        style="height: 200px; object-fit: cover;"
-                    />
-                    <img
-                        class="card-img-top img-fluid"
-                        *ngIf="material.ShowGenericImage"
-                        src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
-                        alt="Imagen genérica"
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title">{{ material.MaterialName }}</h5>
-                        <p class="card-text">Precio: {{ material.UnitPrice }}€</p>
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-outline-primary btn-detalles" (click)="goToDetails(material.MaterialID)">
-                                Detalles
-                            </button>
-                            <button class="btn btn-primary btn-presupuesto" (click)="confirmAddToBudget(material.MaterialID, material.ProviderId)">
-                                <i class="fas fa-file-invoice"></i>
-                            </button>
-                            <button class="btn btn-primary btn-factura">
-                                <i class="fas fa-shopping-cart"></i>
-                            </button>
+            <div class="jumbotron">
+                <div class="container">
+                  <h1 class="display-4">¡Bienvenido de nuevo {{ globalDataService.getUsuarioLogado()?.UserName }}!</h1>
+                  <p class="lead">Explora nuestro catálogo de materiales de construcción</p>
+                </div>
+              </div>
+
+            <!-- <div class="header">
+                <h1 class="titulo">¡Bienvenido de nuevo {{ globalDataService.getUsuarioLogado()?.UserName }}!</h1>
+                <p class="subtitulo">Explora nuestro catálogo de materiales de construcción</p>
+            </div> -->
+
+            <div class = "container">
+                <p class = "container_titulo">
+                    <span class = "container_titulo_texto">CATEGORIAS</span>
+                </p>
+
+                <div class = "categorias-lista flex">
+                    <a routerLink="/dashboard/materialesconstruccion" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/ladrillo.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Materiales de construcción</p>
+                    </a>
+                    <a routerLink="/dashboard/madera" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/madera2.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Madera</p>
+                    </a>
+                    <a routerLink="/dashboard/puertasventanas" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/puertayventana.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Puertas y ventanas</p>
+                    </a>
+                    <a routerLink="/dashboard/suelosrevestimientos" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/madera.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Suelos y revestimientos de madera</p>
+                    </a>
+                    <a routerLink="/dashboard/cocinas" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/cocina.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Cocinas</p>
+                    </a>
+                    <a routerLink="/dashboard/banos" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/baño.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Baños</p>
+                    </a>
+                    <a routerLink="/dashboard/ceramica" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/ceramica.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Cerámica</p>
+                    </a>
+                    <a routerLink="/dashboard/fontaneria" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/fontaneria.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Fontanería</p>
+                    </a>
+                    <a routerLink="/dashboard/climatizacioncalefaccion" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/calefaccion.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Climatización y calecfacción</p>
+                    </a>
+                    <a routerLink="/dashboard/electricidad" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/electricidad.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Electricidad</p>
+                    </a>
+                    <a routerLink="/dashboard/energiarenovable" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/energiarenovable.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Energía renovable</p>
+                    </a>
+                    <a routerLink="/dashboard/iluminacion" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/iluminacion.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Iluminación</p>
+                    </a>
+                    <a routerLink="/dashboard/herramientas" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/herramientas.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Herramientas</p>
+                    </a>
+                    <a routerLink="/dashboard/ferreteria" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/ferreteria.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Ferretería</p>
+                    </a>
+                    <a routerLink="/dashboard/pintura" routerLinkActive="active" class = "categoria">
+                        <img src = "./assets/images/pintura.png" alt = "" class = "categoria_img q-ma-sm">
+                        <p class = "categoria_texto">Pintura y droguería</p>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="container2">
+                <h1 class="simple-title">Novedades</h1>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <ng-container *ngFor="let material of materiales.slice(-3)">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img
+                                    *ngIf="!material.ShowGenericImage"
+                                    src="http://127.0.0.1:8000/uploads/{{ material.ImageUrl }}"
+                                    (error)="handleImageError(material)"
+                                    alt="{{ material.MaterialName }}"
+                                    class="card-img-top img-fluid"
+                                    style="height: 200px; object-fit: cover;"
+                                />
+                                <img
+                                    class="card-img-top img-fluid"
+                                    *ngIf="material.ShowGenericImage"
+                                    src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
+                                    alt="Imagen genérica"
+                                />
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ material.MaterialName }} - {{material.ProviderName}}</h5>
+                                    <p class="card-text">Precio: {{ material.UnitPrice }}€</p>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-outline-primary btn-detalles" (click)="goToDetails(material.MaterialID)">
+                                            Detalles
+                                        </button>
+                                        <button class="btn btn-primary btn-presupuesto" (click)="confirmAddToBudget(material.MaterialID, material.ProviderId)">
+                                            <i class="fas fa-file-invoice"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-factura">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">Confirmar acción</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Seguro de agregar el producto seleccionado?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="cancelButton" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="confirmButton">Confirmar</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
+            <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="successModalLabel">Éxito</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ¡Material agregado al presupuesto con éxito!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Se produjo un error al agregar el material al presupuesto. Por favor, inténtalo de nuevo más tarde.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     </div>
 </div>

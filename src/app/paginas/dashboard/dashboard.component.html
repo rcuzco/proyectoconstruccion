@@ -6,9 +6,8 @@
              <div class="card-body">
                  <div class="d-flex align-items-center">
                      <div>
-                         <p class="mb-0 text-secondary">Pedidos Totales</p>
-                         <!-- <h4 class="my-1 text-info">{{datos.lenght}}</h4> -->
-                         <p class="mb-0 font-13">+2.5% from last week</p>
+                         <p class="mb-0 text-secondary">Número de Materiales</p>
+                          <h4 class="my-1 text-info">{{materiales.length}}</h4>
                      </div>
                      <div class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto"><i class='bx bxs-cart'></i>
                      </div>
@@ -21,9 +20,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-secondary">Total Revenue</p>
-                        <h4 class="my-1 text-danger">$84,245</h4>
-                        <p class="mb-0 font-13">+5.4% from last week</p>
+                        <p class="mb-0 text-secondary">Número de proveedores</p>
+                        <h4 class="my-1 text-danger">{{proveedores.length}}</h4>
                     </div>
                     <div class="widgets-icons-2 rounded-circle bg-gradient-burning text-white ms-auto"><i class='bx bxs-wallet'></i>
                     </div>
@@ -36,9 +34,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-secondary">Bounce Rate</p>
+                        <p class="mb-0 text-secondary">Número de pedidos</p>
                         <h4 class="my-1 text-success">34.6%</h4>
-                        <p class="mb-0 font-13">-4.5% from last week</p>
                     </div>
                     <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
                     </div>
@@ -51,9 +48,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-secondary">Total Customers</p>
-                        <h4 class="my-1 text-warning">8.4K</h4>
-                        <p class="mb-0 font-13">+8.4% from last week</p>
+                        <p class="mb-0 text-secondary">Número de clientes</p>
+                        <h4 class="my-1 text-warning">{{clientes.length}}</h4>
                     </div>
                     <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"><i class='bx bxs-group'></i>
                     </div>
@@ -62,5 +58,124 @@
          </div>
        </div>
      </div>
-  </div>
-</div>
+
+     <div class="card radius-10">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <div>
+                    <h6 class="mb-0">Productos Registrados recientemente</h6>
+                </div>
+            </div>
+         </div>
+             <div class="card-body">
+
+             <div class="table-responsive">
+               <table class="table align-middle mb-0">
+                <thead class="table-light">
+                 <tr>
+                   <th>Producto</th>
+                   <th>Imagen</th>
+                   <th>ID Producto</th>
+                   <th>Proveedor</th>
+                   <th>Precio</th>
+                   <th>Cantidad</th>
+                   <th>Categoría</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                <tr *ngFor="let material of materiales.slice(0, 12)">
+                  <td>{{material.MaterialName}}</td>
+                  <td>
+                    <img class="product-img-2" *ngIf="!material.ShowGenericImage"
+                    src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}"
+                    (error)="handleImageError(material)" alt="Image">
+
+                    <img class="product-img-2" *ngIf="material.ShowGenericImage"
+                    src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
+                    alt="Generic Image"></td>
+                  <td>{{material.MaterialID}}</td>
+                  <td><span class="badge bg-gradient-quepal text-white shadow-sm w-100">{{material.ProviderName}}</span></td>
+                  <td>{{material.UnitPrice}}</td>
+                  <td>{{material.Quantity}}</td>
+                  <td>{{material.Category}}</td>
+                 </tr>
+                </tbody>
+              </table>
+              </div>
+             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-5 col-xl-6 d-flex">
+                <div class="card w-100 radius-10">
+                 <div class="card-header bg-transparent">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h6 class="mb-0">Proveedores registrados recientemente</h6>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush align-middle">
+                             <thead>
+                              <tr>
+                                <th>Proveedor</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                              </tr>
+                              </thead>
+                              <tr *ngFor="let proveedor of proveedores.slice(0, 7)">
+                                <td>{{proveedor.ProviderName}}</td>
+                                <td>{{proveedor.ContactEmail}}</td>
+                                <td>{{proveedor.ContactPhone}}</td>
+                              </tr>
+                            </table>
+                         </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-lg-5 col-xl-6 d-flex">
+                <div class="card w-100 radius-10">
+                 <div class="card-header bg-transparent">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h6 class="mb-0">Clientes registrados recientemente</h6>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush align-middle">
+                             <thead>
+                              <tr>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                <th>Tipo de usuario</th>
+                              </tr>
+                              </thead>
+                              <tr *ngFor="let cliente of clientes.slice(0, 7)">
+                                <td>{{cliente.UserName}}</td>
+                                <td>{{cliente.ContactEmail}}</td>
+                                <td>{{cliente.UserType}}</td>
+                              </tr>
+                            </table>
+                         </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div><!--end row-->
+
+
+
+    </div>
+</div><!--end row-->
+
+
+

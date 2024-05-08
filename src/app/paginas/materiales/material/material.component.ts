@@ -15,12 +15,16 @@ import { Router } from '@angular/router';
 export class MaterialComponent implements OnInit
 {
 
+
+
     constructor(private route: ActivatedRoute, private materialesService: MaterialesService, private router: Router) { }
 
     materialId: number = 0;
     material!: Material;
     load: boolean = false;
-    mat2: MaterialStock = {} as MaterialStock;
+    mat2: MaterialStock[] = [];
+
+
 
     ngOnInit(): void
     {
@@ -30,6 +34,13 @@ export class MaterialComponent implements OnInit
 
             console.log('Received id:', this.materialId);
 
+
+            this.materialesService.getMaterialStockData().subscribe(data =>
+                {
+                  console.log("materiales", data);
+                  this.mat2 = data;
+                })
+
             this.materialesService
                 .getDataById(this.materialId)
                 .subscribe(data =>
@@ -38,6 +49,7 @@ export class MaterialComponent implements OnInit
                     {
                         this.material = data;
                         console.log(this.material);
+                        console.log(this.mat2);
                         this.load = true;
                     } else
                     {
@@ -45,7 +57,12 @@ export class MaterialComponent implements OnInit
                     }
 
                 });
+
+
+
+
         });
+
     }
 
     deleteMaterial()
@@ -65,10 +82,10 @@ export class MaterialComponent implements OnInit
     }
 
     handleImageError(material: Material)
-    {
-        console.log("Error al cargar la imagen");
-        material.ShowGenericImage = true;
-    }
+  {
+    console.log("Error al cargar la imagen");
+    material.ShowGenericImage = true;
+  }
 
-    
+
 }

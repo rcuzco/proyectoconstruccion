@@ -31,192 +31,33 @@
         </div>
         <!--end breadcrumb-->
 
-        <div class="card" *ngIf="load">
-            <div class="row g-0">
-                <div class="col-md-4 border-end">
+            <div class="container">
+                <h1>Detalles del Material</h1>
+                <div class="material-details">
                     <img
-                        class="image-width"
-                        *ngIf="!material.ShowGenericImage"
-                        src="http://127.0.0.1:8000/uploads/{{
-                            material.ImageUrl
-                        }}"
-                        (error)="handleImageError(material)"
-                        alt="Image"
-                    />
-                    <img
-                        class="image-width"
-                        *ngIf="material.ShowGenericImage"
-                        src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
-                        alt="Generic Image"
-                    />
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ material.MaterialName }}</h4>
-                        <div class="d-flex gap-3 py-3">
-                            <div class="cursor-pointer">
-                                <i class="bx bxs-star text-warning"></i>
-                                <i class="bx bxs-star text-warning"></i>
-                                <i class="bx bxs-star text-warning"></i>
-                                <i class="bx bxs-star text-warning"></i>
-                                <i class="bx bxs-star text-secondary"></i>
-                            </div>
-                        </div>
-                        <p class="card-text fs-6">{{ material.Description }}</p>
-                        <hr />
+                            class="image-width"
+                            *ngIf="!material.ShowGenericImage"
+                            src="http://127.0.0.1:8000/uploads/{{
+                                material.ImageUrl
+                            }}"
+                            (error)="handleImageError(material)"
+                            alt="Image"
+                        />
+                        <img
+                            class="image-width"
+                            *ngIf="material.ShowGenericImage"
+                            src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
+                            alt="Generic Image"
+                        />
+                    <div class="details">
+                        <h2>{{material.MaterialName}}</h2>
+                        <p><strong class="blue-text">Descripción:</strong> {{material.Description}}</p>
+                        <p><strong class="blue-text">Categoría:</strong> {{material.Category}}</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <h6 class="text-uppercase mb-0">Productos recomendados de hoy</h6>
-        <hr />
-
-        <div class="row row-cols-1 row-cols-lg-3">
-            <a routerLink="/dashboard/materiales/2" routerLinkActive="active">
-                <div class="pointer">
-                    <div class="col">
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img
-                                        src="assets/images/products/yeso_iberplast.png"
-                                        class="img-fluid"
-                                        alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h6 class="card-title">
-                                            Yeso Iberplast
-                                        </h6>
-                                        <div class="cursor-pointer my-2">
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-secondary"
-                                            ></i>
-                                        </div>
-                                        <div class="clearfix">
-                                            <p class="mb-0 float-start fw-bold">
-                                                <span>€2.95</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a routerLink="/dashboard/materiales/5" routerLinkActive="active">
-                <div class="pointer">
-                    <div class="col">
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img
-                                        src="assets/images/products/ladrillo_perforado.png"
-                                        class="img-fluid"
-                                        alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h6 class="card-title">
-                                            Ladrillo Perforado
-                                        </h6>
-                                        <div class="cursor-pointer my-2">
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                        </div>
-                                        <div class="clearfix">
-                                            <p class="mb-0 float-start fw-bold">
-                                                <span>€0.15</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a routerLink="/dashboard/materiales/7" routerLinkActive="active">
-                <div class="pointer">
-                    <div class="col">
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img
-                                        src="assets/images/products/acelerante_liquido.png"
-                                        class="img-fluid"
-                                        alt="..."
-                                    />
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h6 class="card-title">
-                                            Acelerante Líquido
-                                        </h6>
-                                        <div class="cursor-pointer my-2">
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-warning"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-secondary"
-                                            ></i>
-                                            <i
-                                                class="bx bxs-star text-secondary"
-                                            ></i>
-                                        </div>
-                                        <div class="clearfix">
-                                            <p class="mb-0 float-start fw-bold">
-                                                <span>€5.28</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div
+<div
         class="modal fade"
         id="exampleModal"
         tabindex="-1"
@@ -269,4 +110,4 @@
         </div>
     </div>
 </div>
-<!--end page wrapper -->
+

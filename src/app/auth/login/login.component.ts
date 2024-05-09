@@ -1,9 +1,9 @@
-import { Component, ErrorHandler } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder,Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ClientesService } from '../../services/clientes.service';
 import { GlobalDataService } from 'src/app/services/global-data.service';
-
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -13,82 +13,63 @@ import { GlobalDataService } from 'src/app/services/global-data.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
-  loginError:string = '';
+  loginError: string = '';
 
-  loginForm = this.formBuilder.group(
-    {
-      userName: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-    });
+  loginForm = this.formBuilder.group({
+    userName: ['', [Validators.required]],
+    password: ['', [Validators.required]]
+  });
+
+  // ViewChild para obtener una referencia al modal de error
+  @ViewChild('errorModal') errorModal!: ElementRef;
 
   constructor(
     private router: Router,
-    private formBuilder:FormBuilder,
+    private formBuilder: FormBuilder,
     private clientesService: ClientesService,
-    private globalDataService:GlobalDataService,
-
+    private globalDataService: GlobalDataService,
   ) {}
 
   submitForm() {
-    // Verificar credenciales y realizar autenticación
-    // if (this.validarCredenciales()) {
-    //   // Redirigir a la página de acciones
-    //   this.router.navigate(['/principal']);
-    // } else {
-    //   console.log('Credenciales inválidas');
-    // }
     let userName: string = this.loginForm.value.userName!;
     let password: string = this.loginForm.value.password!;
-    this.clientesService.login(userName,password).subscribe(
-      {
-        next:(cliente)=>
-        {
-          if (cliente) {
-            console.log("usuario",cliente);
-            this.globalDataService.setUsuarioLogado(cliente);
-            if (cliente.UserType === 'Administrador')
-            {
-              this.router.navigate(['/dashboard']);
-            } else if (cliente.UserType === 'Cliente')
-            {
-              this.router.navigate(['/dashboard/materialescliente']);
-            } else {
-              console.log("Tipo de usuario inválido");
-            }
-
-
+    this.clientesService.login(userName, password).subscribe({
+      next: (cliente) => {
+        if (cliente) {
+          console.log("usuario", cliente);
+          this.globalDataService.setUsuarioLogado(cliente);
+          if (cliente.UserType === 'Administrador') {
+            this.router.navigate(['/dashboard']);
+          } else if (cliente.UserType === 'Cliente') {
+            this.router.navigate(['/dashboard/materialescliente']);
+          } else {
+            console.log("Tipo de usuario inválido");
           }
-          else
-          {
-            console.log("credenciales inválidas");
-            alert("credenciales incorrectas");
-
-            this.loginError = "Credenciales incorrectas. . El usuario o contrasena son incorrectos";
-          }
-        },
-        error:(errorData)=>
-        {
-          console.error("error en llamada", errorData);
-
-          this.loginError = "Credenciales incorrectas. El usuario o contrasena son incorrectos";
-        },
-        complete:()=>
-        {
-          console.log("llamada completada");
+        } else {
+          console.log("credenciales inválidas");
+          this.showLoginErrorModal("Credenciales incorrectas. El usuario o contraseña son incorrectos");
+          this.loginError = "Credenciales incorrectas. . El usuario o contrasena son incorrectos";
         }
+      },
+      error: (errorData) => {
+        console.error("error en llamada", errorData);
+        this.showLoginErrorModal("Credenciales incorrectas. El usuario o contraseña son incorrectos");
+        this.loginError = "Credenciales incorrectas. El usuario o contrasena son incorrectos";
+      },
+      complete: () => {
+        console.log("llamada completada");
       }
-    );
+    });
+  }
+
+  // Método para mostrar el modal de error de inicio de sesión
+  showLoginErrorModal(errorMessage: string) {
+    const modal = new bootstrap.Modal(this.errorModal.nativeElement);
+    this.loginError = errorMessage;
+    modal.show();
   }
 
   irAlRegistro() {
     this.router.navigate(['auth/registro']);
   }
-
-
-  // validarCredenciales(): boolean {
-  //   // Implementa la lógica real de autenticación aquí
-  //   // Esta es una implementación de ejemplo
-  //   //return this.username === 'usuario' && this.password === 'contrasena';
-
-  // }
 }

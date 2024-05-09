@@ -55,3 +55,32 @@ h2 {
 .btn:hover {
     opacity: 0.8;
 }
+
+.no-presupuesto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ajusta la altura según sea necesario */
+  }
+
+  .no-presupuesto p {
+    font-size: 18px;
+    text-align: center;
+    color: #555; /* Cambia el color del texto según tus preferencias */
+    /* Agrega cualquier otro estilo necesario */
+  }
+
+  .delete-cell {
+    text-align: center; /* Centra el contenido horizontalmente */
+}
+
+.delete-button {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor de puntero */
+}
+
+.delete-button i {
+    color: red; /* Color rojo para el icono */
+    font-size: 24px; /* Tamaño del icono */
+}

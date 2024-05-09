@@ -51,6 +51,12 @@ main {
   padding: 20px;
 }
 
+.error-modal .modal-content {
+  background-color: #ce1524; /* Cambia el color de fondo a rojo */
+  border-color: #f5c6cb; /* Cambia el color del borde a rojo */
+  color: #ffffff;
+}
+
 footer a:visited {
   color: #ffffff; /* Cambiar por el color deseado */
 }

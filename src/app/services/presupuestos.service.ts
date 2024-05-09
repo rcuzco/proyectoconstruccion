@@ -63,4 +63,11 @@ console.log("dataToInsert",dataToInsert);
     return this.http.get<BudgetDataModel>(`${this.apiUrlCompleteBudgetDetails}/${id}`);
   }
 
+  eliminarPresupuestoDetalle(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrlBudgetDetails}/${id}`);
+  }
+
+
+
+
 }

@@ -77,6 +77,17 @@
 
         </ul>
 
+        <li class="menu-label">Opciones usuario</li>
+    <li>
+      <a href="javascript:;" class="has-arrow">
+        <div class="parent-icon"><i class="fadeIn animated bx bx-user-circle"></i>
+        </div>
+        <div class="menu-title">Acciones</div>
+      </a>
+      <ul>
+        <li><a class="dropdown-item d-flex align-items-center" href="javascript:;" routerLink="/dashboard/perfil"><i class="bx bx-user fs-5"></i><span>Profile</span></a></li>
+        <li><a routerLinkActive="active" class="dropdown-item d-flex align-items-center" (click)="logout()"><i class="bx bx-log-out-circle"></i><span>Logout</span></a></li>
+    </ul>
 
       </li>
   </ul>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import jspdf from 'jspdf';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,26 @@ export class ExportService {
     });
     doc.save(fileName + '.pdf');
   }
+
+  exportToPDFPresupuesto(data: any[], fileName: string): void {
+    const doc = new jsPDF();
+    doc.text('Presupuesto', 10, 10);
+    // Utiliza autoTable para generar la tabla automáticamente
+    (doc as any).autoTable({
+      startY: 20,
+      head: [['#', 'Nombre Producto', 'Imagen', 'Cantidad', 'Proveedor', 'Precio']],
+      body: data
+    });
+    doc.save(fileName + '.pdf');
+  }
+
+  exportToExcelPresupuesto(data: any[]): void {
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Presupuesto');
+    XLSX.writeFile(wb, 'presupuesto.xlsx');
+  }
+
 }
 
 

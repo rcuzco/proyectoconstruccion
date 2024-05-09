@@ -73,6 +73,9 @@
                 </nav>
             </div>
         </div>
+
+
+
         <!--end breadcrumb-->
         <div class="card">
             <div class="card-body">
@@ -81,8 +84,8 @@
                         <div class="text-end">
                             <!-- (click)="exportToExcelMateriales()"
                             (click)="exportToPDFMateriales()" -->
-                            <button type="button" class="btn btn-success ms-2" ><i class="lni lni-download"></i> Exportar a Excel</button>
-                            <button type="button" class="btn btn-danger ms-2" ><i class="lni lni-download"></i> Exportar a PDF</button>
+                            <button type="button" class="btn btn-success ms-2" (click)="exportToExcel()"><i class="lni lni-download"></i> Exportar a Excel</button>
+                            <button type="button" class="btn btn-danger ms-2" (click)="exportToPDF()"><i class="lni lni-download"></i> Exportar a PDF</button>
                         </div>
                         <hr/>
                     </div>
@@ -95,6 +98,8 @@
                                             <img src="./assets/images/logo.png" width="80" alt="" />
                                         </a>
                                     </div>
+
+
                                     <div class="col company-details">
                                         <h2 class="name">
 
@@ -108,7 +113,11 @@
                                 </div>
                             </header>
                             <main>
-                                <table *ngIf="datosPresupuesto" class="table">
+                                <div class="no-presupuesto" *ngIf="!datosPresupuesto || datosPresupuesto.details.length === 0">
+                                    <p>No hay ningún producto seleccionado de momento.</p>
+                                  </div>
+
+                                <table *ngIf="datosPresupuesto && datosPresupuesto.details.length > 0" class="table">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -120,8 +129,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of datosPresupuesto.details">
-                                            <td class="no">01</td>
+                                        <tr *ngFor="let item of datosPresupuesto.details; let i = index">
+                                            <td class="no">{{ contador + i }}</td>
                                             <td class="text-left">
                                                 <h3>{{ item.material.MaterialName }}</h3></td>
                                             <td class="unit">{{item.material.ImageUrl}}</td>
@@ -137,10 +146,14 @@
                                             <td class="qty">{{item.Quantity}}</td>
                                             <td class="qty">{{item.providers.ProviderName}}</td>
                                             <td class="total">{{item.material.MaterialID}}</td>
+                                            <td class="delete-cell">
+                                                <!-- Botón o icono para eliminar la fila -->
+                                                <button class="delete-button" (click)="eliminarRegistro(item.BudgetDetailID)"><i class="fadeIn animated bx bx-trash"></i></button>
+                                            </td>
                                         </tr>
 
                                     </tbody>
-                                    <tfoot>
+                                    <tfoot >
                                         <tr>
                                             <td colspan="2"></td>
                                             <td colspan="2">SUBTOTAL</td>
@@ -171,6 +184,26 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal de "No hay presupuesto creado" -->
+<div #noBudgetModal class="modal fade" tabindex="-1" aria-labelledby="noBudgetModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="noBudgetModalLabel">No hay presupuesto creado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>No hay presupuesto creado de momento.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
     </div>
 </div>
 

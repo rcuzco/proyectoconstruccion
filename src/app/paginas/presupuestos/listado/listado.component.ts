@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BudgetDataModel } from 'src/app/models/budget-data-model';
+import { BudgetDataModel, BudgetDataModelRaw } from 'src/app/models/budget-data-model';
 import { GlobalDataService } from 'src/app/services/global-data.service';
 import { PresupuestosService } from 'src/app/services/presupuestos.service';
 import { ExportService } from 'src/app/services/export.service';
 import jsPDF from 'jspdf';
+import { BudgetDetailDataModel } from 'src/app/models/budget-detail-data-model';
 
 @Component({
   selector: 'app-listado',
@@ -12,9 +13,13 @@ import jsPDF from 'jspdf';
   styleUrls: ['./listado.component.scss']
 })
 export class ListadoComponent {
+
   budgetId: number | null = 0;
-  datosPresupuesto: BudgetDataModel | null = null;
+  datosPresupuesto: BudgetDataModelRaw[] | null = null;
   budgetData: BudgetDataModel | null = null;
+  subTotal: number = 0;
+  iva: number = 0;
+  total: number = 0;
 
   constructor(
     private router: Router,
@@ -35,10 +40,10 @@ export class ListadoComponent {
         // alert("no hay presupuesto creado de momento.");
       }
 
-      this.presupuestosService.getBudgetData(this.budgetId as number).subscribe({
-        next: (data: BudgetDataModel) => {
-          console.log("presupuesto", data);
+      this.presupuestosService.getBudgetDataRaw(this.budgetId as number).subscribe({
+        next: (data: BudgetDataModelRaw[]) => {
           this.datosPresupuesto = data;
+          this.calcularTotal(this.datosPresupuesto);
         },
         error: (err) => {
           console.log(err);
@@ -82,7 +87,7 @@ export class ListadoComponent {
 
 private getTableData(): any[] {
     // Verificar si hay datos del presupuesto
-    if (!this.datosPresupuesto || !this.datosPresupuesto.details) {
+    if (!this.datosPresupuesto || !this.datosPresupuesto) {
       return [];
     }
 
@@ -90,16 +95,16 @@ private getTableData(): any[] {
     const tableData: any[] = [];
 
     // Iterar sobre los detalles del presupuesto
-    this.datosPresupuesto.details.forEach((item, index) => {
+    this.datosPresupuesto.forEach((item, index) => {
       const rowData: any[] = [];
 
       // Agregar los datos de cada columna
       rowData.push(index + 1); // Número de fila
-      rowData.push(item.material.MaterialName); // Nombre del material
-      rowData.push(item.material.ImageUrl); // URL de la imagen
+      rowData.push(item.MaterialName); // Nombre del material
+      rowData.push(item.ImageUrl); // URL de la imagen
       rowData.push(item.Quantity); // Cantidad
-      rowData.push(item.providers.ProviderName); // Nombre del proveedor
-      rowData.push(item.material.MaterialID); // ID del material
+      rowData.push(item.ProviderName); // Nombre del proveedor
+      rowData.push(item.MaterialID); // ID del material
 
       // Agregar la fila al arreglo de datos de la tabla
       tableData.push(rowData);
@@ -119,16 +124,16 @@ private getTableData(): any[] {
     const tableData: any[] = [];
 
     // Verificar si hay datos
-    if (this.datosPresupuesto && this.datosPresupuesto.details) {
+    if (this.datosPresupuesto && this.datosPresupuesto) {
       // Iterar sobre los datos y agregar cada fila a la matriz de datos de la tabla
-      this.datosPresupuesto.details.forEach((budgetDetail, index) => {
+      this.datosPresupuesto.forEach((budgetDetail, index) => {
         const rowData = [
           index + 1, // Número de fila
-          budgetDetail.material.MaterialName, // Nombre del producto
-          budgetDetail.material.ImageUrl, // URL de la imagen
+          budgetDetail.MaterialName, // Nombre del producto
+          budgetDetail.ImageUrl, // URL de la imagen
           budgetDetail.Quantity, // Cantidad
-          budgetDetail.providers.ProviderName, // Nombre del proveedor
-          budgetDetail.material.MaterialID // Precio
+          budgetDetail.ProviderName, // Nombre del proveedor
+          budgetDetail.MaterialID // Precio
         ];
         tableData.push(rowData);
       });
@@ -150,25 +155,47 @@ private getTableData(): any[] {
     this.contador++;
 }
 
+    recalcularTotal(datosEvento: any, item: BudgetDataModelRaw)
+    {
+        this.subTotal = 0;
+        this.iva  = 0;
+        this.total  = 0;
+        let cantidad: number  = parseInt(datosEvento.srcElement.value);
+        if (this.datosPresupuesto && this.datosPresupuesto)
+        {
+            for (let index = 0; index < this.datosPresupuesto.length; index++)
+            {
+                if (item.BudgetDetailID === this.datosPresupuesto[index].BudgetDetailID)
+                {
+                    this.datosPresupuesto[index].Quantity = cantidad;
+                    break;
+                }
+            }
+            this.calcularTotal(this.datosPresupuesto);
+        }
+        // let unitPrice = item.stock.UnitPrice;
+        // this.subTotal = cantidad * unitPrice;
+        // this.iva = this.subTotal * 0.21;
+        // this.total = this.subTotal + this.iva;
+        // console.log(datosEvento.srcElement.value);
+    }
 
+    calcularTotal(items: BudgetDataModelRaw[])
+    {
+        for (let index = 0; index < items.length; index++)
+        {
+            const item = items[index];
+
+            let cantidad = item.Quantity;
+            let unitPrice = parseFloat(item.UnitPrice);
+            this.subTotal += (cantidad * unitPrice);
+            this.iva += (cantidad * unitPrice) * 0.21;
+        }
+        this.total = this.subTotal + this.iva;
+
+
+
+    }
 
 }
 
-
-    // incrementarCantidad(material: BudgetDataModel): void {
-    //     material.cantidad++;
-    //   }
-
-    //   decrementarCantidad(material: BudgetDataModel): void {
-    //     if (material.cantidad > 1) {
-    //       material.cantidad--;
-    //     }
-    //   }
-
-    //   calcularTotal(): number {
-    //     let total = 0;
-    //     for (const material of this.materiales) {
-    //       total += material.precio * material.cantidad;
-    //     }
-    //     return total;
-    //   }

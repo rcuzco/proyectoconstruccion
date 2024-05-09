@@ -1,5 +1,6 @@
 import { MaterialData } from "./material";
 import { Proveedor } from "./proveedor";
+import { StockData } from "./stock";
 
 export interface BudgetDetailDataModel
 {
@@ -10,4 +11,5 @@ export interface BudgetDetailDataModel
   Quantity: number;
   material:             MaterialData;
   providers:            Proveedor;
+  stock: StockData;
 }

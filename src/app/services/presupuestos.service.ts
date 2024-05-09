@@ -6,7 +6,7 @@ import { MaterialStock } from '../models/materialstock';
 import { BudgetData } from '../models/budget-data';
 import { BudgetDetailsData } from '../models/budget-details-data';
 import { BudgetDetailDataToInsert } from '../models/budget-detail-data-to-insert';
-import { BudgetDataModel } from '../models/budget-data-model';
+import { BudgetDataModel, BudgetDataModelRaw } from '../models/budget-data-model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +61,11 @@ console.log("dataToInsert",dataToInsert);
   getBudgetData(id: number): Observable<BudgetDataModel>
   {
     return this.http.get<BudgetDataModel>(`${this.apiUrlCompleteBudgetDetails}/${id}`);
+  }
+
+  getBudgetDataRaw(id: number): Observable<BudgetDataModelRaw[]>
+  {
+    return this.http.get<BudgetDataModelRaw[]>(`${this.apiUrlCompleteBudgetDetails}/${id}`);
   }
 
   eliminarPresupuestoDetalle(id: number): Observable<any> {

@@ -54,8 +54,27 @@ export class GlobalDataService
         }
     }
 
+    getIdFacturaActual(): number | null
+    {
+        //read from local storage, if empty then return null
+        const saleId = localStorage.getItem('saleId');
+
+        if (saleId)
+        {
+            return parseInt(saleId);
+        } else
+        {
+            return null;
+        }
+    }
+
     clearPresupuestoActual()
     {
         localStorage.removeItem('budgetId');
+    }
+
+    clearFacturaActual()
+    {
+        localStorage.removeItem('saleId');
     }
 }

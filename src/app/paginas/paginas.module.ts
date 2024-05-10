@@ -20,6 +20,7 @@ import { EditarStockComponent } from './stocks/editar-stock/editar-stock.compone
 import { EditarProveedorComponent } from './proveedores/editar-proveedor/editar-proveedor.component';
 import { MaterialesClienteComponent } from './materiales-cliente/materiales-cliente.component';
 import { ListadoComponent } from './presupuestos/listado/listado.component';
+import { ListadoFacturaComponent } from './facturas/listadoFactura/listadoFactura.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
 import { PortadaComponent } from './portada/portada.component';
@@ -58,6 +59,7 @@ import { PinturaComponent } from './pintura/pintura.component';
     EditarProveedorComponent,
     MaterialesClienteComponent,
     ListadoComponent,
+    ListadoFacturaComponent,
     CrearUsuariosComponent,
     PerfilClienteComponent,
     PortadaComponent,

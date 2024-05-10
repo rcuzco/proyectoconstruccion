@@ -16,6 +16,7 @@ import { EditarStockComponent } from './stocks/editar-stock/editar-stock.compone
 import { EditarProveedorComponent } from './proveedores/editar-proveedor/editar-proveedor.component';
 import { MaterialesClienteComponent } from './materiales-cliente/materiales-cliente.component';
 import { ListadoComponent } from './presupuestos/listado/listado.component';
+import { ListadoFacturaComponent } from './facturas/listadoFactura/listadoFactura.component';
 import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.component';
 import { PerfilClienteComponent } from './perfil-cliente/perfil-cliente.component';
 import { PortadaComponent } from './portada/portada.component';
@@ -60,6 +61,7 @@ const routes: Routes = [
         { path: 'clientes/crearUsuario', component: CrearUsuariosComponent },
         { path: 'materialescliente', component: MaterialesClienteComponent },
         { path: 'presupuestos', component: ListadoComponent },
+        { path: 'facturas', component: ListadoFacturaComponent },
         { path: 'perfil', component: PerfilClienteComponent },
         { path: 'madera', component: MaderaComponent },
         { path: 'materialesconstruccion', component: MaterialesConstruccionComponent },

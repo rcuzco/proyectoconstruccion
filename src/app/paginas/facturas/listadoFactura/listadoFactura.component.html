@@ -1,0 +1,208 @@
+<div class="page-wrapper">
+    <div class="page-content">
+        <!-- <table *ngIf="datosPresupuesto">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let item of datosPresupuesto.details">
+                <td>{{ item.material.MaterialName }}</td>
+                <td>{{item.Quantity}}</td>
+                <td>{{item.PriceUnit}}</td>
+                <td>
+                    <img class="image-list-width" *ngIf="!item.material.ShowGenericImage"
+                        src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}"
+                        (error)="handleImageError(material)" alt="Image">
+
+                    <img class="image-list-width" *ngIf="item.material.ShowGenericImage"
+                        src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
+                        alt="Generic Image">
+                </td>
+              </tr>
+            </tbody>
+          </table> -->
+
+
+<!-- <div class="container">
+    <h2>Materiales en el Presupuesto</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <table *ngIf="datosPresupuesto" class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of datosPresupuesto.details">
+                        <td>{{ item.material.MaterialName  }}</td>
+                        <td>5</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total</h5>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/materialescliente" routerLinkActive="active"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Factura</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+
+
+        <!--end breadcrumb-->
+        <div class="card">
+            <div class="card-body">
+                <div id="invoice">
+                    <div class="toolbar hidden-print">
+                        <div class="text-end">
+                            <!-- (click)="exportToExcelMateriales()"
+                            (click)="exportToPDFMateriales()" -->
+                            <button type="button" class="btn btn-success ms-2" (click)="exportToExcel()"><i class="lni lni-download"></i> Exportar a Excel</button>
+                            <button type="button" class="btn btn-danger ms-2" (click)="exportToPDF()"><i class="lni lni-download"></i> Exportar a PDF</button>
+                        </div>
+                        <hr/>
+                    </div>
+                    <div class="invoice overflow-auto">
+                        <div style="min-width: 600px">
+                            <header>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="javascript:;">
+                                            <img src="./assets/images/logo.png" width="80" alt="" />
+                                        </a>
+                                    </div>
+
+
+                                    <div class="col company-details">
+                                        <h2 class="name">
+
+                            Materiales de construcción
+
+                        </h2>
+                                        <div>C/ Calle Principal, n2, Valladolid</div>
+                                        <div>987654321</div>
+                                        <div>MaterialesConstruccion@mail.com</div>
+                                    </div>
+                                </div>
+                            </header>
+                            <main>
+                                <div class="no-presupuesto" *ngIf="!datosFactura || datosFactura.length === 0">
+                                    <p>No hay ningún producto seleccionado de momento.</p>
+                                  </div>
+
+                                <table *ngIf="datosFactura && datosFactura.length > 0" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th class="text-left">Nombre</th>
+                                            <th class="text-right">Imagen</th>
+                                            <th class="text-right">Cantidad</th>
+                                            <th class="text-right">Proveedor</th>
+                                            <th class="text-right">Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of datosFactura; let i = index">
+                                            <td class="no">{{ contador + i }}</td>
+                                            <td class="text-left">
+                                                <h3>{{ item.MaterialName }}</h3></td>
+                                            <td class="unit">
+                                                <img width="100px"
+                                                src="http://127.0.0.1:8000/uploads/{{item.ImageUrl}}"
+                                                alt="Image">
+
+                                            </td>
+                                            <td class="qty">
+                                                <input type="number" min="1" max="100" step="1" value="{{item.Quantity}}" (change)="recalcularTotal($event, item)" />
+                                            </td>
+                                            <td class="qty">{{item.ProviderName}}</td>
+                                            <td class="total">{{item.UnitPrice}}</td>
+                                            <td class="delete-cell">
+                                                <!-- Botón o icono para eliminar la fila -->
+                                                <button class="delete-button" (click)="eliminarRegistro(item.SaleDetailID)"><i class="fadeIn animated bx bx-trash"></i></button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                    <tfoot >
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td colspan="2">SUBTOTAL</td>
+                                            <td>{{subTotal}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td colspan="2">IVA 21%</td>
+                                            <td>{{iva}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td colspan="2">GRAND TOTAL</td>
+                                            <td>{{total}}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div class="notices">
+                                    <div>INFORMACIÓN:</div>
+                                    <div class="notice">Al subtotal se le suma el IVA del 21%.</div>
+                                </div>
+                            </main>
+                            <footer>.</footer>
+                        </div>
+                        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de "No hay presupuesto creado" -->
+<div #noBudgetModal class="modal fade" tabindex="-1" aria-labelledby="noBudgetModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="noBudgetModalLabel">No hay presupuesto creado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>No hay presupuesto creado de momento.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    </div>
+</div>
+
+

@@ -1,29 +1,29 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BudgetDataModel, BudgetDataModelRaw } from 'src/app/models/budget-data-model';
+import { SaleDataModel, SaleDataModelRaw } from 'src/app/models/sale-data-model';
 import { GlobalDataService } from 'src/app/services/global-data.service';
-import { PresupuestosService } from 'src/app/services/presupuestos.service';
+import { FacturasService } from 'src/app/services/facturas.service';
 import { ExportService } from 'src/app/services/export.service';
 import jsPDF from 'jspdf';
-import { BudgetDetailDataModel } from 'src/app/models/budget-detail-data-model';
+import { SaleDetailDataModel } from 'src/app/models/sale-detail-data-model';
 
 @Component({
-  selector: 'app-listado',
-  templateUrl: './listado.component.html',
-  styleUrls: ['./listado.component.scss']
+  selector: 'app-listadoFactura',
+  templateUrl: './listadoFactura.component.html',
+  styleUrls: ['./listadoFactura.component.scss']
 })
-export class ListadoComponent {
+export class ListadoFacturaComponent {
 
-  budgetId: number | null = 0;
-  datosPresupuesto: BudgetDataModelRaw[] | null = null;
-  budgetData: BudgetDataModel | null = null;
+  saleId: number | null = 0;
+  datosFactura: SaleDataModelRaw[] | null = null;
+  saleData: SaleDataModel | null = null;
   subTotal: number = 0;
   iva: number = 0;
   total: number = 0;
 
   constructor(
     private router: Router,
-    private presupuestosService: PresupuestosService,
+    private facturasService: FacturasService,
     private route: ActivatedRoute,
     private globalDataService: GlobalDataService,
     private exportService: ExportService
@@ -31,19 +31,19 @@ export class ListadoComponent {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.budgetId = this.globalDataService.getIdPresupuestoActual();
+      this.saleId = this.globalDataService.getIdFacturaActual();
 
 
-      console.log("Received id:", this.budgetId);
+      console.log("Received id:", this.saleId);
 
-      if (this.budgetId == null) {
+      if (this.saleId == null) {
         // alert("no hay presupuesto creado de momento.");
       }
 
-      this.presupuestosService.getBudgetDataRaw(this.budgetId as number).subscribe({
-        next: (data: BudgetDataModelRaw[]) => {
-          this.datosPresupuesto = data;
-          this.calcularTotal(this.datosPresupuesto);
+      this.facturasService.getSaleDataRaw(this.saleId as number).subscribe({
+        next: (data: SaleDataModelRaw[]) => {
+          this.datosFactura = data;
+          this.calcularTotal(this.datosFactura);
         },
         error: (err) => {
           console.log(err);
@@ -57,28 +57,28 @@ export class ListadoComponent {
 
   eliminarRegistro(id: number | null): void {
     if (id !== null) {
-        this.presupuestosService.eliminarPresupuestoDetalle(id).subscribe({
+        this.facturasService.eliminarFacturaDetalle(id).subscribe({
             next: () => {
                 console.log("Registro eliminado con éxito");
                 this.refreshTableData(); // Actualizar los datos de la tabla
 
                 // Verificar si datosPresupuesto no es null antes de restar el valor del producto eliminado
-                if (this.datosPresupuesto !== null) {
+                if (this.datosFactura !== null) {
                     // Encuentra el índice del elemento eliminado
-                    const index = this.datosPresupuesto.findIndex(item => item.BudgetDetailID === id);
+                    const index = this.datosFactura.findIndex(item => item.SaleDetailID === id);
                     if (index !== -1) {
-                        const itemEliminado = this.datosPresupuesto[index];
+                        const itemEliminado = this.datosFactura[index];
                         // Restar el valor del producto eliminado a los totales
                         this.subTotal -= parseFloat(itemEliminado.UnitPrice) * itemEliminado.Quantity;
                         this.iva -= parseFloat(itemEliminado.UnitPrice) * itemEliminado.Quantity * 0.21;
                         this.total = this.subTotal + this.iva;
                     }
                     // Eliminar el elemento de la lista de datosPresupuesto
-                    this.datosPresupuesto.splice(index, 1);
+                    this.datosFactura.splice(index, 1);
                     // Verificar si la lista está vacía después de eliminar el registro
-                    if (this.datosPresupuesto.length === 0) {
+                    if (this.datosFactura.length === 0) {
                         // Inicializar datosPresupuesto como un arreglo vacío
-                        this.datosPresupuesto = [];
+                        this.datosFactura = [];
                     }
                 }
             },
@@ -87,19 +87,16 @@ export class ListadoComponent {
             }
         });
     } else {
-        console.log('El ID del presupuesto es nulo.');
+        console.log('El ID de la factura es nulo.');
     }
 }
 
-
-
-
-  refreshTableData(): void {
+refreshTableData(): void {
     // Aquí vuelves a obtener los datos del presupuesto
-    this.presupuestosService.getBudgetData(this.budgetId as number).subscribe({
+    this.facturasService.getSaleData(this.saleId as number).subscribe({
         next: (data: any) => {
             // Actualizas los datos en la variable datosPresupuesto
-            this.datosPresupuesto = data;
+            this.datosFactura = data;
         },
         error: (err) => {
             console.log('Error al actualizar los datos de la tabla:', err);
@@ -109,7 +106,7 @@ export class ListadoComponent {
 
 private getTableData(): any[] {
     // Verificar si hay datos del presupuesto
-    if (!this.datosPresupuesto || !this.datosPresupuesto) {
+    if (!this.datosFactura || !this.datosFactura) {
       return [];
     }
 
@@ -117,7 +114,7 @@ private getTableData(): any[] {
     const tableData: any[] = [];
 
     // Iterar sobre los detalles del presupuesto
-    this.datosPresupuesto.forEach((item, index) => {
+    this.datosFactura.forEach((item, index) => {
       const rowData: any[] = [];
 
       // Agregar los datos de cada columna
@@ -135,10 +132,9 @@ private getTableData(): any[] {
     return tableData;
   }
 
-
   exportToPDF(): void {
     const tableData: any[] = this.getTableData1(); // Asegúrate de que getTableData devuelve una matriz con la estructura adecuada
-    this.exportService.exportToPDFPresupuesto(tableData, 'presupuesto');
+    this.exportService.exportToPDFFactura(tableData, 'factura');
   }
 
   private getTableData1(): any[] {
@@ -146,16 +142,16 @@ private getTableData(): any[] {
     const tableData: any[] = [];
 
     // Verificar si hay datos
-    if (this.datosPresupuesto && this.datosPresupuesto) {
+    if (this.datosFactura && this.datosFactura) {
       // Iterar sobre los datos y agregar cada fila a la matriz de datos de la tabla
-      this.datosPresupuesto.forEach((budgetDetail, index) => {
+      this.datosFactura.forEach((saleDetail, index) => {
         const rowData = [
           index + 1, // Número de fila
-          budgetDetail.MaterialName, // Nombre del producto
-          budgetDetail.ImageUrl, // URL de la imagen
-          budgetDetail.Quantity, // Cantidad
-          budgetDetail.ProviderName, // Nombre del proveedor
-          budgetDetail.UnitPrice // Precio
+          saleDetail.MaterialName, // Nombre del producto
+          saleDetail.ImageUrl, // URL de la imagen
+          saleDetail.Quantity, // Cantidad
+          saleDetail.ProviderName, // Nombre del proveedor
+          saleDetail.UnitPrice // Precio
         ];
         tableData.push(rowData);
       });
@@ -164,12 +160,10 @@ private getTableData(): any[] {
     return tableData;
   }
 
-
   exportToExcel(): void {
     const tableData = this.getTableData();
-    this.exportService.exportToExcelPresupuesto(tableData);
+    this.exportService.exportToExcelFactura(tableData);
   }
-
 
   contador: number = 1;
 
@@ -177,23 +171,23 @@ private getTableData(): any[] {
     this.contador++;
 }
 
-    recalcularTotal(datosEvento: any, item: BudgetDataModelRaw)
+recalcularTotal(datosEvento: any, item: SaleDataModelRaw)
     {
         this.subTotal = 0;
         this.iva  = 0;
         this.total  = 0;
         let cantidad: number  = parseInt(datosEvento.srcElement.value);
-        if (this.datosPresupuesto && this.datosPresupuesto)
+        if (this.datosFactura && this.datosFactura)
         {
-            for (let index = 0; index < this.datosPresupuesto.length; index++)
+            for (let index = 0; index < this.datosFactura.length; index++)
             {
-                if (item.BudgetDetailID === this.datosPresupuesto[index].BudgetDetailID)
+                if (item.SaleDetailID === this.datosFactura[index].SaleDetailID)
                 {
-                    this.datosPresupuesto[index].Quantity = cantidad;
+                    this.datosFactura[index].Quantity = cantidad;
                     break;
                 }
             }
-            this.calcularTotal(this.datosPresupuesto);
+            this.calcularTotal(this.datosFactura);
         }
         // let unitPrice = item.stock.UnitPrice;
         // this.subTotal = cantidad * unitPrice;
@@ -202,7 +196,7 @@ private getTableData(): any[] {
         // console.log(datosEvento.srcElement.value);
     }
 
-    calcularTotal(items: BudgetDataModelRaw[])
+    calcularTotal(items: SaleDataModelRaw[])
     {
         for (let index = 0; index < items.length; index++)
         {

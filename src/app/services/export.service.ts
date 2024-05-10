@@ -87,6 +87,25 @@ export class ExportService {
     XLSX.writeFile(wb, 'presupuesto.xlsx');
   }
 
+  exportToPDFFactura(data: any[], fileName: string): void {
+    const doc = new jsPDF();
+    doc.text('Factura', 10, 10);
+    // Utiliza autoTable para generar la tabla automáticamente
+    (doc as any).autoTable({
+      startY: 20,
+      head: [['#', 'Nombre Producto', 'Imagen', 'Cantidad', 'Proveedor', 'Precio']],
+      body: data
+    });
+    doc.save(fileName + '.pdf');
+  }
+
+  exportToExcelFactura(data: any[]): void {
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Factura');
+    XLSX.writeFile(wb, 'factura.xlsx');
+  }
+
 }
 
 

@@ -27,6 +27,7 @@ export class SidebarClienteComponent implements OnInit{
       {
         this.globalDataService.clearUsuarioLogado();
         this.globalDataService.clearPresupuestoActual();
+        this.globalDataService.clearFacturaActual();
         //go to portada route
         this.router.navigate(['/portada']);
       }

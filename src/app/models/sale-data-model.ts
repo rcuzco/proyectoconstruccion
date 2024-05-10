@@ -1,24 +1,24 @@
-import { BudgetDetailDataModel } from "./budget-detail-data-model";
+import { SaleDetailDataModel } from "./sale-detail-data-model";
 import { Cliente } from "./cliente";
 
-export interface BudgetDataModel
+export interface SaleDataModel
 {
   /*
-  b.BudgetID,b.BudgetDate,b.customers_CustomerID,c.CustomerName
+  s.SaleID,s.SaleDate,s.customers_CustomerID,c.CustomerName
   */
-  BudgetID: number;
-  BudgetDate: Date;
+  SaleID: number;
+  SaleDate: Date;
   customers_CustomerID: number;
   customer:             Cliente;
-  details:              BudgetDetailDataModel[];
+  details:              SaleDetailDataModel[];
 }
 
-export interface BudgetDataModelRaw {
-    BudgetID: number
-    BudgetDate: string
+export interface SaleDataModelRaw {
+    SaleID: number
+    SaleDate: string
     customers_CustomerID: number
-    BudgetDetailID: number
-    budgets_BudgetID: number
+    SaleDetailID: number
+    sales_SaleID: number
     materials_MaterialID: number
     providers_ProviderID: number
     Quantity: number
@@ -41,4 +41,3 @@ export interface BudgetDataModelRaw {
     LastUpdate: string
     UnitPrice: string
 }
-

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+.container {
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.card {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card-subtitle {
+  font-size: 16px;
+  color: #666;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.no-presupuesto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ajusta la altura según sea necesario */
+}
+
+.no-presupuesto p {
+  font-size: 18px;
+  text-align: center;
+  color: #555; /* Cambia el color del texto según tus preferencias */
+  /* Agrega cualquier otro estilo necesario */
+}
+
+.delete-cell {
+  text-align: center; /* Centra el contenido horizontalmente */
+}
+
+.delete-button {
+  background-color: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cursor de puntero */
+}
+
+.delete-button i {
+  color: red; /* Color rojo para el icono */
+  font-size: 24px; /* Tamaño del icono */
+}/*# sourceMappingURL=listadoFactura.component.css.map */

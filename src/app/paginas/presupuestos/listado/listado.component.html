@@ -1,67 +1,5 @@
  <div class="page-wrapper">
     <div class="page-content">
-        <!-- <table *ngIf="datosPresupuesto">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr *ngFor="let item of datosPresupuesto.details">
-                <td>{{ item.material.MaterialName }}</td>
-                <td>{{item.Quantity}}</td>
-                <td>{{item.PriceUnit}}</td>
-                <td>
-                    <img class="image-list-width" *ngIf="!item.material.ShowGenericImage"
-                        src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}"
-                        (error)="handleImageError(material)" alt="Image">
-
-                    <img class="image-list-width" *ngIf="item.material.ShowGenericImage"
-                        src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
-                        alt="Generic Image">
-                </td>
-              </tr>
-            </tbody>
-          </table> -->
-
-
-<!-- <div class="container">
-    <h2>Materiales en el Presupuesto</h2>
-    <div class="row">
-        <div class="col-md-8">
-            <table *ngIf="datosPresupuesto" class="table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Imagen</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of datosPresupuesto.details">
-                        <td>{{ item.material.MaterialName  }}</td>
-                        <td>5</td>
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total</h5>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-        <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
@@ -76,14 +14,11 @@
 
 
 
-        <!--end breadcrumb-->
         <div class="card">
             <div class="card-body">
                 <div id="invoice">
                     <div class="toolbar hidden-print">
                         <div class="text-end">
-                            <!-- (click)="exportToExcelMateriales()"
-                            (click)="exportToPDFMateriales()" -->
                             <button type="button" class="btn btn-success ms-2" (click)="exportToExcel()"><i class="lni lni-download"></i> Exportar a Excel</button>
                             <button type="button" class="btn btn-danger ms-2" (click)="exportToPDF()"><i class="lni lni-download"></i> Exportar a PDF</button>
                         </div>
@@ -139,15 +74,6 @@
                                                 alt="Image">
 
                                             </td>
-                                            <!-- <td>
-                                                <img class="image-list-width" *ngIf="!material.ShowGenericImage"
-                                                    src="http://127.0.0.1:8000/uploads/{{item.material.ImageUrl}}"
-                                                    (error)="item.material.handleImageError(item.material)" alt="Image">
-
-                                                <img class="image-list-width" *ngIf="material.ShowGenericImage"
-                                                    src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
-                                                    alt="Generic Image">
-                                            </td> -->
                                             <td class="qty">
                                                 <input type="number" min="1" max="100" step="1" value="{{item.Quantity}}" (change)="recalcularTotal($event, item)" />
                                             </td>
@@ -164,17 +90,17 @@
                                         <tr>
                                             <td colspan="2"></td>
                                             <td colspan="2">SUBTOTAL</td>
-                                            <td>{{subTotal}}</td>
+                                            <td>{{subTotal}} €</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"></td>
                                             <td colspan="2">IVA 21%</td>
-                                            <td>{{iva}}</td>
+                                            <td>{{iva}} €</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"></td>
                                             <td colspan="2">GRAND TOTAL</td>
-                                            <td>{{total}}</td>
+                                            <td>{{total}} €</td>
                                         </tr>
                                     </tfoot>
                                 </table>

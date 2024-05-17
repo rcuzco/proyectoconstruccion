@@ -9,6 +9,8 @@ import { PresupuestosService } from 'src/app/services/presupuestos.service';
 import { Proveedor } from 'src/app/models/proveedor';
 import { ProveedoresService } from 'src/app/services/proveedores.service';
 import { Cliente } from 'src/app/models/cliente';
+import { FacturasService } from 'src/app/services/facturas.service';
+import { SaleData } from 'src/app/models/sale-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,8 +25,10 @@ export class DashboardComponent implements OnInit {
     public materiales: MaterialStock[] = [];
     public proveedores: Proveedor[] = [];
     public clientes: Cliente[] = [];
+    public pedidos: any[] = [];
+    nonNullAddressCount: number = 0;
 
-    constructor(private materialesService: MaterialesClienteService, private proveedorService: ProveedoresService, private router: Router, private presupuestoService: PresupuestosService, private globalDataService: GlobalDataService, private clienteService: ClientesService) { }
+    constructor(private materialesService: MaterialesClienteService, private facturasService: FacturasService, private proveedorService: ProveedoresService, private router: Router, private presupuestoService: PresupuestosService, private globalDataService: GlobalDataService, private clienteService: ClientesService) { }
 
     ngOnInit(): void
     {
@@ -39,6 +43,12 @@ export class DashboardComponent implements OnInit {
         console.log("proveedor", data1);
         this.proveedores = data1;
       })
+
+      this.facturasService.getDataAll().subscribe(data1 =>
+        {
+          console.log("pedidos", data1);
+          this.pedidos = data1;
+        })
 
       console.log("Cargando clientes");
       this.clienteService.getData().subscribe(data2 => {
@@ -151,5 +161,10 @@ export class DashboardComponent implements OnInit {
       console.log("Error al cargar la imagen");
       material.ShowGenericImage = true;
     }
+
+    countNonNullAddresses(): number {
+        this.nonNullAddressCount = this.pedidos.filter(pedido => pedido.address !== null).length;
+        return this.nonNullAddressCount;
+      }
 
 }

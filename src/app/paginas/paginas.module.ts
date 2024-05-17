@@ -39,6 +39,7 @@ import { IluminacionComponent } from './iluminacion/iluminacion.component';
 import { HerramientasComponent } from './herramientas/herramientas.component';
 import { FerreteriaComponent } from './ferreteria/ferreteria.component';
 import { PinturaComponent } from './pintura/pintura.component';
+import { PedidosClienteComponent } from './pedidos-cliente/pedidos-cliente.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { PinturaComponent } from './pintura/pintura.component';
     IluminacionComponent,
     HerramientasComponent,
     FerreteriaComponent,
-    PinturaComponent
+    PinturaComponent,
+    PedidosClienteComponent
   ],
   exports: [
     MaterialesComponent,

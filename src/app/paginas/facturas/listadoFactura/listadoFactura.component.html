@@ -1,67 +1,5 @@
 <div class="page-wrapper">
     <div class="page-content">
-        <!-- <table *ngIf="datosPresupuesto">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr *ngFor="let item of datosPresupuesto.details">
-                <td>{{ item.material.MaterialName }}</td>
-                <td>{{item.Quantity}}</td>
-                <td>{{item.PriceUnit}}</td>
-                <td>
-                    <img class="image-list-width" *ngIf="!item.material.ShowGenericImage"
-                        src="http://127.0.0.1:8000/uploads/{{material.ImageUrl}}"
-                        (error)="handleImageError(material)" alt="Image">
-
-                    <img class="image-list-width" *ngIf="item.material.ShowGenericImage"
-                        src="http://localhost/proyecto-construccion-back/uploads/generic-image.png"
-                        alt="Generic Image">
-                </td>
-              </tr>
-            </tbody>
-          </table> -->
-
-
-<!-- <div class="container">
-    <h2>Materiales en el Presupuesto</h2>
-    <div class="row">
-        <div class="col-md-8">
-            <table *ngIf="datosPresupuesto" class="table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Imagen</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of datosPresupuesto.details">
-                        <td>{{ item.material.MaterialName  }}</td>
-                        <td>5</td>
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total</h5>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-        <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
@@ -76,14 +14,12 @@
 
 
 
-        <!--end breadcrumb-->
+
         <div class="card">
             <div class="card-body">
                 <div id="invoice">
                     <div class="toolbar hidden-print">
                         <div class="text-end">
-                            <!-- (click)="exportToExcelMateriales()"
-                            (click)="exportToPDFMateriales()" -->
                             <button type="button" class="btn btn-success ms-2" (click)="exportToExcel()"><i class="lni lni-download"></i> Exportar a Excel</button>
                             <button type="button" class="btn btn-danger ms-2" (click)="exportToPDF()"><i class="lni lni-download"></i> Exportar a PDF</button>
                         </div>
@@ -155,17 +91,17 @@
                                         <tr>
                                             <td colspan="2"></td>
                                             <td colspan="2">SUBTOTAL</td>
-                                            <td>{{subTotal}}</td>
+                                            <td>{{subTotal}} €</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"></td>
                                             <td colspan="2">IVA 21%</td>
-                                            <td>{{iva}}</td>
+                                            <td>{{iva}} €</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"></td>
                                             <td colspan="2">GRAND TOTAL</td>
-                                            <td>{{total}}</td>
+                                            <td>{{total}} €</td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -174,9 +110,14 @@
                                     <div class="notice">Al subtotal se le suma el IVA del 21%.</div>
                                 </div>
                             </main>
-                            <footer>.</footer>
+                            <footer>
+                                <button type="button" class="btn btn-primary" (click)="openConfirmModal()">
+                                    Confirmar Compra
+                                </button>
+                            </footer>
+
                         </div>
-                        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+
                         <div></div>
                     </div>
                 </div>
@@ -200,6 +141,69 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmar Compra</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Seleccione el método de entrega:</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="deliveryMethod" id="deliveryShipping" value="direccion" (change)="setEnvio('direccion');">
+                    <label class="form-check-label" for="deliveryShipping">
+                        Envío a dirección
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="deliveryMethod" id="deliveryPickup" value="almacen" (change)="setEnvio('almacen');">
+                    <label class="form-check-label" for="deliveryPickup">
+                        Recogida en el almacén
+                    </label>
+                </div>
+                <div id="shippingForm" *ngIf="envio === 'direccion'">
+                    <!-- Formulario de envío a dirección -->
+                    <div class="mb-3">
+                        <label for="shippingAddress" class="form-label">Dirección de envío</label>
+                        <input type="text" class="form-control" id="shippingAddress" placeholder="Ingrese la dirección de envío" [(ngModel)]="direccionEnvio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="shippingPostalCode" class="form-label">Código Postal</label>
+                        <input type="text" class="form-control" id="shippingPostalCode" placeholder="Ingrese el código postal" [(ngModel)]="direccionEnvioCodigoPostal">
+                    </div>
+                </div>
+                <div id="pickupForm" *ngIf="envio === 'almacen'">
+                    <!-- Dirección de recogida en el almacén -->
+                    <p>Dirección de recogida: c/dirección almacen numero dos, Madrid</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="confirmarCompra()">Confirmar Compra</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="successModal" class="modal fade" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Compra Realizada</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Compra realizada con éxito!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
     </div>

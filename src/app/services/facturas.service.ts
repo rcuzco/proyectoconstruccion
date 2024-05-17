@@ -3,10 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Sale } from '../models/sale';
 import { MaterialStock } from '../models/materialstock';
-import { SaleData } from '../models/sale-data';
+import { SaleData, SaleDataToUpdate } from '../models/sale-data';
 import { SaleDetailsData } from '../models/sale-details-data';
 import { SaleDetailDataToInsert } from '../models/sale-detail-data-to-insert';
 import { SaleDataModel, SaleDataModelRaw } from '../models/sale-data-model';
+import { NumberSymbol } from '@angular/common';
 
 
 @Injectable({
@@ -14,15 +15,23 @@ import { SaleDataModel, SaleDataModelRaw } from '../models/sale-data-model';
   })
   export class FacturasService
   {
+
     //private apiUrl = 'http://localhost/proyecto-construccion-back/budgets_api.php';
     private apiUrl = 'http://127.0.0.1:8000/sales';
     private apiUrlSaleDetails = 'http://127.0.0.1:8000/sale_details';
+    private apiUrlUpdateSaleDetails = 'http://127.0.0.1:8000/updatesaledetails';
+    private apiUrlUpdateSale = 'http://127.0.0.1:8000/updatesales';
     private apiUrlCompleteSaleDetails = 'http://127.0.0.1:8000/salescomplete';
 
 
     constructor(private http: HttpClient)
     {
 
+    }
+
+    getDataAll(): Observable<Sale[]>
+    {
+      return this.http.get<Sale[]>(`${this.apiUrl}`);
     }
 
     getData(id: number): Observable<Sale[]>
@@ -74,6 +83,33 @@ import { SaleDataModel, SaleDataModelRaw } from '../models/sale-data-model';
     }
 
 
+    updateSaleDetail(saleDetailID: number, saleID: number, materialID: number, providerID: number, quantity:number): Observable<any>
+    {
+      const currentDate: Date = new Date();
+/*
+ $saleDetails->sales_SaleID = $request->sales_SaleID;
+        $saleDetails->materials_MaterialID = $request->materials_MaterialID;
+        $saleDetails->providers_ProviderID = $request->providers_ProviderID;
+        $saleDetails->Quantity = $request->Quantity;
+*/
+      const dataToUpdate =
+      {
+        "sales_SaleID": saleID,
+        "materials_MaterialID": materialID,
+        "providers_ProviderID": providerID,
+        "Quantity": quantity
 
+      };
+      return this.http.put<any>(this.apiUrlUpdateSaleDetails + '/' + saleDetailID, dataToUpdate).pipe(
+        map(response => response.saleDetails) // Extract the 'budget' object from the response
+      );
+    }
+
+    updateSale(saleData: SaleDataToUpdate): Observable<any>
+    {
+        return this.http.put<any>(this.apiUrlUpdateSale + '/' + saleData.SaleID, saleData).pipe(
+            map(response => response.saleDetails) // Extract the 'budget' object from the response
+          );
+    }
 
   }

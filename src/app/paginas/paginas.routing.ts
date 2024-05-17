@@ -35,6 +35,8 @@ import { IluminacionComponent } from './iluminacion/iluminacion.component';
 import { HerramientasComponent } from './herramientas/herramientas.component';
 import { FerreteriaComponent } from './ferreteria/ferreteria.component';
 import { PinturaComponent } from './pintura/pintura.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
+import { PedidosClienteComponent} from './pedidos-cliente/pedidos-cliente.component';
 
 
 const routes: Routes = [
@@ -78,6 +80,8 @@ const routes: Routes = [
         { path: 'herramientas', component: HerramientasComponent },
         { path: 'ferreteria', component: FerreteriaComponent },
         { path: 'pintura', component: PinturaComponent },
+        { path: 'pedidos', component: PedidosComponent},
+        { path: 'pedidoscliente', component: PedidosClienteComponent}
     ]
 
 

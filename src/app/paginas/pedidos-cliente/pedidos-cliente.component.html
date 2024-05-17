@@ -18,7 +18,6 @@
              <tr>
                <th>ID</th>
                <th>Fecha de Pedido</th>
-               <th>Cliente</th>
                <th>Dirección</th>
                <th>Código Postal</th>
                <th>Total</th>
@@ -29,7 +28,6 @@
                     <tr *ngIf="pedido.address !== null">
                       <td>{{ pedido.SaleID }}</td>
                       <td>{{ pedido.SaleDate }}</td>
-                      <td>{{ pedido.customers_CustomerID }}</td>
                       <td>{{ pedido.address }}</td>
                       <td>{{ pedido.postalCode }}</td>
                       <td>{{ pedido.total }} €</td>

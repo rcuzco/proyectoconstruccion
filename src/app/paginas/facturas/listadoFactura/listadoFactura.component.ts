@@ -6,6 +6,8 @@ import { FacturasService } from 'src/app/services/facturas.service';
 import { ExportService } from 'src/app/services/export.service';
 import jsPDF from 'jspdf';
 import { SaleDetailDataModel } from 'src/app/models/sale-detail-data-model';
+import { SaleData, SaleDataToUpdate } from 'src/app/models/sale-data';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-listadoFactura',
@@ -14,12 +16,17 @@ import { SaleDetailDataModel } from 'src/app/models/sale-detail-data-model';
 })
 export class ListadoFacturaComponent {
 
+
+
   saleId: number | null = 0;
   datosFactura: SaleDataModelRaw[] | null = null;
   saleData: SaleDataModel | null = null;
   subTotal: number = 0;
   iva: number = 0;
   total: number = 0;
+    envio: string = '';
+direccionEnvio: string = '';
+direccionEnvioCodigoPostal: number = 0;
 
   constructor(
     private router: Router,
@@ -43,6 +50,8 @@ export class ListadoFacturaComponent {
       this.facturasService.getSaleDataRaw(this.saleId as number).subscribe({
         next: (data: SaleDataModelRaw[]) => {
           this.datosFactura = data;
+          console.clear();
+          console.log("this.datosFactura",this.datosFactura);
           this.calcularTotal(this.datosFactura);
         },
         error: (err) => {
@@ -184,6 +193,22 @@ recalcularTotal(datosEvento: any, item: SaleDataModelRaw)
                 if (item.SaleDetailID === this.datosFactura[index].SaleDetailID)
                 {
                     this.datosFactura[index].Quantity = cantidad;
+
+                    this.facturasService.updateSaleDetail(
+                        this.datosFactura[index].SaleDetailID,
+                        this.datosFactura[index].SaleID,
+                        this.datosFactura[index].MaterialID,
+                        this.datosFactura[index].ProviderID,
+                        this.datosFactura[index].Quantity).subscribe({
+                            next: (data: any) => {
+                                // Actualizas los datos en la variable datosPresupuesto
+                                console.log(data);
+                            },
+                            error: (err) => {
+                                console.log('Error al actualizar los datos de la tabla:', err);
+                            }
+                        });
+
                     break;
                 }
             }
@@ -194,6 +219,7 @@ recalcularTotal(datosEvento: any, item: SaleDataModelRaw)
         // this.iva = this.subTotal * 0.21;
         // this.total = this.subTotal + this.iva;
         // console.log(datosEvento.srcElement.value);
+
     }
 
     calcularTotal(items: SaleDataModelRaw[])
@@ -212,5 +238,68 @@ recalcularTotal(datosEvento: any, item: SaleDataModelRaw)
 
 
     }
+
+    setEnvio(envio: string)
+    {
+        this.envio = envio;
+    }
+
+    openConfirmModal() {
+        const modalElement = document.getElementById('confirmModal');
+        const modal = new bootstrap.Modal(modalElement!);
+        modal.show();
+    }
+
+    confirmarCompra()
+    {
+
+        if (this.envio === 'direccion') {
+
+        }
+
+        let total = this.total;
+
+        let datosFactura: SaleDataToUpdate =
+        {
+            SaleDate : new Date().toISOString().slice(0, 10),
+            customers_CustomerID:   this.globalDataService.getUsuarioLogado()?.CustomerID!,
+            address: this.envio === 'direccion' ? this.direccionEnvio : 'C/ Avenida Salamanca nº2, Valladolid, Valladolid',
+            postalCode: this.envio === 'direccion' ? this.direccionEnvioCodigoPostal :47018,
+            created_at: new Date().toISOString().slice(0, 10),
+            updated_at: new Date().toISOString().slice(0, 10),
+            total: total,
+            SaleID: this.globalDataService.getIdFacturaActual()!
+
+        };
+
+        console.log("datosFactura",datosFactura);
+
+        this.facturasService.updateSale(datosFactura).subscribe({
+            next: (data: any) => {
+                // Actualizas los datos en la variable datosPresupuesto
+                console.log(data);
+                const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal')!);
+                confirmModal.hide();
+                const modalElement = document.getElementById('successModal');
+                const modal = new bootstrap.Modal(modalElement!);
+                modal.show();
+
+                this.router.navigate(['/dashboard/materialescliente']);
+
+                setTimeout(() => {
+                    window.location.reload(); // Recargar la página después de un breve retraso
+                }, 1000);
+
+
+            },
+            error: (err) => {
+                console.log('Error al actualizar los datos de la tabla:', err);
+            }
+        });;
+
+
+    }
+
+
 
 }

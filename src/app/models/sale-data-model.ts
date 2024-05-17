@@ -9,6 +9,8 @@ export interface SaleDataModel
   SaleID: number;
   SaleDate: Date;
   customers_CustomerID: number;
+  address: string;
+  postalCode: number;
   customer:             Cliente;
   details:              SaleDetailDataModel[];
 }
@@ -17,6 +19,8 @@ export interface SaleDataModelRaw {
     SaleID: number
     SaleDate: string
     customers_CustomerID: number
+    address: string
+    postalCode: number
     SaleDetailID: number
     sales_SaleID: number
     materials_MaterialID: number
@@ -40,4 +44,5 @@ export interface SaleDataModelRaw {
     StockID: number
     LastUpdate: string
     UnitPrice: string
+    StockQuantity: number
 }

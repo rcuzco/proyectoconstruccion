@@ -8,6 +8,8 @@ import jsPDF from 'jspdf';
 import { SaleDetailDataModel } from 'src/app/models/sale-detail-data-model';
 import { SaleData, SaleDataToUpdate } from 'src/app/models/sale-data';
 import * as bootstrap from 'bootstrap';
+import { NgForm } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-listadoFactura',
@@ -27,13 +29,29 @@ export class ListadoFacturaComponent {
     envio: string = '';
 direccionEnvio: string = '';
 direccionEnvioCodigoPostal: number = 0;
+  cardNumber: string = '';
+  expiry: string = '';
+  cvv: string = '';
+
+  insertForm = this.formBuilder.group({
+    username: ["", [Validators.required]],
+    contactEmail: ["", [Validators.required]],
+    password: ["", [Validators.required]],
+    contactName: ["", [Validators.required]],
+    contactPhone: ["", [Validators.required]],
+    customerName: ["", [Validators.required]],
+    userType: ["", [Validators.required]],
+
+
+  });
 
   constructor(
     private router: Router,
     private facturasService: FacturasService,
     private route: ActivatedRoute,
     private globalDataService: GlobalDataService,
-    private exportService: ExportService
+    private exportService: ExportService,
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -253,6 +271,7 @@ recalcularTotal(datosEvento: any, item: SaleDataModelRaw)
     confirmarCompra()
     {
 
+
         if (this.envio === 'direccion') {
 
         }
@@ -300,6 +319,17 @@ recalcularTotal(datosEvento: any, item: SaleDataModelRaw)
 
     }
 
+    onSubmit(creditCardForm: NgForm) {
+        if (creditCardForm.valid) {
+          const { cardNumber, expiry, cvv } = creditCardForm.value;
+          console.log('Número de Tarjeta:', cardNumber);
+          console.log('Fecha de Expiración:', expiry);
+          console.log('CVV:', cvv);
+          // Aquí puedes añadir la lógica para procesar el pago con los datos de la tarjeta de crédito
+        } else {
+          console.log('Formulario inválido');
+        }
+      }
 
 
 }

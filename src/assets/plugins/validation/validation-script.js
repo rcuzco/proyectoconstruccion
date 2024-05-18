@@ -12,6 +12,8 @@ $.validator.setDefaults( {
           customerName: "required",
           contactPhone: "required",
           contactName: "required",
+          direccionEnvio: "required",
+          codigoPostal: "required",
 					phone: "required",
 					username: {
 						required: true,
@@ -45,6 +47,8 @@ $.validator.setDefaults( {
           customerName: "Por favor, ingresa un nombre de cliente",
           contactPhone: "Por favor, ingresa un número de contacto",
           contactName: "Por favor, ingresa un nombre de contacto",
+          direccionEnvio: "Por favor, ingresa una dirección de envío",
+          codigoPostal: "Por favor, ingresa un código postal",
 
 					phone: "Por favor, ingresa un número de teléfono",
 					username: {

@@ -149,20 +149,19 @@
                 <h5 class="modal-title" id="confirmModalLabel">Confirmar Compra</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
+
                 <p>Seleccione el método de entrega:</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="deliveryMethod" id="deliveryShipping" value="direccion" (change)="setEnvio('direccion');">
-                    <label class="form-check-label" for="deliveryShipping">
-                        Envío a dirección
-                    </label>
+                    <input class="form-check-input" type="radio" name="deliveryMethod" id="deliveryShipping" value="direccion" [(ngModel)]="envio" required #deliveryMethod="ngModel">
+                    <label class="form-check-label" for="deliveryShipping">Envío a dirección</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="deliveryMethod" id="deliveryPickup" value="almacen" (change)="setEnvio('almacen');">
-                    <label class="form-check-label" for="deliveryPickup">
-                        Recogida en el almacén
-                    </label>
+                    <input class="form-check-input" type="radio" name="deliveryMethod" id="deliveryPickup" value="almacen" [(ngModel)]="envio" required #deliveryMethod="ngModel">
+                    <label class="form-check-label" for="deliveryPickup">Recogida en el almacén</label>
                 </div>
+                <span class="error-message" *ngIf="deliveryMethod.invalid && deliveryMethod.touched">Por favor, seleccione un método de entrega.</span>
                 <div id="shippingForm" *ngIf="envio === 'direccion'">
                     <!-- Formulario de envío a dirección -->
                     <div class="mb-3">
@@ -173,17 +172,53 @@
                         <label for="shippingPostalCode" class="form-label">Código Postal</label>
                         <input type="text" class="form-control" id="shippingPostalCode" placeholder="Ingrese el código postal" [(ngModel)]="direccionEnvioCodigoPostal">
                     </div>
+                    <h2>Datos de Tarjeta de Crédito</h2>
+        <div class="form-group">
+            <label for="cardNumber">Número de Tarjeta: </label>
+            <input type="text" id="cardNumber" name="cardNumber" ngModel pattern="^\d{16}$" required #cardNumber="ngModel">
+            <span class="error-message color-red" *ngIf="cardNumber.invalid && cardNumber.touched">Por favor, ingrese un número de tarjeta válido (16 dígitos).</span>
+        </div>
+        <div class="form-group">
+            <label for="expiry">Fecha de Expiración: </label>
+            <input type="month" id="expiry" name="expiry" ngModel required #expiry="ngModel">
+            <span class="error-message color-red" *ngIf="expiry.invalid && expiry.touched">Por favor, ingrese una fecha de expiración válida.</span>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV: </label>
+            <input type="text" id="cvv" name="cvv" ngModel pattern="^\d{3}$" required #cvv="ngModel">
+            <span class="error-message color-red" *ngIf="cvv.invalid && cvv.touched">Por favor, ingrese un CVV válido (3 dígitos).</span>
+        </div>
+
                 </div>
+
                 <div id="pickupForm" *ngIf="envio === 'almacen'">
                     <!-- Dirección de recogida en el almacén -->
-                    <p>Dirección de recogida: c/dirección almacen numero dos, Madrid</p>
+                    <p>Dirección de recogida: C/ Avenida Salamanca nº2, Valladolid, Valladolid</p>
+                    <h2>Datos de Tarjeta de Crédito</h2>
+                <div class="form-group">
+            <label for="cardNumber">Número de Tarjeta: </label>
+            <input type="text" id="cardNumber" name="cardNumber" ngModel pattern="^\d{16}$" required #cardNumber="ngModel">
+            <span class="error-message color-red" *ngIf="cardNumber.invalid && cardNumber.touched">Por favor, ingrese un número de tarjeta válido (16 dígitos).</span>
+        </div>
+        <div class="form-group">
+            <label for="expiry">Fecha de Expiración: </label>
+            <input type="month" id="expiry" name="expiry" ngModel required #expiry="ngModel">
+            <span class="error-message color-red" *ngIf="expiry.invalid && expiry.touched">Por favor, ingrese una fecha de expiración válida.</span>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV: </label>
+            <input type="text" id="cvv" name="cvv" ngModel pattern="^\d{3}$" required #cvv="ngModel">
+            <span class="error-message color-red" *ngIf="cvv.invalid && cvv.touched">Por favor, ingrese un CVV válido (3 dígitos).</span>
+        </div>
                 </div>
-            </div>
+
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" (click)="confirmarCompra()">Confirmar Compra</button>
             </div>
-        </div>
+
+
     </div>
 </div>
 

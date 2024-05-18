@@ -84,4 +84,8 @@ h2 {
 .delete-button i {
   color: red; /* Color rojo para el icono */
   font-size: 24px; /* Tamaño del icono */
+}
+
+.error-message {
+  color: red;
 }/*# sourceMappingURL=listadoFactura.component.css.map */
